@@ -70,7 +70,10 @@ return [
         'detail' => '<i class="fa fa-cloud"></i> 分类属性',
 
     ],
+    'classCate' => [
+        'detail' => '<i class="fa fa-cloud"></i> 分类属性'
 
+    ],
 
 	'breadcrumb' => [
 		'home' => '<i class="fa fa-home"></i> 主页',
@@ -90,6 +93,7 @@ return [
 		'logs' => '<i class="fa fa-navicon"></i> 日志列表',
 		'logDetail' => '<i class="fa fa-television"></i> 日志详情',
         'adviserCate' => '<i class="fa fa-cloud"></i> 顾问分类',
+        'classCate' => '<i class="fa fa-cloud"></i> 课程分类',
 
 
 	]

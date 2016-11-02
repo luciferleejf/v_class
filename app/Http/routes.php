@@ -43,8 +43,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
     require(__DIR__ . '/Routes/RoleRoute.php');
     //课程分类
     require(__DIR__ . '/Routes/ClassCateRoute.php');
+    //课程列表
+    require(__DIR__ . '/Routes/ClassArticleRoute.php');
     //顾问分类
     require(__DIR__ . '/Routes/AdviserCateRoute.php');
+    //顾问列表
+    require(__DIR__ . '/Routes/AdviserArticleRoute.php');
 
 });
 

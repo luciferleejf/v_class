@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class AdviserCateRequest extends Request
+class ClassCateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -43,7 +43,6 @@ class AdviserCateRequest extends Request
         return [
             'name' => trans('labels.menu.name'),
             'pid' => trans('labels.menu.pid'),
-
             'status' => trans('labels.menu.status'),
         ];
     }

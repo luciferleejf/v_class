@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdviserCateTable extends Migration
+class CreateClassCateTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateAdviserCateTable extends Migration
      */
     public function up()
     {
-        Schema::create('adviser_cate', function (Blueprint $table) {
+        Schema::create('class_cate', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pid')->default(0)->comment('分类关系');
             $table->string('name')->default('')->comment('分类名称');
@@ -30,6 +30,6 @@ class CreateAdviserCateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('adviser_cate');
+        Schema::drop('class_cate');
     }
 }

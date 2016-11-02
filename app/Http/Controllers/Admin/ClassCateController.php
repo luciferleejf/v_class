@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use AdviserCateRepository;
-use App\Http\Requests\AdviserCateRequest;
+use ClassCateRepository;
+use App\Http\Requests\ClassCateRequest;
 
 class ClassCateController extends Controller
 {
@@ -12,38 +12,34 @@ class ClassCateController extends Controller
 
     }
 
-    /**
-     * 顾问分类
-     */
-
 
     public function index()
     {
-        $adviserCates = AdviserCateRepository::index();
-        return view('admin.class.cate.list')->with(compact('adviserCates'));
+        $classCates = ClassCateRepository::index();
+        return view('admin.class.cate.list')->with(compact('classCates'));
     }
     /**
      * 获取菜单数据
      */
     public function edit($id)
     {
-        $menu = AdviserCateRepository::edit($id);
+        $menu = ClassCateRepository::edit($id);
         return response()->json($menu);
     }
     /**
      * 修改菜单
      */
-    public function update(AdviserCateRequest $request,$id)
+    public function update(ClassCateRepository $request,$id)
     {
-        AdviserCateRepository::update($request,$id);
+        ClassCateRepository::update($request,$id);
         return redirect('admin/adviserCate');
     }
     /**
      * 添加菜单
      */
-    public function store(AdviserCateRequest $request)
+    public function store(ClassCateRepository $request)
     {
-        AdviserCateRepository::store($request);
+        ClassCateRepository::store($request);
         return redirect('admin/adviserCate');
     }
     /**
@@ -52,7 +48,7 @@ class ClassCateController extends Controller
      */
     public function sort()
     {
-        $result = AdviserCateRepository::sort();
+        $result = ClassCateRepository::sort();
         return response()->json($result);
     }
 
@@ -62,7 +58,7 @@ class ClassCateController extends Controller
      */
     public function destroy($id)
     {
-        AdviserCateRepository::destroy($id);
+        ClassCateRepository::destroy($id);
         return redirect('admin/adviserCate');
     }
 

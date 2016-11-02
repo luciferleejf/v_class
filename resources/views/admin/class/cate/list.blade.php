@@ -10,7 +10,7 @@
           <i class="fa fa-angle-right"></i>
       </li>
       <li>
-          <span>{!! trans('labels.breadcrumb.menuList') !!}</span>
+          <span>{!! trans('labels.breadcrumb.classCate') !!}</span>
       </li>
   </ul>
 </div>
@@ -22,7 +22,7 @@
             <div class="portlet-title">
               <div class="caption">
                 <i class="icon-settings font-green-sharp"></i>
-                <span class="caption-subject font-green-sharp sbold uppercase">{!! trans('labels.breadcrumb.menuList') !!}</span>
+                <span class="caption-subject font-green-sharp sbold uppercase">{!! trans('labels.breadcrumb.classCate') !!}</span>
               </div>
               <div class="actions">
                   <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
@@ -31,8 +31,8 @@
               <div class="portlet-body">
                   <div class="dd" id="nestable_list">
                       <ol class="dd-list">
-                          @if($menus)
-                          @foreach($menus as $v)
+                          @if($classCates)
+                          @foreach($classCates as $v)
                           @if($v['child'])
                           <li class="dd-item" data-id="{{$v['id']}}" data-pid="{{$v['pid']}}">
                             <div class="dd-handle dd3-handle"></div>
@@ -43,10 +43,10 @@
                                 <a href="javascript:;" data-pid="{{$v['id']}}" class="btn-xs tooltips createMenu" data-original-title="{{trans('crud.create')}}"  data-placement="top"><i class="fa fa-plus"></i></a>
                                 @endpermission
                                 @permission(config('admin.permissions.menu.edit'))
-                                <a href="javascript:;" data-href="{{url('admin/menu/'.$v['id'].'/edit')}}" class="btn-xs tooltips editMenu" data-original-title="{{trans('crud.edit')}}"  data-placement="top"><i class="fa fa-pencil"></i></a>
+                                <a href="javascript:;" data-href="{{url('admin/classCate/'.$v['id'].'/edit')}}" class="btn-xs tooltips editMenu" data-original-title="{{trans('crud.edit')}}"  data-placement="top"><i class="fa fa-pencil"></i></a>
                                 @endpermission
                                 @permission(config('admin.permissions.menu.destory'))
-                                <a href="javascript:;" data-id="{{$v['id']}}" class="btn-xs tooltips destoryMenu" data-original-title="{{trans('crud.destory')}}"  data-placement="top"><i class="fa fa-trash"></i><form action="{{url('admin/menu/'.$v['id'])}}" method="POST" name="delete_item{{$v['id']}}" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="{{csrf_token()}}"></form></a>
+                                <a href="javascript:;" data-id="{{$v['id']}}" class="btn-xs tooltips destoryMenu" data-original-title="{{trans('crud.destory')}}"  data-placement="top"><i class="fa fa-trash"></i><form action="{{url('admin/classCate/'.$v['id'])}}" method="POST" name="delete_item{{$v['id']}}" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="{{csrf_token()}}"></form></a>
                                 @endpermission
                                 </div>
                               </div>
@@ -58,10 +58,10 @@
                                       {{$val['name']}}
                                       <div class="pull-right action-buttons">
                                       @permission(config('admin.permissions.menu.edit'))
-                                      <a href="javascript:;" data-href="{{url('admin/menu/'.$val['id'].'/edit')}}" class="btn-xs tooltips editMenu" data-original-title="{{trans('crud.edit')}}"  data-placement="top"><i class="fa fa-pencil"></i></a>
+                                      <a href="javascript:;" data-href="{{url('admin/classCate/'.$val['id'].'/edit')}}" class="btn-xs tooltips editMenu" data-original-title="{{trans('crud.edit')}}"  data-placement="top"><i class="fa fa-pencil"></i></a>
                                       @endpermission
                                       @permission(config('admin.permissions.menu.destory'))
-                                      <a href="javascript:;" data-id="{{$val['id']}}" class="btn-xs tooltips destoryMenu" data-original-title="{{trans('crud.destory')}}"  data-placement="top"><i class="fa fa-trash"></i><form action="{{url('admin/menu/'.$val['id'])}}" method="POST" name="delete_item{{$val['id']}}" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="{{csrf_token()}}"></form></a>
+                                      <a href="javascript:;" data-id="{{$val['id']}}" class="btn-xs tooltips destoryMenu" data-original-title="{{trans('crud.destory')}}"  data-placement="top"><i class="fa fa-trash"></i><form action="{{url('admin/classCate/'.$val['id'])}}" method="POST" name="delete_item{{$val['id']}}" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="{{csrf_token()}}"></form></a>
                                       @endpermission
                                       </div>
                                     </div>
@@ -79,10 +79,10 @@
                                     <a href="javascript:;" data-pid="{{$v['id']}}" class="btn-xs tooltips createMenu" data-original-title="{{trans('crud.create')}}"  data-placement="top"><i class="fa fa-plus"></i></a>
                                     @endpermission
                                     @permission(config('admin.permissions.menu.edit'))
-                                    <a href="javascript:;" data-href="{{url('admin/menu/'.$v['id'].'/edit')}}" class="btn-xs tooltips editMenu" data-original-title="{{trans('crud.edit')}}"  data-placement="top"><i class="fa fa-pencil"></i></a>
+                                    <a href="javascript:;" data-href="{{url('admin/classCate/'.$v['id'].'/edit')}}" class="btn-xs tooltips editMenu" data-original-title="{{trans('crud.edit')}}"  data-placement="top"><i class="fa fa-pencil"></i></a>
                                     @endpermission
                                     @permission(config('admin.permissions.menu.destory'))
-                                    <a href="javascript:;" data-id="{{$v['id']}}" class="btn-xs tooltips destoryMenu" data-original-title="{{trans('crud.destory')}}"  data-placement="top"><i class="fa fa-trash"></i><form action="{{url('admin/menu/'.$v['id'])}}" method="POST" name="delete_item{{$v['id']}}" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="{{csrf_token()}}"></form></a>
+                                    <a href="javascript:;" data-id="{{$v['id']}}" class="btn-xs tooltips destoryMenu" data-original-title="{{trans('crud.destory')}}"  data-placement="top"><i class="fa fa-trash"></i><form action="{{url('admin/classCate/'.$v['id'])}}" method="POST" name="delete_item{{$v['id']}}" style="display:none"><input type="hidden" name="_method" value="delete"><input type="hidden" name="_token" value="{{csrf_token()}}"></form></a>
                                     @endpermission
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
             <div class="portlet-title">
               <div class="caption">
                 <i class="icon-settings font-green-sharp"></i>
-                <span class="caption-subject font-green-sharp sbold uppercase">{!! trans('labels.menu.detail') !!}</span>
+                <span class="caption-subject font-green-sharp sbold uppercase">{!! trans('labels.classCate.detail') !!}</span>
               </div>
               <div class="actions">
                   <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
@@ -115,7 +115,7 @@
                     @endforeach
                 </div>
                 @endif
-                <form role="form" class="form-horizontal" id="menuForm" method="POST" action="{{url('admin/menu')}}">
+                <form role="form" class="form-horizontal" id="menuForm" method="POST" action="{{url('admin/classCate')}}">
                   {!! csrf_field() !!}
                   <div class="form-body">
                       <div class="form-group form-md-line-input">
@@ -131,8 +131,8 @@
                           <div class="col-md-8">
                               <select class="form-control" id="pid" name="pid">
                                   <option value="0">{{trans('labels.menuLevel')}}</option>
-                                  @if($menus)
-                                  @foreach($menus as $v)
+                                  @if($classCates)
+                                  @foreach($classCates as $v)
                                   <option value="{{$v['id']}}">{{$v['name']}}</option>
                                   @endforeach
                                   @endif
@@ -141,37 +141,8 @@
                           </div>
                       </div>
 
-                      <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="language">{{trans('labels.menu.language')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="language" name="language" placeholder="{{trans('labels.menu.language')}}" value="">
-                              <div class="form-control-focus"> </div>
-                          </div>
-                      </div>
 
-                      <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="icon">{{trans('labels.menu.icon')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="icon" name="icon" placeholder="{{trans('labels.menu.icon')}}" value="">
-                              <div class="form-control-focus"> </div>
-                          </div>
-                      </div>
 
-                      <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="slug">{{trans('labels.menu.slug')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="slug" name="slug" placeholder="{{trans('labels.menu.slug')}}" value="">
-                              <div class="form-control-focus"> </div>
-                          </div>
-                      </div>
-
-                      <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="url">{{trans('labels.menu.url')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="url" name="url" placeholder="{{trans('labels.menu.url')}}" value="">
-                              <div class="form-control-focus"> </div>
-                          </div>
-                      </div>
 
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="description">{{trans('labels.menu.description')}}</label>
@@ -251,7 +222,7 @@ $(function() {
         return false;
       }
       $.ajax({
-        url:'/admin/menu/sort',
+        url:'/admin/classCate/sort',
         data:{
           currentItemId:currentItemId,
           itemParentId:itemParentId,
@@ -267,10 +238,6 @@ $(function() {
     var menuAttribute = function(menu) {
       $('#name').val(menu.name);
       $('#pid option[value='+menu.pid+']').attr('selected','true');
-      $('#language').val(menu.language);
-      $('#icon').val(menu.icon);
-      $('#slug').val(menu.slug);
-      $('#url').val(menu.url);
       $('#description ').val(menu.description  );
       $('#sort').val(menu.sort);
       $('input[type=radio][value='+menu.status+']').attr('checked','true');

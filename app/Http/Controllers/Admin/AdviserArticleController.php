@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use UserRepository;
-use PermissionRepository;
-use RoleRepository;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Requests\UpdateUserRequest;
+use AdviserArticleRepository;
+
 class AdviserArticleController extends Controller
 {
     public function __construct()
@@ -31,7 +27,7 @@ class AdviserArticleController extends Controller
      */
     public function ajaxIndex()
     {
-        $data = UserRepository::ajaxIndex();
+        $data = AdviserArticleRepository::ajaxIndex();
         return response()->json($data);
     }
     /**
@@ -51,7 +47,7 @@ class AdviserArticleController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        UserRepository::store($request);
+        AdviserArticleRepository::store($request);
         return redirect('admin/user');
     }
 
@@ -61,7 +57,7 @@ class AdviserArticleController extends Controller
      */
     public function edit($id)
     {
-        $user = UserRepository::edit($id);
+        $user = AdviserArticleRepository::edit($id);
         $roles = RoleRepository::findRoleWithObject();
         $permissions = PermissionRepository::findPermissionWithArray();
         return view('admin.user.edit')->with(compact(['user','permissions','roles']));
@@ -72,7 +68,7 @@ class AdviserArticleController extends Controller
      */
     public function update(UpdateUserRequest $request,$id)
     {
-        UserRepository::update($request,$id);
+        AdviserArticleRepository::update($request,$id);
         return redirect('admin/user');
     }
 
@@ -82,7 +78,7 @@ class AdviserArticleController extends Controller
      */
     public function mark($id,$status)
     {
-        UserRepository::mark($id,$status);
+        AdviserArticleRepository::mark($id,$status);
         return redirect('admin/user');
     }
 
@@ -92,7 +88,7 @@ class AdviserArticleController extends Controller
      */
     public function destroy($id)
     {
-        UserRepository::destroy($id);
+        AdviserArticleRepository::destroy($id);
         return redirect('admin/user');
     }
     /**
@@ -101,7 +97,7 @@ class AdviserArticleController extends Controller
      */
     public function show($id)
     {
-        $user = UserRepository::show($id);
+        $user = AdviserArticleRepository::show($id);
         return view('admin.user.show')->with(compact('user'));
     }
     /**
@@ -119,7 +115,7 @@ class AdviserArticleController extends Controller
      */
     public function resetPassword(ResetPasswordRequest $request)
     {
-        UserRepository::resetPassword($request);
+        AdviserArticleRepository::resetPassword($request);
         return redirect('admin/user');
     }
 }

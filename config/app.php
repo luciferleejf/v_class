@@ -223,6 +223,7 @@ return [
         'RoleRepository' => App\Facades\RoleFacade::class,
         'MenuRepository' => App\Facades\MenuFacade::class,
         'AdviserCateRepository' => App\Facades\AdviserCateFacade::class,
+        'AdviserArticleRepository' => App\Facades\AdviserArticleFacade::class,
         'ClassCateRepository' => App\Facades\ClassCateFacade::class,
     ],
 

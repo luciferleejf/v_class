@@ -13,10 +13,11 @@
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <span>{!! trans('labels.breadcrumb.userList') !!}</span>
+                <span>{!! trans('labels.breadcrumb.adviser') !!}</span>
+                <i class="fa fa-angle-right"></i>
             </li>
             <li>
-                <span>{!! trans('labels.breadcrumb.userList') !!}</span>
+                <span>{!! trans('labels.breadcrumb.adviserArticle') !!}</span>
             </li>
         </ul>
     </div>
@@ -29,12 +30,12 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject font-dark sbold uppercase">{{trans('labels.user.list')}}</span>
+                        <span class="caption-subject font-dark sbold uppercase">{{trans('labels.adviserArticle.adviserArticle')}}</span>
                     </div>
                     <div class="actions">
                         <div class="btn-group">
                             @permission(config('admin.permissions.user.create'))
-                            <a href="{{url('admin/user/create')}}" class="btn btn-success btn-outline btn-circle">
+                            <a href="{{url('admin/adviserArticle/create')}}" class="btn btn-success btn-outline btn-circle">
                                 <i class="fa fa-user-plus"></i>
                                 <span class="hidden-xs">{{trans('crud.create')}}</span>
                             </a>
@@ -48,52 +49,21 @@
                             <thead>
                             <tr role="row" class="heading">
                                 <th>#</th>
-                                <th width="15%"> {{ trans('labels.user.name') }} </th>
-                                <th> {{ trans('labels.user.email') }} </th>
-                                <th> {{ trans('labels.user.confirm_email') }} </th>
-                                <th width="10%"> {{ trans('labels.user.status') }} </th>
-                                <th width="15%"> {{ trans('labels.user.created_at') }} </th>
-                                <th width="15%"> {{ trans('labels.user.updated_at') }} </th>
+                                <th width="15%"> {{ trans('labels.adviserArticle.department') }} </th>
+
+                                <th> {{ trans('labels.adviserArticle.cnName') }} </th>
+                                <th width="10%"> {{ trans('labels.adviserArticle.enName') }} </th>
+                                <th width="15%"> {{ trans('labels.adviserArticle.area') }} </th>
+                                <th width="15%"> {{ trans('labels.adviserArticle.phone') }} </th>
+                                <th> {{ trans('labels.adviserArticle.email') }} </th>
                                 <th width="15%"> {{ trans('labels.action') }} </th>
                             </tr>
                             <tr role="row" class="filter">
                                 <td></td>
                                 <td>
                                     <div class="form-group form-md-line-input">
-                                        <div class="input-group has-success">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-user"></i>
-                                    </span>
-                                            <input type="text" class="form-control form-filter" name="name" placeholder="{{ trans('labels.user.name') }}">
-                                            <div class="form-control-focus"> </div>
-                                        </div>
-                                    </div>
-                                <td>
-                                    <div class="form-group form-md-line-input">
-                                        <div class="input-group has-success">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                            <input type="text" class="form-control form-filter" name="email" placeholder="{{ trans('labels.user.email') }}">
-                                            <div class="form-control-focus"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group form-md-line-input">
-                                        <div class="input-group has-success">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-book"></i>
-                                    </span>
-                                            <input type="text" class="form-control form-filter" name="confirm_email" placeholder="{{ trans('labels.user.confirm_email') }}">
-                                            <div class="form-control-focus"> </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group form-md-line-input">
-                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="status">
-                                            <option value="" data-icon="fa-glass icon-success">状态....</option>
+                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="department">
+                                            <option value="" data-icon="fa-glass icon-success">部门....</option>
                                             @if(trans('strings.user'))
                                                 @foreach(trans('strings.user') as $status_key => $status_value)
                                                     <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
@@ -102,41 +72,71 @@
                                         </select>
                                     </div>
                                 <td>
-                                    <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="From" name="created_at_from">
-                                        <span class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </span>
+                                    <div class="form-group form-md-line-input">
+                                        <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                            <input type="text" class="form-control form-filter" name="cnName" placeholder="{{ trans('labels.adviserArticle.cnName') }}">
+                                            <div class="form-control-focus"> </div>
+                                        </div>
                                     </div>
-
-                                    <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="To" name="created_at_to">
-                                        <span class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </span>
-                                    </div>
+                                </td>
                                 <td>
-                                    <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="From" name="updated_at_from">
-                                        <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                  </span>
+                                    <div class="form-group form-md-line-input">
+                                        <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                            <input type="text" class="form-control form-filter" name="enName" placeholder="{{ trans('labels.adviserArticle.enName') }}">
+                                            <div class="form-control-focus"> </div>
+                                        </div>
                                     </div>
+                                </td>
+                                <td>
+                                    <div class="form-group form-md-line-input">
+                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="area">
+                                            <option value="" data-icon="fa-glass icon-success">地区....</option>
+                                            @if(trans('strings.user'))
+                                                @foreach(trans('strings.user') as $status_key => $status_value)
+                                                    <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </td>
 
-                                    <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="To" name="updated_at_to">
-                                        <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                  </span>
+                                <td>
+                                    <div class="form-group form-md-line-input">
+                                        <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                            <input type="text" class="form-control form-filter" name="phone" placeholder="{{ trans('labels.adviserArticle.phone') }}">
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <div class="form-group form-md-line-input">
+                                        <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </span>
+                                            <input type="text" class="form-control form-filter" name="email" placeholder="{{ trans('labels.adviserArticle.email') }}">
+                                            <div class="form-control-focus"> </div>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="margin-bottom-5">
                                         <button class="btn btn-sm green btn-outline filter-submit margin-bottom">
-                                            <i class="fa fa-search"></i> Search</button>
+                                            <i class="fa fa-search"></i> 搜索</button>
                                     </div>
                                     <button class="btn btn-sm red btn-outline filter-cancel">
-                                        <i class="fa fa-times"></i> Reset</button>
+                                        <i class="fa fa-times"></i> 重置</button>
                                 </td>
                             </tr>
                             </thead>
@@ -153,7 +153,7 @@
     <script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('backend/js/user/user-list.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/js/adviser/adviser-article.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
     <script type="text/javascript">
         $(function() {

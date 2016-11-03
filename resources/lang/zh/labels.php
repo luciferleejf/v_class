@@ -66,6 +66,21 @@ return [
 		'detail' => '<i class="fa fa-cog"></i> 菜单属性',
 		'show' => '查看',
 	],
+    'adviserArticle' =>[
+
+        'adviserArticle' => '顾问列表',
+        'photo' => '头像',
+        'department' => '部门',
+        'cnName' => '中文名',
+        'enName' => '英文名',
+        'sex' => '性别',
+        'area' => '所属地区',
+        'email' => '邮箱',
+        'phone' => '电话',
+
+    ],
+
+
     'adviserCate' =>[
         'detail' => '<i class="fa fa-cloud"></i> 分类属性',
 
@@ -92,9 +107,13 @@ return [
 		'logList' => '<i class="fa fa-cogs"></i> 系统日志',
 		'logs' => '<i class="fa fa-navicon"></i> 日志列表',
 		'logDetail' => '<i class="fa fa-television"></i> 日志详情',
+        'adviser' => '<i class="fa fa-diamond"></i> 顾问管理',
         'adviserCate' => '<i class="fa fa-cloud"></i> 顾问分类',
+        'adviserArticle' => '<i class="fa fa-file-text"></i> 顾问列表',
+        
         'classCate' => '<i class="fa fa-cloud"></i> 课程分类',
 
-
 	]
+
+
 ];

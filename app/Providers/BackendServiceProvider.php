@@ -48,6 +48,10 @@ class BackendServiceProvider extends ServiceProvider
             return new \App\Repositories\admin\ClassCateRepository();
         });
 
+        $this->app->singleton('AdviserArticleRepository', function($app){
+            return new \App\Repositories\admin\AdviserArticleRepository();
+        });
+
 
     }
 }

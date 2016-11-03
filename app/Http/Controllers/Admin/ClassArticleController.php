@@ -22,7 +22,7 @@ class ClassArticleController extends Controller
      */
     public function index()
     {
-        return view('admin.adviser.class.list');
+        return view('admin.class.article.list');
     }
 
     /**

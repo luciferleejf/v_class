@@ -27,56 +27,32 @@ var TableDatatablesAjax = function() {
           "name" : "id",
         },
         {
-          "data": "name",
-          "name" : "name",
-          "orderable" : false,
+          "data": "department",
+          "name" : "department",
+
+        },
+        {
+          "data": "cnName",
+          "name": "cnName",
+
+        },
+        {
+          "data": "enName",
+          "name": "enName",
+        },
+        {
+          "data": "area",
+          "name": "area",
+
+        },
+        {
+          "data": "phone",
+          "name": "phone",
+
         },
         {
           "data": "email",
           "name": "email",
-          "orderable" : false,
-        },
-        {
-          "data": "confirm_email",
-          "name": "confirm_email",
-          "orderable" : false,
-          render:function(data){
-            if (data == 1) {
-              return '<span class="label label-success"> 验证 </span>';
-            }else{
-              return '<span class="label label-warning"> 未验证 </span>';
-            }
-          }
-        },
-        {
-          "data": "status",
-          "name": "status",
-          "orderable" : true,
-          render:function(data){
-            if (data == 1) {
-              return '<span class="label label-success"> 正常 </span>';
-            }else if(data == 3){
-              return '<span class="label label-warning"> 待审核 </span>';
-            }else{
-              return '<span class="label label-danger"> 禁用 </span>';
-            }
-          }
-        },
-        {
-          "data": "created_at",
-          "name": "created_at",
-          "orderable" : true,
-        },
-        {
-          "data": "updated_at",
-          "name": "updated_at",
-          "orderable" : true,
-        },
-        {
-          "data": "actionButton",
-          "name": "actionButton",
-          "type": "html",
-          "orderable" : false,
         },
       ],
       "drawCallback": function( settings ) {
@@ -91,7 +67,7 @@ var TableDatatablesAjax = function() {
     });
 
     dt.on('click', '.filter-submit', function(){
-      ajax_datatable.ajax.reload(); 
+      ajax_datatable.ajax.reload();
     });
 
     dt.on('click', '.filter-cancel', function(){

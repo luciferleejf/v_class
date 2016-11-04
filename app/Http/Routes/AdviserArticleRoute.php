@@ -3,7 +3,7 @@
  *  顾问路由
  */
 $router->group(['prefix' => 'adviserArticle'], function($router){
-    $router->get('ajaxIndex', 'AdviserArticle@ajaxIndex');
+    $router->get('ajaxIndex', 'AdviserArticleController@ajaxIndex');
     $router->get('/{id}/mark/{status}', 'AdviserArticleController@mark')
         ->where([
             'id' => '[0-9]+',

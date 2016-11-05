@@ -18,6 +18,13 @@ return[
 		'trash' => 99,
 		'destory' => -1
 	],
+
+    'sex' => [
+        'boy' => 1,
+        'girl' => 2,
+
+    ],
+
 	////////
 	//分页//
 	////////
@@ -52,6 +59,17 @@ return[
 		// trait 中的 action 参数
 		'action' => 'user',
 	],
+    ////////
+    //顾问列表//
+    ////////
+    'adviserArticle' => [
+        // 控制是否显示查看按钮
+        'show' => true,
+        // trait 中的 action 参数
+        'action' => 'adviserArticle',
+    ],
+
+
 	////////
 	//标签//
 	////////

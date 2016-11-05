@@ -54,6 +54,13 @@ var TableDatatablesAjax = function() {
           "data": "email",
           "name": "email",
         },
+        {
+          "data": "actionButton",
+          "name": "actionButton",
+          "type": "html",
+
+        },
+
       ],
       "drawCallback": function( settings ) {
         ajax_datatable.$('.tooltips').tooltip( {

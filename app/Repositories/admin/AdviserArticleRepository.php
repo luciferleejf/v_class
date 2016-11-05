@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\admin;
 use App\Models\AdviserArticle;
+
 use Carbon\Carbon;
 use Flash;
 /**
@@ -17,9 +18,7 @@ class AdviserArticleRepository
 		$draw = request('draw', 1);/*获取请求次数*/
 		$start = request('start', config('admin.golbal.list.start')); /*获取开始*/
 		$length = request('length', config('admin.golbal.list.length')); ///*获取条数*/
-
 		$search_pattern = request('search.regex', true); /*是否启用模糊搜索*/
-
         $department = request('department' ,'');
 		$cnName = request('cnName' ,'');
 		$enName = request('enName' ,'');
@@ -92,27 +91,27 @@ class AdviserArticleRepository
 		$count = $AdviserArticle->count();
 
 
-		if($orders){
-			$orderName = request('columns.' . request('order.0.column') . '.name');
-			$orderDir = request('order.0.dir');
+        if($orders){
+            $orderName = request('columns.' . request('order.0.column') . '.name');
+            $orderDir = request('order.0.dir');
             $AdviserArticle = $AdviserArticle->orderBy($orderName, $orderDir);
-		}
+        }
 
         $AdviserArticle = $AdviserArticle->offset($start)->limit($length);
         $AdviserArticles = $AdviserArticle->get();
 
-		if ($AdviserArticles) {
-			foreach ($AdviserArticles as &$v) {
-				$v['actionButton'] = $v->getActionButtonAttribute();
-			}
-		}
-		
-		return [
-			'draw' => $draw,
-			'recordsTotal' => $count,
-			'recordsFiltered' => $count,
-			'data' => $AdviserArticles,
-		];
+        if ($AdviserArticles) {
+            foreach ($AdviserArticles as &$v) {
+                $v['actionButton'] = $v->getActionButtonAttribute();
+            }
+        }
+
+        return [
+            'draw' => $draw,
+            'recordsTotal' => $count,
+            'recordsFiltered' => $count,
+            'data' => $AdviserArticles,
+        ];
 	}
 
 	/**

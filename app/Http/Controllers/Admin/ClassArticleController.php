@@ -42,7 +42,7 @@ class ClassArticleController extends Controller
     {
         $permissions = PermissionRepository::findPermissionWithArray();
         $roles = RoleRepository::findRoleWithObject();
-        return view('admin.user.create')->with(compact(['permissions','roles']));
+        return view('admin.user.create')->with(compact(['permissions','adviser']));
     }
 
     /**

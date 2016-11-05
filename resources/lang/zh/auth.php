@@ -17,8 +17,8 @@ return [
     'email' => '邮箱',
     'password' => '密码',
     'captcha' => '验证码',
-    'login' => 'Login',
-    'remember' => 'Remember',
+    'login' => '登 录',
+    'remember' => '记住密码',
     'forgot' => 'Forgot Password?',
     'create' => 'CREATE AN ACCOUNT',
 

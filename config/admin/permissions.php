@@ -36,4 +36,10 @@ return[
 		'destory' 	=> 'admin.menus.delete',
 		'list' 		=> 'admin.menus.list',
 	],
+    'adviser' => [
+        'create' 	=> 'admin.adviser.create',
+        'edit' 		=> 'admin.adviser.edit',
+        'destory' 	=> 'admin.adviser.delete',
+        'show' 		=> 'admin.adviser.show',
+    ],
 ];

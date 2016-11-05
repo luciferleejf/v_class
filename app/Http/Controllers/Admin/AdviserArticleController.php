@@ -36,9 +36,8 @@ class AdviserArticleController extends Controller
      */
     public function create()
     {
-        $permissions = PermissionRepository::findPermissionWithArray();
-        $roles = RoleRepository::findRoleWithObject();
-        return view('admin.user.create')->with(compact(['permissions','roles']));
+
+        return view('admin.adviser.article.create')->with(compact(['permissions','roles']));
     }
 
     /**
@@ -48,7 +47,7 @@ class AdviserArticleController extends Controller
     public function store(CreateUserRequest $request)
     {
         AdviserArticleRepository::store($request);
-        return redirect('admin/user');
+        return redirect('admin/adviser');
     }
 
     /**
@@ -60,7 +59,7 @@ class AdviserArticleController extends Controller
         $user = AdviserArticleRepository::edit($id);
         $roles = RoleRepository::findRoleWithObject();
         $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.user.edit')->with(compact(['user','permissions','roles']));
+        return view('admin.adviser.article.edit')->with(compact(['user','permissions','roles']));
     }
     /**
      * 修改用户资料
@@ -69,7 +68,7 @@ class AdviserArticleController extends Controller
     public function update(UpdateUserRequest $request,$id)
     {
         AdviserArticleRepository::update($request,$id);
-        return redirect('admin/user');
+        return redirect('admin/adviser');
     }
 
     /**
@@ -79,7 +78,7 @@ class AdviserArticleController extends Controller
     public function mark($id,$status)
     {
         AdviserArticleRepository::mark($id,$status);
-        return redirect('admin/user');
+        return redirect('admin/adviser');
     }
 
     /**
@@ -89,7 +88,7 @@ class AdviserArticleController extends Controller
     public function destroy($id)
     {
         AdviserArticleRepository::destroy($id);
-        return redirect('admin/user');
+        return redirect('admin/adviser');
     }
     /**
      * 查看用户信息
@@ -98,24 +97,7 @@ class AdviserArticleController extends Controller
     public function show($id)
     {
         $user = AdviserArticleRepository::show($id);
-        return view('admin.user.show')->with(compact('user'));
-    }
-    /**
-     * 修改用户密码视图
-
-     */
-    public function changePassword($id)
-    {
-        return view('admin.user.reset')->with(compact('id'));
+        return view('admin.adviser.article.show')->with(compact('user'));
     }
 
-    /**
-     * 修改用户密码
-
-     */
-    public function resetPassword(ResetPasswordRequest $request)
-    {
-        AdviserArticleRepository::resetPassword($request);
-        return redirect('admin/user');
-    }
 }

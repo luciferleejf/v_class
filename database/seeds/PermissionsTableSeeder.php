@@ -65,6 +65,33 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
 
+        Permission::create([
+            'name' => 'adviser show',
+            'slug' => 'admin.adviser.show',
+            'description' => '查看顾问权限'
+        ]);
+
+        Permission::create([
+            'name' => 'adviser create',
+            'slug' => 'admin.adviser.create',
+            'description' => '创建顾问权限'
+        ]);
+
+        Permission::create([
+            'name' => 'adviser edit',
+            'slug' => 'admin.adviser.edit',
+            'description' => '编辑顾问权限'
+        ]);
+
+        Permission::create([
+            'name' => 'adviser delete',
+            'slug' => 'admin.adviser.delete',
+            'description' => '删除顾问权限'
+        ]);
+
+
+
+
 
 
         //////////////////

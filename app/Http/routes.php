@@ -27,7 +27,8 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/home', 'HomeController@index');
+
+    //Route::get('/login', function(){return view('auth.login');});
     Route::auth();
 });
 
@@ -53,7 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
 });
 
 
-Route::group(['prefix' => 'api', 'namespace' => 'Api','middleware' => ['web', 'auth']], function ($router) {
-    $router->get('/', 'ApiController@index');
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function ($router) {
+
     require(__DIR__ . '/Routes/ApiRoute.php');
 });

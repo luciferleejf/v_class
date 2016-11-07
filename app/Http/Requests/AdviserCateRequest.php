@@ -43,7 +43,6 @@ class AdviserCateRequest extends Request
         return [
             'name' => trans('labels.menu.name'),
             'pid' => trans('labels.menu.pid'),
-
             'status' => trans('labels.menu.status'),
         ];
     }

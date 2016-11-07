@@ -206,6 +206,7 @@ return [
     'aliases' => [
 
         'App'       => Illuminate\Support\Facades\App::class,
+
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
         'Auth'      => Illuminate\Support\Facades\Auth::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
@@ -241,7 +242,7 @@ return [
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
-        //仓库
+        //admin仓库
         'UserRepository' => App\Facades\UserFacade::class,
         'PermissionRepository' => App\Facades\PermissionFacade::class,
         'RoleRepository' => App\Facades\RoleFacade::class,
@@ -249,6 +250,10 @@ return [
         'AdviserCateRepository' => App\Facades\AdviserCateFacade::class,
         'AdviserArticleRepository' => App\Facades\AdviserArticleFacade::class,
         'ClassCateRepository' => App\Facades\ClassCateFacade::class,
+
+
+        //api仓库
+        'ClientRepository' => App\Facades\ClientFacade::class,
     ],
 
 ];

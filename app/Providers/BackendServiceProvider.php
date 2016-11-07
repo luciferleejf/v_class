@@ -2,7 +2,7 @@
 namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use MenuRepository;
-use AdviserCateRepository;
+
 use Auth;
 class BackendServiceProvider extends ServiceProvider
 {
@@ -40,17 +40,7 @@ class BackendServiceProvider extends ServiceProvider
         $this->app->singleton('MenuRepository', function($app){
             return new \App\Repositories\admin\MenuRepository();
         });
-        $this->app->singleton('AdviserCateRepository', function($app){
-            return new \App\Repositories\admin\AdviserCateRepository();
-        });
 
-        $this->app->singleton('ClassCateRepository', function($app){
-            return new \App\Repositories\admin\ClassCateRepository();
-        });
-
-        $this->app->singleton('AdviserArticleRepository', function($app){
-            return new \App\Repositories\admin\AdviserArticleRepository();
-        });
 
 
     }

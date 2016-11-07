@@ -4,8 +4,13 @@
  */
 $router->group(['prefix' => 'client'], function($router){
 
-	$router->get('checkLogin','ClientController@checkLogin');
-    $router->get('register','ClientController@register');
+	$router->post('login','ClientController@login');
+    $router->post('register','ClientController@register');
+    $router->post('getVerify','ClientController@getVerify');
+
+
+
+
 });
 
 

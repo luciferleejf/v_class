@@ -93,6 +93,21 @@ class MenusTableSeeder extends Seeder
         $adviser_article->description = "顾问列表";
         $adviser_article->save();
 
+        /**
+         * -------------------------------------------------
+         * 用户管理
+         * -------------------------------------------------
+         */
+
+        $client = new Menu;
+        $client->name = "用户管理";
+        $client->pid = 0;
+        $client->language = "zh";
+        $client->icon = "fa fa-male";
+        $client->slug = "admin.systems.appUser";
+        $client->url = "admin/appUser/";
+        $client->description = "用户管理";
+        $client->save();
 
 
         /**

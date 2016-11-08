@@ -4,25 +4,20 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use UserRepository;
-use PermissionRepository;
-use RoleRepository;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Requests\UpdateUserRequest;
-class ClassArticleController extends Controller
+
+class AppUserController extends Controller
 {
     public function __construct()
     {
 
     }
-	/**
+    /**
      * 用户列表
 
      */
     public function index()
     {
-        return view('admin.client.list');
+        return view('admin.appuser.list');
     }
 
     /**
@@ -42,7 +37,7 @@ class ClassArticleController extends Controller
     {
         $permissions = PermissionRepository::findPermissionWithArray();
         $roles = RoleRepository::findRoleWithObject();
-        return view('admin.user.create')->with(compact(['permissions','adviser']));
+        return view('admin.user.create')->with(compact(['permissions','roles']));
     }
 
     /**

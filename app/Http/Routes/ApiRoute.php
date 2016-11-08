@@ -4,12 +4,12 @@
  */
 $router->group(['prefix' => 'client'], function($router){
 
-	$router->post('login','ClientController@login');
-    $router->post('register','ClientController@register');
-    $router->post('getVerify','ClientController@getVerify');
-    $router->post('setDefault','ClientController@setDefault');
-
-
+	$router->post('login','ClientController@login');   //用户登录
+    $router->post('register','ClientController@register'); //用户注册
+    $router->post('getVerify','ClientController@getVerify');   //发送验证码
+    $router->post('setDefault','ClientController@setDefault'); //头像昵称设置
+    $router->post('forgetPassword','ClientController@forgetPassword');//忘记密码
+    $router->post('resetPassword','ClientController@resetPassword');
 
 });
 

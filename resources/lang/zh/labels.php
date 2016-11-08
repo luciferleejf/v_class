@@ -110,10 +110,19 @@ return [
         'adviser' => '<i class="fa fa-diamond"></i> 顾问管理',
         'adviserCate' => '<i class="fa fa-cloud"></i> 顾问分类',
         'adviserArticle' => '<i class="fa fa-file-text"></i> 顾问列表',
-        
         'classCate' => '<i class="fa fa-cloud"></i> 课程分类',
 
-	]
+	],
+
+
+
+    'appUser' =>[
+
+        'nickName' => '昵称',
+        'mobile' => '手机',
+        'face_img_b' => '头像',
+
+    ],
 
 
 ];

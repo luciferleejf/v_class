@@ -46,5 +46,17 @@ class ClientController extends Controller
     }
 
 
+    public function forgetPassword(request $request){
+        $message=ClientRepository::forgetPassword($request);
+        return response()->json($message);
+    }
+
+    public function resetPassword(request $request){
+        $message=ClientRepository::resetPassword($request);
+        return response()->json($message);
+    }
+
+
+
 
 }

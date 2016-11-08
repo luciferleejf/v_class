@@ -33,23 +33,52 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web', 'auth']], function ($router) {
+
     $router->get('/', 'IndexController@index');
-    /*用户*/
-    require(__DIR__ . '/Routes/UserRoute.php');
-    //权限
-    require(__DIR__ . '/Routes/PermissionRoute.php');
-    /*菜单*/
-    require(__DIR__ . '/Routes/MenuRoute.php');
-    //角色
-    require(__DIR__ . '/Routes/RoleRoute.php');
-    //课程分类
-    require(__DIR__ . '/Routes/ClassCateRoute.php');
-    //课程列表
-    require(__DIR__ . '/Routes/ClassArticleRoute.php');
-    //顾问分类
-    require(__DIR__ . '/Routes/AdviserCateRoute.php');
-    //顾问列表
-    require(__DIR__ . '/Routes/AdviserArticleRoute.php');
+
+    /*
+     *
+     *系统
+     *
+     * */
+
+        /*用户*/
+        require(__DIR__ . '/Routes/UserRoute.php');
+        //权限
+        require(__DIR__ . '/Routes/PermissionRoute.php');
+        /*菜单*/
+        require(__DIR__ . '/Routes/MenuRoute.php');
+        //角色
+        require(__DIR__ . '/Routes/RoleRoute.php');
+
+    /*
+     *
+     * 课程管理
+     *
+     * */
+
+        //课程分类
+        require(__DIR__ . '/Routes/ClassCateRoute.php');
+        //课程列表
+        require(__DIR__ . '/Routes/ClassArticleRoute.php');
+
+    /*
+     * 顾问管理
+     *
+     * */
+        //顾问分类
+        require(__DIR__ . '/Routes/AdviserCateRoute.php');
+        //顾问列表
+        require(__DIR__ . '/Routes/AdviserArticleRoute.php');
+
+    /*
+     *
+     *用户管理
+     *
+     * */
+    require(__DIR__ . '/Routes/AppUserRoute.php');
+
+
 
 });
 

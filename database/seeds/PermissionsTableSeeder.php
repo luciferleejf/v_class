@@ -51,6 +51,15 @@ class PermissionsTableSeeder extends Seeder
             'description' => '顾问管理'
         ]);
 
+        //////////
+        //用户管理//
+        //////////
+        Permission::create([
+            'name' => 'appUser manage',
+            'slug' => 'admin.systems.appUser',
+            'description' => '用户管理'
+        ]);
+
 
         Permission::create([
             'name' => 'Show adviser categories list',

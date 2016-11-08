@@ -126,6 +126,7 @@ class ClientRepository
             {
                 $message['status']="200";
                 $message['code']="1"; //登录成功
+                $message['id']=$user['id'];
                 return $message;
             }
             else
@@ -181,4 +182,61 @@ class ClientRepository
             return $message;
         }
     }
+
+    public static function forgetPassword($request)
+    {
+        $client=new Client;
+        $verifyCode = new VerifyCode;
+        $data=$request->all();
+
+        $user=$client->where('mobile',$data['mobile'])->first();
+        if($user)
+        {
+            $check=$verifyCode->orderBy('created_at','desc')->where('mobile',$data['mobile'])->first();
+
+            if($check['verifyCode']==$data['verifyCode'])
+            {
+                $message['status']="200";
+                $message['code']="1"; //成功
+                $message['mobile']=$data['mobile'];
+                return $message;
+            }
+            else{
+                $message['status']="400";
+                $message['code']="2"; //验证码不正确
+                return $message;
+            }
+
+        }
+        else{
+            $message['status']="400";
+            $message['code']="3"; //手机号不存在
+            return $message;
+        }
+    }
+
+    public static function resetPassword($request)
+    {
+
+        $client=new Client;
+        $data = $request->all();
+
+        $info['pwd']= bcrypt($data['pwd']);
+
+        if($client->where('mobile',$data['mobile'])->update($info))
+        {
+            $message['status']="200";
+            $message['code']="1"; //修改密码成功
+            return $message;
+
+        }
+        else{
+            $message['status']="400";
+            $message['code']="2"; //修改错误
+            return $message;
+        }
+
+    }
+
+
 }

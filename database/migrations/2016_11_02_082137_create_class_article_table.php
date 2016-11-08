@@ -12,7 +12,17 @@ class CreateClassArticleTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('class_article', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('cid')->default(0)->comment('课程所属分类');
+            $table->string('face_img')->default('')->comment('课程图片');
+            $table->string('title')->default('')->comment('课程名称');
+            $table->string('description')->default('')->comment('描述');
+            $table->integer('type')->default(0)->comment('课程类型 0-音频 1-视频');
+            $table->string('url')->default('')->comment('视频/音频 url');
+            $table->text('content')->default('')->comment('课程内容');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +32,6 @@ class CreateClassArticleTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('class_article');
     }
 }

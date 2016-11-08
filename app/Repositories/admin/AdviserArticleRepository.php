@@ -27,16 +27,16 @@ class AdviserArticleRepository
 		$email = request('email' ,'');
 		$orders = request('order', []);
 
-        $AdviserArticle = new AdviserArticle;
+        $adviserArticle = new AdviserArticle;
 
 
 
         /*部门搜索*/
         if($department){
             if($search_pattern){
-                $AdviserArticle = $AdviserArticle->where('department', 'like', $department);
+                $adviserArticle = $adviserArticle->where('department', 'like', $department);
             }else{
-                $AdviserArticle = $AdviserArticle->where('department', $department);
+                $adviserArticle = $adviserArticle->where('department', $department);
             }
         }
 
@@ -44,64 +44,64 @@ class AdviserArticleRepository
 		/*中文名称搜索*/
 		if($cnName){
 			if($search_pattern){
-                $AdviserArticle = $AdviserArticle->where('cnName', 'like', $cnName);
+                $adviserArticle = $adviserArticle->where('cnName', 'like', $cnName);
 			}else{
-                $AdviserArticle = $AdviserArticle->where('cnName', $cnName);
+                $adviserArticle = $adviserArticle->where('cnName', $cnName);
 			}
 		}
 
         /*英文名称搜索*/
         if($enName){
             if($search_pattern){
-                $AdviserArticle = $AdviserArticle->where('enName', 'like', $enName);
+                $adviserArticle = $adviserArticle->where('enName', 'like', $enName);
             }else{
-                $AdviserArticle = $AdviserArticle->where('enName', $enName);
+                $adviserArticle = $adviserArticle->where('enName', $enName);
             }
         }
 
         /*地区搜索*/
         if($area){
             if($search_pattern){
-                $AdviserArticle = $AdviserArticle->where('area', 'like', $area);
+                $adviserArticle = $adviserArticle->where('area', 'like', $area);
             }else{
-                $AdviserArticle = $AdviserArticle->where('area', $area);
+                $adviserArticle = $adviserArticle->where('area', $area);
             }
         }
 
         /*电话搜索*/
         if($phone){
             if($search_pattern){
-                $AdviserArticle = $AdviserArticle->where('phone', 'like', $phone);
+                $adviserArticle = $adviserArticle->where('phone', 'like', $phone);
             }else{
-                $AdviserArticle = $AdviserArticle->where('phone', $phone);
+                $adviserArticle = $adviserArticle->where('phone', $phone);
             }
         }
 
         /*邮箱搜索*/
         if($email){
             if($search_pattern){
-                $AdviserArticle = $AdviserArticle->where('email', 'like', $email);
+                $adviserArticle = $adviserArticle->where('email', 'like', $email);
             }else{
-                $AdviserArticle = $AdviserArticle->where('email', $email);
+                $adviserArticle = $adviserArticle->where('email', $email);
             }
         }
 
 
 
-		$count = $AdviserArticle->count();
+		$count = $adviserArticle->count();
 
 
         if($orders){
             $orderName = request('columns.' . request('order.0.column') . '.name');
             $orderDir = request('order.0.dir');
-            $AdviserArticle = $AdviserArticle->orderBy($orderName, $orderDir);
+            $adviserArticle = $adviserArticle->orderBy($orderName, $orderDir);
         }
 
-        $AdviserArticle = $AdviserArticle->offset($start)->limit($length);
-        $AdviserArticles = $AdviserArticle->get();
+        $adviserArticle = $adviserArticle->offset($start)->limit($length);
+        $adviserArticles = $adviserArticle->get();
 
-        if ($AdviserArticles) {
-            foreach ($AdviserArticles as &$v) {
+        if ($adviserArticles) {
+            foreach ($adviserArticles as &$v) {
                 $v['actionButton'] = $v->getActionButtonAttribute();
             }
         }
@@ -110,7 +110,7 @@ class AdviserArticleRepository
             'draw' => $draw,
             'recordsTotal' => $count,
             'recordsFiltered' => $count,
-            'data' => $AdviserArticles,
+            'data' => $adviserArticles,
         ];
 	}
 
@@ -127,14 +127,7 @@ class AdviserArticleRepository
 		$userData['password'] = bcrypt($userData['password']);
 
 		if ($user->fill($userData)->save()) {
-			//自动更新用户权限关系
-			if (isset($userData['permission']) && $userData['permission']) {
-				$user->permission()->sync($userData['permission']);
-			}
-			// 自动更新用户角色关系
-			if (isset($userData['role']) && $userData['role']) {
-				$user->role()->sync($userData['role']);
-			}
+
 			Flash::success(trans('alerts.users.created_success'));
 			return true;
 		}

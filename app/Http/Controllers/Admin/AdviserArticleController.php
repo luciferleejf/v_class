@@ -44,10 +44,10 @@ class AdviserArticleController extends Controller
      * 添加用户
 
      */
-    public function store(CreateUserRequest $request)
+    public function store(request $request)
     {
         AdviserArticleRepository::store($request);
-        return redirect('admin/adviser');
+        return redirect('admin/adviserArticle');
     }
 
     /**
@@ -65,7 +65,7 @@ class AdviserArticleController extends Controller
      * 修改用户资料
 
      */
-    public function update(UpdateUserRequest $request,$id)
+    public function update(request $request,$id)
     {
         AdviserArticleRepository::update($request,$id);
         return redirect('admin/adviser');

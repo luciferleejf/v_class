@@ -14,6 +14,7 @@ class CreateClientTable extends Migration
     {
         Schema::create('client', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nickName')->default('')->comment('昵称');
             $table->string('mobile')->default('')->comment('手机');
             $table->string('pwd')->default('')->comment('密码');
             $table->string('face_img_b')->default('')->comment('头像大');

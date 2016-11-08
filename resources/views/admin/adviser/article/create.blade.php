@@ -37,7 +37,7 @@
 					        @endforeach
 					    </div>
 					    @endif
-              <form role="form" class="form-horizontal" method="POST" action="{{url('admin/adviser')}}">
+              <form role="form" class="form-horizontal" method="POST" action="{{url('admin/adviserArticle')}}">
               		{!! csrf_field() !!}
                   <div class="form-body">
                       <div class="form-group form-md-line-input">

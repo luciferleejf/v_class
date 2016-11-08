@@ -144,41 +144,41 @@ class ClientRepository
 
     public static function setDefault($request)
     {
+        $data = $request->all();
 
-        $file = Input::file('image');
-        $input = array('image' => $file);
-        $rules = array(
-            'image' => 'image'
-        );
-        $validator = Validator::make($input, $rules);
-        if ( $validator->fails() ) {
-            return Response::json([
-                'success' => false,
-                'errors' => $validator->getMessageBag()->toArray()
-            ]);
+        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $data['img'], $result)) {
+            //get the base-64 from data
+            $type = $result[2];
+            //decode base64 string
+            $image = base64_decode(str_replace($result[1], '', $data['img']));
 
+            $picName =  time().'.'.$type;
+
+            $path = public_path() . "/uploads/faceimg/" . $picName;
+
+            file_put_contents($path, $image);
+
+            $info['nickName']=$data['nickName'];
+            $info['face_img_b']='/uploads/faceimg/'.$picName;
+            $client=new Client;
+
+            if($client->where('id',$data['id'])->update($info))
+            {
+                $message['status']="200";
+                $message['code']="1"; //登录成功
+                return $message;
+
+            }
+            else{
+                $message['status']="400";
+                $message['code']="2"; //数据库更新错误
+                return $message;
+            }
         }
-
-        $destinationPath = 'uploads/';
-        $filename = $file->getClientOriginalName();
-        $file->move($destinationPath, $filename);
-        return Response::json(
-            [
-                'success' => true,
-                'avatar' => asset($destinationPath.$filename),
-            ]
-        );
-
-
-
+        else{
+            $message['status']="400";
+            $message['code']="3"; //图片错误
+            return $message;
+        }
     }
-
-
-
-
-
-
-
-
-
 }

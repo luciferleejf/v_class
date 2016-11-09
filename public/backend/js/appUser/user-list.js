@@ -6,12 +6,10 @@ var TableDatatablesAjax = function() {
       "serverSide": true,
       "searching" : false,
       "ajax": {
-        'url' : '/admin/user/ajaxIndex',
+        'url' : '/admin/appUser/ajaxIndex',
         "data": function ( d ) {
-          d.name = $('.filter input[name="name"]').val();
-          d.email = $('.filter input[name="email"]').val();
-          d.confirm_email = $('.filter input[name="confirm_email"]').val();
-          d.status = $('.filter select[name="status"] option:selected').val();
+          d.nickName = $('.filter input[name="nickName"]').val();
+          d.mobile = $('.filter input[name="mobile"]').val();
           d.created_at_from = $('.filter input[name="created_at_from"]').val();
           d.created_at_to = $('.filter input[name="created_at_to"]').val();
           d.updated_at_from = $('.filter input[name="updated_at_from"]').val();
@@ -28,27 +26,22 @@ var TableDatatablesAjax = function() {
           "name" : "id",
         },
         {
-          "data": "name",
-          "name" : "name",
+          "data": "face_img_b",
+          "name": "face_img_b",
+          "type": "html",
           "orderable" : false,
         },
         {
-          "data": "email",
-          "name": "email",
-          "orderable" : false,
+          "data": "nickName",
+          "name" : "nickName",
+
         },
-        { 
-          "data": "confirm_email",
-          "name": "confirm_email",
-          "orderable" : false,
-          render:function(data){
-            if (data == 1) {
-              return '<span class="label label-success"> 验证 </span>';
-            }else{
-              return '<span class="label label-warning"> 未验证 </span>';
-            }
-          }
+        {
+          "data": "mobile",
+          "name": "mobile",
+
         },
+
 
         { 
           "data": "created_at",
@@ -73,9 +66,7 @@ var TableDatatablesAjax = function() {
           html : true
         });  
       },
-      "language": {
-        url: '/admin/i18n'
-      }
+
     });
 
     dt.on('click', '.filter-submit', function(){

@@ -8,5 +8,5 @@ class VerifyCode extends Model
 {
     protected $table = 'verify_code';
 
-    protected $fillable = ['mobile','verifyCode'];
+    protected $fillable = ['mobile','verifyCode','tag','created_at','updated_at'];
 }

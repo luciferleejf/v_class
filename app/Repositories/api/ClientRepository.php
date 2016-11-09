@@ -14,7 +14,6 @@ class ClientRepository
     {
         $data = $request->all();
         $mobile=$data['mobile'];
-
         $message=array();
         $argv=config('app.sms');
         $flag=0;
@@ -32,15 +31,18 @@ class ClientRepository
             $flag = 1;
         }
 
+        $verifyCode= new VerifyCode;
+        $verifyCode->where('mobile',$mobile)->orderBy('created_at','desc')->first();
+
         $url = "http://sms.1xinxi.cn/asmx/smsservice.aspx?".$params; //提交的url地址
         $con= substr( file_get_contents($url), 0, 1 );  //获取信息发送后的状态
 
 
-        if($con == '0'){
 
-            $verifyCode = new VerifyCode;
-            $data['mobile']=$mobile;
+
+        if($con == '0'){
             $data['verifyCode']=$verify;
+
             if ($verifyCode->fill($data)->save()) {
                 $message['status']="200";
                 $message['code']="1";   //所有操作成功
@@ -77,23 +79,23 @@ class ClientRepository
 
         }
 
-        $check=$verifyCode->orderBy('created_at','desc')->where('mobile',$data['mobile'])->first();
+        $check=$verifyCode->orderBy('created_at','desc')->where([
+                    ['mobile',$data['mobile']],
+                    ['tag','0'],
+                ])->first();
+
 
         if($check['verifyCode']==$data['verifyCode'])
         {
             $data['pwd'] = bcrypt($data['pwd']); //密码进行加密
+            unset($data['verifyCode']);
 
-            $info['mobile']=$data['mobile'];
-            $info['pwd'] = $data['pwd'];
+            if ($client->fill($data)->save()) {
 
-
-
-            $id=$client->insertGetId($info);
-            if ($id) {
-
+                $user=$client->where('mobile',$data['mobile'])->first();
                 $message['status']="200";
                 $message['code']="1"; //注册成功
-                $message['id']=$id;
+                $message['id']=$user['id'];
                 return $message;
             }
             else{
@@ -192,7 +194,13 @@ class ClientRepository
         $user=$client->where('mobile',$data['mobile'])->first();
         if($user)
         {
-            $check=$verifyCode->orderBy('created_at','desc')->where('mobile',$data['mobile'])->first();
+            $check=$verifyCode->orderBy('created_at','desc')->where(
+            [
+                ['mobile',$data['mobile']],
+                ['tag','1'],
+
+            ]
+            )->first();
 
             if($check['verifyCode']==$data['verifyCode'])
             {

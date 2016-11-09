@@ -55,9 +55,28 @@ class PermissionsTableSeeder extends Seeder
         //用户管理//
         //////////
         Permission::create([
-            'name' => 'appUser manage',
-            'slug' => 'admin.systems.appUser',
+            'name' => 'app client manage',
+            'slug' => 'admin.systems.client',
             'description' => '用户管理'
+        ]);
+
+
+        //////////
+        //留言管理//
+        //////////
+        Permission::create([
+            'name' => 'message manage',
+            'slug' => 'admin.systems.message',
+            'description' => '留言管理'
+        ]);
+
+        //////////
+        //接口管理//
+        //////////
+        Permission::create([
+            'name' => 'api manage',
+            'slug' => 'admin.systems.api',
+            'description' => '接口管理'
         ]);
 
 

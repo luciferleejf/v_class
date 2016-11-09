@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Repositories\admin\AppUserRepository;
 
 class AppUserController extends Controller
 {
@@ -17,7 +19,7 @@ class AppUserController extends Controller
      */
     public function index()
     {
-        return view('admin.appuser.list');
+        return view('admin.appUser.list');
     }
 
     /**
@@ -26,7 +28,7 @@ class AppUserController extends Controller
      */
     public function ajaxIndex()
     {
-        $data = UserRepository::ajaxIndex();
+        $data = AppUserRepository::ajaxIndex();
         return response()->json($data);
     }
     /**
@@ -56,19 +58,18 @@ class AppUserController extends Controller
      */
     public function edit($id)
     {
-        $user = UserRepository::edit($id);
-        $roles = RoleRepository::findRoleWithObject();
-        $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.user.edit')->with(compact(['user','permissions','roles']));
+        $appUser=AppUserRepository::edit($id);
+        return view('admin.appUser.edit')->with(compact('appUser'));
     }
     /**
      * 修改用户资料
 
      */
-    public function update(UpdateUserRequest $request,$id)
+    public function update(request $request,$id)
     {
-        UserRepository::update($request,$id);
-        return redirect('admin/user');
+
+        AppUserRepository::update($request,$id);
+        return redirect('admin/appUser');
     }
 
     /**

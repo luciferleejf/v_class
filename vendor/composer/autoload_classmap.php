@@ -9,6 +9,7 @@ return array(
     'ClassArticleTableSeeder' => $baseDir . '/database/seeds/ClassArticleTableSeeder.php',
     'CreateAdviserArticleTable' => $baseDir . '/database/migrations/2016_11_02_082201_create_adviser_article_table.php',
     'CreateAdviserCateTable' => $baseDir . '/database/migrations/2016_10_28_051500_create_adviser_cate_table.php',
+    'CreateApiTable' => $baseDir . '/database/migrations/2016_11_09_174246_create_api_table.php',
     'CreateClassArticleTable' => $baseDir . '/database/migrations/2016_11_02_082137_create_class_article_table.php',
     'CreateClassCateTable' => $baseDir . '/database/migrations/2016_11_02_070107_create_class_cate_table.php',
     'CreateClientTable' => $baseDir . '/database/migrations/2016_11_05_074145_create_client_table.php',

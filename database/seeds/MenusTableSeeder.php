@@ -21,6 +21,25 @@ class MenusTableSeeder extends Seeder
         $index->description = "后台首页";
         $index->save();
 
+
+
+        /**
+         * -------------------------------------------------
+         * 用户管理
+         * -------------------------------------------------
+         */
+
+        $client = new Menu;
+        $client->name = "用户管理";
+        $client->pid = 0;
+        $client->language = "zh";
+        $client->icon = "fa fa-male";
+        $client->slug = "admin.systems.client";
+        $client->url = "admin/appUser";
+        $client->description = "用户管理";
+        $client->save();
+
+
         /**
          * -------------------------------------------------
          * 课程管理
@@ -31,9 +50,9 @@ class MenusTableSeeder extends Seeder
         $class->name = "课程管理";
         $class->pid = 0;
         $class->language = "zh";
-        $class->icon = "fa fa-diamond";
+        $class->icon = "fa fa-book";
         $class->slug = "admin.systems.class";
-        $class->url = "admin/classCate/*,admin/classArticle/*";
+        $class->url = "admin/classCate*,admin/classArticle*";
         $class->description = "课程管理";
         $class->save();
 
@@ -69,7 +88,7 @@ class MenusTableSeeder extends Seeder
         $adviser->language = "zh";
         $adviser->icon = "fa fa-diamond";
         $adviser->slug = "admin.systems.adviser";
-        $adviser->url = "admin/adviserCate/*,admin/adviserArticle/*";
+        $adviser->url = "admin/adviserCate*,admin/adviserArticle*";
         $adviser->description = "课程管理";
         $adviser->save();
 
@@ -93,22 +112,40 @@ class MenusTableSeeder extends Seeder
         $adviser_article->description = "顾问列表";
         $adviser_article->save();
 
+
+
         /**
          * -------------------------------------------------
-         * 用户管理
+         * 留言管理
          * -------------------------------------------------
          */
 
-        $client = new Menu;
-        $client->name = "用户管理";
-        $client->pid = 0;
-        $client->language = "zh";
-        $client->icon = "fa fa-male";
-        $client->slug = "admin.systems.appUser";
-        $client->url = "admin/appUser/";
-        $client->description = "用户管理";
-        $client->save();
+        $adviser = new Menu;
+        $adviser->name = "留言管理";
+        $adviser->pid = 0;
+        $adviser->language = "zh";
+        $adviser->icon = "fa fa-weixin";
+        $adviser->slug = "admin.systems.message";
+        $adviser->url = "admin/message*";
+        $adviser->description = "留言管理";
+        $adviser->save();
 
+
+        /**
+         * -------------------------------------------------
+         * 接口管理
+         * -------------------------------------------------
+         */
+
+        $adviser = new Menu;
+        $adviser->name = "接口管理";
+        $adviser->pid = 0;
+        $adviser->language = "zh";
+        $adviser->icon = "fa fa-code-fork";
+        $adviser->slug = "admin.systems.api";
+        $adviser->url = "admin/api";
+        $adviser->description = "接口管理";
+        $adviser->save();
 
         /**
          * -------------------------------------------------

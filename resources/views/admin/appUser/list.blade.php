@@ -45,24 +45,25 @@
                     <thead>
                         <tr role="row" class="heading">
                           <th>#</th>
+                          <th> {{ trans('labels.appUser.face_img_b') }} </th>
                           <th width="15%"> {{ trans('labels.appUser.nickName') }} </th>
                           <th> {{ trans('labels.appUser.mobile') }} </th>
-                          <th width="20%"> {{ trans('labels.appUser.face_img_b') }} </th>
+
 
                           <th width="15%"> {{ trans('labels.user.created_at') }} </th>
                           <th width="15%"> {{ trans('labels.user.updated_at') }} </th>
-                          <th width="15%"> {{ trans('labels.action') }} </th>
+                          <th> {{ trans('labels.action') }} </th>
                         </tr>
                         <tr role="row" class="filter">
                             <td></td>
-
+                            <td></td>
                             <td>
                               <div class="form-group form-md-line-input">
                                 <div class="input-group has-success">
                                     <span class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="name" placeholder="{{ trans('labels.user.name') }}">
+                                    <input type="text" class="form-control form-filter" name="nickName" placeholder="{{ trans('labels.appUser.nickName') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
@@ -72,26 +73,13 @@
                               <div class="form-group form-md-line-input">
                                 <div class="input-group has-success">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
+                                        <i class="fa fa-phone"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="email" placeholder="{{ trans('labels.user.email') }}">
+                                    <input type="text" class="form-control form-filter" name="mobile" placeholder="{{ trans('labels.appUser.mobile') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
                             </td>
-
-                            <td>
-                              <div class="form-group form-md-line-input">
-                                <div class="input-group has-success">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-book"></i>
-                                    </span>
-                                    <input type="text" class="form-control form-filter" name="confirm_email" placeholder="{{ trans('labels.user.confirm_email') }}">
-                                    <div class="form-control-focus"> </div>
-                                </div>
-                              </div>
-                            </td>
-
 
 
                             <td>
@@ -149,7 +137,7 @@
 <script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/js/appuser/user-list.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/js/appUser/user-list.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
 <script type="text/javascript">
   $(function() {

@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -250,6 +250,7 @@ return [
         'AdviserCateRepository' => App\Facades\AdviserCateFacade::class,
         'AdviserArticleRepository' => App\Facades\AdviserArticleFacade::class,
         'ClassCateRepository' => App\Facades\ClassCateFacade::class,
+        'AppUserRepository' => App\Facades\AppUserFacade::class,
 
 
         //api仓库

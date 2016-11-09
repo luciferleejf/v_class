@@ -111,7 +111,7 @@ return [
         'adviserCate' => '<i class="fa fa-cloud"></i> 顾问分类',
         'adviserArticle' => '<i class="fa fa-file-text"></i> 顾问列表',
         'classCate' => '<i class="fa fa-cloud"></i> 课程分类',
-
+        'appUser' => '<i class="fa fa-male"></i> 用户管理',
 	],
 
 

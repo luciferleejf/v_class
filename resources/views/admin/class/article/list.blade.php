@@ -12,8 +12,14 @@
                 <a href="{{url('admin/')}}">{!! trans('labels.breadcrumb.home') !!}</a>
                 <i class="fa fa-angle-right"></i>
             </li>
+
             <li>
-                <span>{!! trans('labels.breadcrumb.userList') !!}</span>
+                <span>{!! trans('labels.class.detail') !!}</span>
+                <i class="fa fa-angle-right"></i>
+            </li>
+
+            <li>
+                <span>{!! trans('labels.breadcrumb.classArticle') !!}</span>
             </li>
         </ul>
     </div>
@@ -31,7 +37,7 @@
                     <div class="actions">
                         <div class="btn-group">
                             @permission(config('admin.permissions.user.create'))
-                            <a href="{{url('admin/user/create')}}" class="btn btn-success btn-outline btn-circle">
+                            <a href="{{url('admin/adviserArticle/create')}}" class="btn btn-success btn-outline btn-circle">
                                 <i class="fa fa-user-plus"></i>
                                 <span class="hidden-xs">{{trans('crud.create')}}</span>
                             </a>
@@ -45,10 +51,10 @@
                             <thead>
                             <tr role="row" class="heading">
                                 <th>#</th>
-                                <th width="15%"> {{ trans('labels.user.name') }} </th>
-                                <th> {{ trans('labels.user.email') }} </th>
-                                <th> {{ trans('labels.user.confirm_email') }} </th>
-                                <th width="10%"> {{ trans('labels.user.status') }} </th>
+                                <th width="15%"> {{ trans('labels.classArticle.cid') }} </th>
+                                <th> {{ trans('labels.classArticle.title') }} </th>
+                                <th> {{ trans('labels.classArticle.description') }} </th>
+                                <th width="10%"> {{ trans('labels.classArticle.type') }} </th>
                                 <th width="15%"> {{ trans('labels.user.created_at') }} </th>
                                 <th width="15%"> {{ trans('labels.user.updated_at') }} </th>
                                 <th width="15%"> {{ trans('labels.action') }} </th>
@@ -150,7 +156,7 @@
     <script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('backend/js/user/user-list.js')}}"></script>
+    <script type="text/javascript" src="{{asset('api-list.js)}}"></script>
     <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
     <script type="text/javascript">
         $(function() {

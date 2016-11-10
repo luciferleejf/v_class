@@ -168,7 +168,7 @@ class ClientRepository
             if($client->where('id',$data['id'])->update($info))
             {
                 $message['status']="200";
-                $message['code']="1"; //登录成功
+                $message['code']="1"; //成功
                 return $message;
 
             }

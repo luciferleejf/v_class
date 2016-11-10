@@ -80,6 +80,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
 
 
 
+    /*
+     *
+     *接口管理
+     *
+     * */
+    require(__DIR__ . '/Routes/ApiListRoute.php');
+
 });
 
 

@@ -79,7 +79,15 @@ return [
         'phone' => '电话',
 
     ],
+    'classArticle' =>[
 
+        'cid' => '课程分类',
+        'title' => '课程名称',
+        'description' => '描述',
+        'type' => '课程类型',
+
+
+    ],
 
     'adviserCate' =>[
         'detail' => '<i class="fa fa-cloud"></i> 分类属性',
@@ -89,6 +97,11 @@ return [
         'detail' => '<i class="fa fa-cloud"></i> 分类属性'
 
     ],
+
+    'class' => [
+        'detail' => '<i class="fa fa-book"></i> 课程管理'
+    ],
+
 
 	'breadcrumb' => [
 		'home' => '<i class="fa fa-home"></i> 主页',
@@ -111,10 +124,23 @@ return [
         'adviserCate' => '<i class="fa fa-cloud"></i> 顾问分类',
         'adviserArticle' => '<i class="fa fa-file-text"></i> 顾问列表',
         'classCate' => '<i class="fa fa-cloud"></i> 课程分类',
+        'classArticle' => '<i class="fa fa-cloud"></i> 课程列表',
         'appUser' => '<i class="fa fa-male"></i> 用户管理',
+        'api' => '<i class="fa fa-code-fork"></i> 接口管理',
 	],
 
+    'api' =>[
+        'list' => '接口列表',
+        'type' => '请求方式',
+        'name' => '接口名称',
+        'url' => '接口地址',
+        'parms' => '参数列表',
+        'parmsDetail' => '参数说明',
+        'jason' => 'jason列表',
+        'jasonDetail' => 'jason说明',
+        'requestNum' => '请求次数',
 
+    ],
 
     'appUser' =>[
 

@@ -137,8 +137,7 @@
 <script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/js/appUser/user-list.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
+<script type="text/javascript" src="{{asset('backend/js/appUser/user-list.js')}}"></api-list.jsipt type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
 <script type="text/javascript">
   $(function() {
     TableDatatablesAjax.init();

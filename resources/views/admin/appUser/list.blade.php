@@ -13,7 +13,7 @@
           <i class="fa fa-angle-right"></i>
       </li>
       <li>
-          <span>{!! trans('labels.breadcrumb.userList') !!}</span>
+          <span>{!! trans('labels.breadcrumb.appUser') !!}</span>
       </li>
   </ul>
 </div>
@@ -31,7 +31,7 @@
             <div class="actions">
               <div class="btn-group">
                 @permission(config('admin.permissions.user.create'))
-                <a href="{{url('admin/user/create')}}" class="btn btn-success btn-outline btn-circle">
+                <a href="{{url('admin/appUser/create')}}" class="btn btn-success btn-outline btn-circle">
                   <i class="fa fa-user-plus"></i>
                   <span class="hidden-xs">{{trans('crud.create')}}</span>
                 </a>

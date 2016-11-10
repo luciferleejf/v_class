@@ -124,7 +124,7 @@ return [
         'adviserCate' => '<i class="fa fa-cloud"></i> 顾问分类',
         'adviserArticle' => '<i class="fa fa-file-text"></i> 顾问列表',
         'classCate' => '<i class="fa fa-cloud"></i> 课程分类',
-        'classArticle' => '<i class="fa fa-cloud"></i> 课程列表',
+        'classArticle' => '<i class="fa fa-file-text"></i> 课程列表',
         'appUser' => '<i class="fa fa-male"></i> 用户管理',
         'api' => '<i class="fa fa-code-fork"></i> 接口管理',
 	],
@@ -147,7 +147,7 @@ return [
         'nickName' => '昵称',
         'mobile' => '手机',
         'face_img_b' => '头像',
-
+        'detail' => '<i class="fa fa-book"></i> 课程管理'
     ],
 
 

@@ -15,7 +15,7 @@
       </li>
   </ul>
 </div>
-<h3 class="page-header margin-top-40">Dashboard <small>Created with <i class="fa fa-heart"></i> by ARCANEDEV <sup>&copy;</sup></small></h3>
+<h3 class="page-header margin-top-40"></h3>
 
 <div class="row">
     <div class="col-md-3">
@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-9">
         @permission('admin.logs.list')
-        <div class="alert alert-info"><strong>Info!</strong> LOGS list is <a href="{{url('admin/log-viewer/logs')}}">here</a></div>
+        <div class="alert alert-info"><i class="fa fa-file-text" style="margin-right:5px;"></i><a href="{{url('admin/log-viewer/logs')}}">点击查看详情</a></div>
         @endpermission
         <section class="box-body">
             <div class="row">

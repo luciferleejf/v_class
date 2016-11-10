@@ -250,6 +250,7 @@ return [
         'AdviserCateRepository' => App\Facades\AdviserCateFacade::class,
         'AdviserArticleRepository' => App\Facades\AdviserArticleFacade::class,
         'ClassCateRepository' => App\Facades\ClassCateFacade::class,
+        'ClassArticleRepository' => App\Facades\ClassArticleFacade::class,
         'AppUserRepository' => App\Facades\AppUserFacade::class,
 
 

@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use UserRepository;
-use PermissionRepository;
-use RoleRepository;
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\ResetPasswordRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Repositories\admin\ClassArticleRepository;
+
 class ClassArticleController extends Controller
 {
     public function __construct()
@@ -31,7 +27,7 @@ class ClassArticleController extends Controller
      */
     public function ajaxIndex()
     {
-        $data = UserRepository::ajaxIndex();
+        $data = ClassArticleRepository::ajaxIndex();
         return response()->json($data);
     }
     /**

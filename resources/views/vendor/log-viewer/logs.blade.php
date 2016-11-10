@@ -20,7 +20,7 @@
     <div class="portlet-title">
         <div class="caption">
             <i class="icon-social-dribbble font-green"></i>
-            <span class="caption-subject font-green bold uppercase">Logs</span>
+            <span class="caption-subject font-green bold uppercase">日志列表</span>
         </div>
     </div>
     <div class="portlet-body">
@@ -93,14 +93,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">DELETE LOG FILE</h4>
+                    <h4 class="modal-title">删除文件</h4>
                 </div>
                 <div class="modal-body">
                     <p></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">DELETE FILE</button>
+                    <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">删除文件</button>
                 </div>
             </div>
         </form>

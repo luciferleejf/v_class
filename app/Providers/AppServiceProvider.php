@@ -32,11 +32,15 @@ class AppServiceProvider extends ServiceProvider
             return new \App\Repositories\admin\ClassCateRepository();
         });
 
+        $this->app->singleton('ClassArticleRepository', function($app){
+            return new \App\Repositories\admin\ClassArticleRepository();
+        });
+
+
+
         $this->app->singleton('AdviserArticleRepository', function($app){
             return new \App\Repositories\admin\AdviserArticleRepository();
         });
-
-        //
 
         $this->app->singleton('VerifyCodeRepository', function($app){
             return new \App\Repositories\api\VerifyCodeRepository();

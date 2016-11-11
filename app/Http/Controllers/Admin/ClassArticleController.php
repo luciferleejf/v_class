@@ -36,9 +36,8 @@ class ClassArticleController extends Controller
      */
     public function create()
     {
-        $permissions = PermissionRepository::findPermissionWithArray();
-        $roles = RoleRepository::findRoleWithObject();
-        return view('admin.user.create')->with(compact(['permissions','adviser']));
+
+        return view('admin.class.article.create');
     }
 
     /**

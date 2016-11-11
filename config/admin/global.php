@@ -95,5 +95,7 @@ return[
 	// 缓存
 	'cache' => [
 		'menu' => 'menuList',
+        'adviserCate' => 'adviserCate',
+        'classCate' => 'classCate',
 	]
 ];

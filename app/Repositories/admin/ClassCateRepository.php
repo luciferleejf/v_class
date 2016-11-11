@@ -67,11 +67,11 @@ class ClassCateRepository
 	 */
 	public function edit($id)
 	{
-		$adviserCate = ClassCate::find($id)->toArray();
-		if ($adviserCate) {
-            $adviserCate['update'] = url('admin/adviserCate/'.$id);
-            $adviserCate['msg'] = trans('alerts.menus.laod_success');
-			return $adviserCate;
+        $classCate = ClassCate::find($id)->toArray();
+		if ($classCate) {
+            $classCate['update'] = url('admin/classCate/'.$id);
+            $classCate['msg'] = trans('alerts.menus.laod_success');
+			return $classCate;
 		}
 		abort(404);
 	}
@@ -81,11 +81,11 @@ class ClassCateRepository
 	 */
 	public function update($request,$id)
 	{
-        $adviserCate = ClassCate::find($id);
-		if ($adviserCate) {
-			$pid = $adviserCate->pid;
-			$sort = $adviserCate->sort;
-			$isUpdate = $adviserCate->fill($request->all())->save();
+        $classCate = ClassCate::find($id);
+		if ($classCate) {
+			$pid = $classCate->pid;
+			$sort = $classCate->sort;
+			$isUpdate = $classCate->fill($request->all())->save();
 			if ($isUpdate) {
 				$this->setClassCateListCache();
 				Flash::success(trans('alerts.menus.updated_success'));
@@ -102,8 +102,8 @@ class ClassCateRepository
 	 */
 	public function store($request)
 	{
-        $adviserCate = new ClassCate;
-		if ($adviserCate->fill($request->all())->save()) {
+        $classCate = new ClassCate;
+		if ($classCate->fill($request->all())->save()) {
 			// 菜单发生变化，更新菜单数组
 			$this->setClassCateListCache();
 			Flash::success(trans('alerts.menus.created_success'));
@@ -125,10 +125,10 @@ class ClassCateRepository
 		if (!$currentItemId) {
 			return ['status' => false,'msg' => trans('alerts.menus.currentItem_error')];
 		}
-		$adviserCate = ClassCate::find($currentItemId);
-		if ($adviserCate) {
-            $adviserCate->pid = $itemParentId;
-			if ($adviserCate->save()) {
+        $classCate = ClassCate::find($currentItemId);
+		if ($classCate) {
+            $classCate->pid = $itemParentId;
+			if ($classCate->save()) {
 				//更新菜单缓存数据
 				$this->setClassCateListCache();
 				return ['status' => true,'msg' => trans('alerts.menus.updated_success')];

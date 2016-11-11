@@ -36,4 +36,11 @@ return [
 		'active' => ['fa fa-navicon','正常'],
 		'trash' => ['fa fa-trash','回收站'],
 	],
+
+    'classType' => [
+        'video' => ['fa fa-file-movie-o ','视频'],
+        'audio' => ['fa fa-file-audio-o ','音频'],
+
+    ],
+
 ];

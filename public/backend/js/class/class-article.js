@@ -41,27 +41,13 @@ var TableDatatablesAjax = function() {
                     "data": "description",
                     "name": "description",
                     "orderable" : false,
-                    render:function(data){
-                        if (data == 1) {
-                            return '<span class="label label-success"> 验证 </span>';
-                        }else{
-                            return '<span class="label label-warning"> 未验证 </span>';
-                        }
-                    }
+
                 },
                 {
                     "data": "type",
                     "name": "type",
                     "orderable" : true,
-                    render:function(data){
-                        if (data == 1) {
-                            return '<span class="label label-success"> 正常 </span>';
-                        }else if(data == 3){
-                            return '<span class="label label-warning"> 待审核 </span>';
-                        }else{
-                            return '<span class="label label-danger"> 禁用 </span>';
-                        }
-                    }
+
                 },
                 {
                     "data": "created_at",

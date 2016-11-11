@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use ClassCateRepository;
 use App\Http\Requests\ClassCateRequest;
@@ -29,18 +28,18 @@ class ClassCateController extends Controller
     /**
      * 修改菜单
      */
-    public function update(ClassCateRepository $request,$id)
+    public function update(ClassCateRequest $request,$id)
     {
         ClassCateRepository::update($request,$id);
-        return redirect('admin/adviserCate');
+        return redirect('admin/classCate');
     }
     /**
      * 添加菜单
      */
-    public function store(ClassCateRepository $request)
+    public function store(ClassCateRequest $request)
     {
         ClassCateRepository::store($request);
-        return redirect('admin/adviserCate');
+        return redirect('admin/classCate');
     }
     /**
      * 菜单排序
@@ -59,7 +58,7 @@ class ClassCateController extends Controller
     public function destroy($id)
     {
         ClassCateRepository::destroy($id);
-        return redirect('admin/adviserCate');
+        return redirect('admin/classCate');
     }
 
 

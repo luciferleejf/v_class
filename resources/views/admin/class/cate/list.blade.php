@@ -9,6 +9,11 @@
           <a href="{{url('admin/')}}">{!! trans('labels.breadcrumb.home') !!}</a>
           <i class="fa fa-angle-right"></i>
       </li>
+
+      <li>
+          <span>{!! trans('labels.class.detail') !!}</span>
+          <i class="fa fa-angle-right"></i>
+      </li>
       <li>
           <span>{!! trans('labels.breadcrumb.classCate') !!}</span>
       </li>

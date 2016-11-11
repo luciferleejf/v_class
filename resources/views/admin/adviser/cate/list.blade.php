@@ -10,6 +10,10 @@
           <i class="fa fa-angle-right"></i>
       </li>
       <li>
+          <span>{!! trans('labels.breadcrumb.adviser') !!}</span>
+          <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
           <span>{!! trans('labels.breadcrumb.adviserCate') !!}</span>
       </li>
   </ul>

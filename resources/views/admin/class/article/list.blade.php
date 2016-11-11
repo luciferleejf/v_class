@@ -37,7 +37,7 @@
                     <div class="actions">
                         <div class="btn-group">
 
-                            <a href="{{url('admin/adviserArticle/create')}}" class="btn btn-success btn-outline btn-circle">
+                            <a href="{{url('admin/classArticle/create')}}" class="btn btn-success btn-outline btn-circle">
                                 <i class="fa fa-user-plus"></i>
                                 <span class="hidden-xs">{{trans('crud.create')}}</span>
                             </a>
@@ -65,9 +65,9 @@
                                     <div class="form-group form-md-line-input">
                                         <div class="input-group has-success">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-bars"></i>
                                     </span>
-                                            <input type="text" class="form-control form-filter" name="name" placeholder="{{ trans('labels.user.name') }}">
+                                            <input type="text" class="form-control form-filter" name="cid" placeholder="{{ trans('labels.classArticle.cid') }}">
                                             <div class="form-control-focus"> </div>
                                         </div>
                                     </div>
@@ -75,9 +75,9 @@
                                     <div class="form-group form-md-line-input">
                                         <div class="input-group has-success">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
+                                        <i class="fa fa-book"></i>
                                     </span>
-                                            <input type="text" class="form-control form-filter" name="email" placeholder="{{ trans('labels.user.email') }}">
+                                            <input type="text" class="form-control form-filter" name="title" placeholder="{{ trans('labels.classArticle.title') }}">
                                             <div class="form-control-focus"> </div>
                                         </div>
                                     </div>
@@ -86,9 +86,9 @@
                                     <div class="form-group form-md-line-input">
                                         <div class="input-group has-success">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-book"></i>
+                                        <i class="fa fa-file"></i>
                                     </span>
-                                            <input type="text" class="form-control form-filter" name="confirm_email" placeholder="{{ trans('labels.user.confirm_email') }}">
+                                            <input type="text" class="form-control form-filter" name="description" placeholder="{{ trans('labels.classArticle.description') }}">
                                             <div class="form-control-focus"> </div>
                                         </div>
                                     </div>
@@ -96,9 +96,9 @@
                                 <td>
                                     <div class="form-group form-md-line-input">
                                         <select class="bs-select form-control form-filter" data-show-subtext="true" name="status">
-                                            <option value="" data-icon="fa-glass icon-success">状态....</option>
-                                            @if(trans('strings.user'))
-                                                @foreach(trans('strings.user') as $status_key => $status_value)
+                                            <option value="" data-icon="fa-film icon-success">课程类型....</option>
+                                            @if(trans('strings.classType'))
+                                                @foreach(trans('strings.classType') as $status_key => $status_value)
                                                     <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
                                                 @endforeach
                                             @endif
@@ -136,10 +136,10 @@
                                 <td>
                                     <div class="margin-bottom-5">
                                         <button class="btn btn-sm green btn-outline filter-submit margin-bottom">
-                                            <i class="fa fa-search"></i> Search</button>
+                                            <i class="fa fa-search"></i> 搜索</button>
                                     </div>
                                     <button class="btn btn-sm red btn-outline filter-cancel">
-                                        <i class="fa fa-times"></i> Reset</button>
+                                        <i class="fa fa-times"></i> 重置</button>
                                 </td>
                             </tr>
                             </thead>

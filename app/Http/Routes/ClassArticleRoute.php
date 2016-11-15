@@ -9,7 +9,7 @@ $router->group(['prefix' => 'classArticle'], function($router){
     $router->get('edit', 'ClassArticleController@edit');
     $router->get('show', 'ClassArticleController@show');
 
-
+    $router->post('uploadFile', 'ClassArticleController@uploadFile');
 
     $router->get('/{id}/mark/{status}', 'AdviserArticleController@mark')
         ->where([

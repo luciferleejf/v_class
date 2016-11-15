@@ -113,6 +113,35 @@ class MenusTableSeeder extends Seeder
         $adviser_article->save();
 
 
+        /**
+         * -------------------------------------------------
+         * 推荐位管理
+         * -------------------------------------------------
+         */
+
+        $recommend = new Menu;
+        $recommend->name = "推荐位管理";
+        $recommend->pid = 0;
+        $recommend->language = "zh";
+        $recommend->icon = "fa fa-tags";
+        $recommend->slug = "admin.systems.recommend";
+        $recommend->url = "admin/recommendIndex*";
+        $recommend->description = "推荐位管理";
+        $recommend->save();
+
+        $recommend_index = new Menu;
+        $recommend_index->name = "首页推荐位";
+        $recommend_index->pid = $recommend->id;
+        $recommend_index->language = "zh";
+        $recommend_index->icon = "fa fa-file-text";
+        $recommend_index->slug = "admin.recommend.index";
+        $recommend_index->url = "admin/recommendIndex";
+        $recommend_index->description = "首页推荐位";
+        $recommend_index->save();
+
+
+
+
 
         /**
          * -------------------------------------------------

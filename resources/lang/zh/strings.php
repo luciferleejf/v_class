@@ -26,6 +26,11 @@ return [
         'boy' => ['','男'],
         'girl' => ['','女'],
     ],
+
+    'type' =>[
+        'video' => ['','视频'],
+        'audio' => ['','音频'],
+    ],
 	'cate' => [
 		'audit' => ['fa fa-paw','待审核'],
 		'active' => ['fa fa-navicon','正常'],

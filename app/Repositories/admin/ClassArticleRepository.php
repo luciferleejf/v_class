@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories\admin;
-
+use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use Flash;
 use App\Models\ClassArticle;
@@ -246,4 +246,26 @@ class ClassArticleRepository
 		}
 		abort(404);
 	}
+
+    public static function uploadFile()
+    {
+        $file = Input::file('weixin_image');
+
+        $allowed_extensions = ["png", "jpg", "gif"];
+        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+            return ['error' => 'You may only upload png, jpg or gif.'];
+        }
+
+        $destinationPath = public_path() . "/uploads/class-img/";
+
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time().'.'.$extension;
+        $file->move($destinationPath, $fileName);
+
+        $data['result']=$destinationPath.''.$fileName;
+
+        return $data;
+    }
+
+
 }

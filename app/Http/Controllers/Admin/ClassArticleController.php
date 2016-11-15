@@ -21,6 +21,19 @@ class ClassArticleController extends Controller
         return view('admin.class.article.list');
     }
 
+
+
+    /*
+     * 图片上传
+     * */
+    public function uploadFile()
+    {
+        $data = ClassArticleRepository::uploadFile();
+        return response()->json($data);
+    }
+
+
+
     /**
      * datatable 获取数据
 

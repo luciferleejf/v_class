@@ -18,31 +18,20 @@ class ClientController extends Controller
     }
 
     public function getVerify(request $request){
-
         $message=ClientRepository::sdMessage($request);
         return response()->json($message);
     }
 
 
     public function register(Request $request){
-
-
         $message=ClientRepository::register($request);
         return response()->json($message);
-
-
     }
 
 
     public function setDefault(request $request){
-
-
-
-
         $message=ClientRepository::setDefault($request);
         return response()->json($message);
-
-
     }
 
 

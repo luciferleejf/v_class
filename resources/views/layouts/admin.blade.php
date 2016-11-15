@@ -17,6 +17,9 @@
         <link href="{{asset('backend/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('backend/plugins/uniform/css/uniform.default.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('backend/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}" rel="stylesheet" type="text/css" />
+
+        <link href="{{asset('backend/plugins/uploader/css/jquery.fileupload.css')}}"  rel="stylesheet" type="text/css" />
+        <link href="{{asset('backend/plugins/uploader/css/jquery.fileupload-ui.css')}}"  rel="stylesheet" type="text/css" />
         <!-- END GLOBAL MANDATORY STYLES -->
         @yield('css')
         <!-- BEGIN THEME GLOBAL STYLES -->
@@ -130,12 +133,24 @@
         <script src="{{asset('backend/plugins/jquery.blockui.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/uniform/jquery.uniform.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('backend/plugins/ckedit/ckeditor.js')}}" type="text/javascript"></script>
+
+        <script src="{{asset('backend/plugins/uploader/js/vendor/jquery.ui.widget.js')}}" type="text/javascript"></script>
+        <script src="{{asset('backend/plugins/uploader/js/jquery.fileupload.js')}}" type="text/javascript"></script>
+        <script src="{{asset('backend/plugins/uploader/js/jquery.iframe-transport.js')}}" type="text/javascript"></script>
+        <script src="{{asset('backend/plugins/uploader/js/main.js')}}" type="text/javascript"></script>
+
+
+
+
+
+
         <!-- END CORE JQUERY PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         @yield('js')
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="{{asset('backend/js/app.min.js')}}" type="text/javascript"></script>
+
         <script src="{{asset('backend/js/layout.min.js')}}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>

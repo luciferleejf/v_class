@@ -57,10 +57,10 @@ class ClassArticleController extends Controller
      * 添加用户
 
      */
-    public function store(CreateUserRequest $request)
+    public function store(Request $request)
     {
-        UserRepository::store($request);
-        return redirect('admin/user');
+        ClassArticleRepository::store($request);
+        return redirect('admin/classArticle');
     }
 
     /**

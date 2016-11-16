@@ -26,8 +26,14 @@ return[
     ],
 
     'type' => [
-        'video' => 1,
-        'audio' => 2,
+        'video' => 0,
+        'audio' => 1,
+
+    ],
+
+    'preClass' => [
+        'no' => 0,
+        'yes' => 1,
 
     ],
 

@@ -8,7 +8,7 @@ var TableDatatablesAjax = function() {
       "ajax": {
         'url' : '/admin/adviserArticle/ajaxIndex',
         "data": function ( d ) {
-          d.department = $('.filter select[name="department"] option:selected').val();
+          d.cid = $('.filter select[name="cid"] option:selected').val();
           d.cnName = $('.filter input[name="cnName"]').val();
           d.enName = $('.filter input[name="enName"]').val();
           d.area = $('.filter select[name="area"] option:selected').val();
@@ -27,8 +27,8 @@ var TableDatatablesAjax = function() {
           "name" : "id",
         },
         {
-          "data": "department",
-          "name" : "department",
+          "data": "cid",
+          "name" : "cid",
 
         },
         {

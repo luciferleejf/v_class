@@ -120,13 +120,13 @@ class AdviserArticleRepository
 	 */
 	public function store($request)
 	{
-		$user = new User;
+		$adviserArticle = new AdviserArticle;
 
-		$userData = $request->all();
+		$data = $request->all();
 		//密码进行加密
-		$userData['password'] = bcrypt($userData['password']);
 
-		if ($user->fill($userData)->save()) {
+
+		if ($adviserArticle->fill($data)->save()) {
 
 			Flash::success(trans('alerts.users.created_success'));
 			return true;

@@ -45,7 +45,10 @@ class ClientController extends Controller
         return response()->json($message);
     }
 
-
+    public function getIndex(){
+        $message=ClientRepository::getIndex();
+        return response()->json($message);
+    }
 
 
 }

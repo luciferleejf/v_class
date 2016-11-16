@@ -8,14 +8,17 @@ var TableDatatablesAjax = function() {
             "ajax": {
                 'url' : '/admin/classArticle/ajaxIndex',
                 "data": function ( d ) {
-                    d.name = $('.filter input[name="name"]').val();
-                    d.email = $('.filter input[name="email"]').val();
-                    d.confirm_email = $('.filter input[name="confirm_email"]').val();
-                    d.status = $('.filter select[name="status"] option:selected').val();
-                    d.created_at_from = $('.filter input[name="created_at_from"]').val();
-                    d.created_at_to = $('.filter input[name="created_at_to"]').val();
-                    d.updated_at_from = $('.filter input[name="updated_at_from"]').val();
-                    d.updated_at_to = $('.filter input[name="updated_at_to"]').val();
+                    d.face_img = $('.filter input[name="face_img"]').val();
+                    d.adviser_img = $('.filter input[name="adviser_img"]').val();
+                    d.cid = $('.filter input[name="cid"]').val();
+                    d.title = $('.filter select[name="title"] option:selected').val();
+                    d.type = $('.filter input[name="type"]').val();
+                    d.url = $('.filter input[name="url"]').val();
+                    d.pre_class = $('.filter input[name="preClass"]').val();
+                    d.description = $('.filter input[name="description"]').val();
+                    d.content = $('.filter input[name="content"]').val();
+
+
                 }
             },
             "pagingType": "bootstrap_full_number",

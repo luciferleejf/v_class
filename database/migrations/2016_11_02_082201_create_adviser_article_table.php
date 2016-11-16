@@ -14,7 +14,9 @@ class CreateAdviserArticleTable extends Migration
     {
         Schema::create('adviser_article', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('department')->default(0)->comment('部门');
+
+            $table->integer('cid')->default(0)->comment('顾问所属分类');
+            $table->string('adviser_img')->default("")->comment('顾问图片');
             $table->string('cnName')->default('')->comment('中文名');
             $table->string('enName')->default('')->comment('英文名');
             $table->string('sex')->default('')->comment('性别');

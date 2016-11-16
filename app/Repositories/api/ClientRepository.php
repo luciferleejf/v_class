@@ -3,6 +3,8 @@
 namespace App\Repositories\api;
 use App\Models\VerifyCode;
 use App\Models\Client;
+use App\Models\ClassArticle;
+
 use Carbon\Carbon;
 use Flash;
 /**
@@ -244,6 +246,18 @@ class ClientRepository
             return $message;
         }
 
+    }
+
+
+    public static function getIndex()
+    {
+
+        $classArticle=new ClassArticle;
+        $preClass=$classArticle->where('pre_class','1')->orderBy('id','desc')->limit(2)->get(); //课程预告
+        $hotClass=$classArticle->orderBy('click','asc')->orderBy('id','desc')->limit(2)->get(); //热门推荐
+        $data['preClass']=$preClass;
+        $data['hotClass']=$hotClass;
+        return $data;
     }
 
 

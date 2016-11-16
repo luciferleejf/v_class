@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\admin;
 use Illuminate\Support\Facades\Input;
+
 use Carbon\Carbon;
 use Flash;
 use App\Models\ClassArticle;
@@ -18,9 +19,11 @@ class ClassArticleRepository
 		$draw = request('draw', 1);/*获取请求次数*/
 		$start = request('start', config('admin.golbal.list.start')); /*获取开始*/
 		$length = request('length', config('admin.golbal.list.length')); ///*获取条数*/
-
 		$search_pattern = request('search.regex', true); /*是否启用模糊搜索*/
-		
+
+
+
+
 		$name = request('name' ,'');
 		$email = request('email' ,'');
 		$confirm_email = request('confirm_email' ,'');
@@ -33,53 +36,6 @@ class ClassArticleRepository
 
 		$classArticle = new ClassArticle;
 
-		/*邮箱名称搜索*/
-		if($name){
-			if($search_pattern){
-                $classArticle = $classArticle->where('name', 'like', $name);
-			}else{
-                $classArticle = $classArticle->where('name', $name);
-			}
-		}
-
-		/*权限搜索*/
-		if($email){
-			if($search_pattern){
-                $classArticle = $classArticle->where('email', 'like', $email);
-			}else{
-                $classArticle = $classArticle->where('email', $email);
-			}
-		}
-		/*验证邮箱搜索*/
-		if($confirm_email){
-			if($search_pattern){
-                $classArticle = $classArticle->where('confirm_email', 'like', $confirm_email);
-			}else{
-                $classArticle = $classArticle->where('confirm_email', $confirm_email);
-			}
-		}
-		
-		/*状态搜索*/
-		if ($status) {
-            $classArticle = $classArticle->where('status', $status);
-		}
-
-		/*权限创建时间搜索*/
-		if($created_at_from){
-            $classArticle = $classArticle->where('created_at', '>=', getTime($created_at_from));
-		}
-		if($created_at_to){
-            $classArticle = $classArticle->where('created_at', '<=', getTime($created_at_to, false));
-		}
-
-		/*权限修改时间搜索*/
-		if($updated_at_from){
-			$uafc = new Carbon($updated_at_from);
-            $classArticle = $classArticle->where('created_at', '>=', getTime($updated_at_from));
-		}
-		if($updated_at_to){
-            $classArticle = $classArticle->where('created_at', '<=', getTime($updated_at_to, false));
-		}
 
 		$count = $classArticle->count();
 
@@ -108,26 +64,19 @@ class ClassArticleRepository
 	}
 
 	/**
-	 * 添加用户
+	 *
 
 	 */
-	public function store($request)
+	public static function store($request)
 	{
-		$user = new User;
+		$classArticle = new ClassArticle;
 
-		$userData = $request->all();
+		$Data = $request->all();
 		//密码进行加密
-		$userData['password'] = bcrypt($userData['password']);
 
-		if ($user->fill($userData)->save()) {
-			//自动更新用户权限关系
-			if (isset($userData['permission']) && $userData['permission']) {
-				$user->permission()->sync($userData['permission']);
-			}
-			// 自动更新用户角色关系
-			if (isset($userData['role']) && $userData['role']) {
-				$user->role()->sync($userData['role']);
-			}
+
+		if ($classArticle->fill($Data)->save()) {
+
 			Flash::success(trans('alerts.users.created_success'));
 			return true;
 		}
@@ -249,9 +198,23 @@ class ClassArticleRepository
 
     public static function uploadFile()
     {
-        $file = Input::file('weixin_image');
 
-        $allowed_extensions = ["png", "jpg", "gif"];
+        if(Input::file('weixin_image'))
+        {
+            $file = Input::file('weixin_image');
+
+        }
+        else if(Input::file('face_image')){
+
+            $file = Input::file('face_image');
+        }
+        else if(Input::file('mp3_image')){
+
+            $file = Input::file('mp3_image');
+        }
+
+
+        $allowed_extensions = ["png", "jpg", "gif",'jpeg','mp3'];
         if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
             return ['error' => 'You may only upload png, jpg or gif.'];
         }
@@ -262,7 +225,7 @@ class ClassArticleRepository
         $fileName = time().'.'.$extension;
         $file->move($destinationPath, $fileName);
 
-        $data['result']=$destinationPath.''.$fileName;
+        $data['result']="/uploads/class-img/".$fileName;
 
         return $data;
     }

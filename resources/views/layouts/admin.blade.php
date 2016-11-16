@@ -133,25 +133,20 @@
         <script src="{{asset('backend/plugins/jquery.blockui.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/uniform/jquery.uniform.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
-        <script src="{{asset('backend/plugins/ckedit/ckeditor.js')}}" type="text/javascript"></script>
 
+        <script src="{{asset('backend/plugins/ckedit/ckeditor.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/uploader/js/vendor/jquery.ui.widget.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/uploader/js/jquery.fileupload.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/uploader/js/jquery.iframe-transport.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/plugins/uploader/js/main.js')}}" type="text/javascript"></script>
-
-
-
-
-
-
         <!-- END CORE JQUERY PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         @yield('js')
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
-
+        <script src="{{asset('backend/js/app.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('backend/js/layout.min.js')}}" type="text/javascript"></script>
+
         <!-- END THEME LAYOUT SCRIPTS -->
     </body>
 

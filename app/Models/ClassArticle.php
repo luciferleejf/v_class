@@ -8,5 +8,5 @@ class ClassArticle extends Model
 {
     protected $table = 'class_article';
 
-    protected $fillable = ['cid','face_img','title','description','type','url','content'];
+    protected $fillable = ['id','cid','face_img','adviser_img','title','description','type','pre_class','pre_date','url','content','click'];
 }

@@ -80,13 +80,17 @@ return [
 
     ],
     'classArticle' =>[
-
+        'faceImg' =>'封面图片',
+        'adviserImg' =>'顾问头像',
         'cid' => '课程分类',
         'title' => '课程名称',
         'description' => '描述',
         'type' => '课程类型',
-
-
+        'content' => '课程内容',
+        'preClass' => '是否加入课程预告',
+        'video' =>'视频id',
+        'audio' =>'上传音频',
+        'preDate' => '预告时间',
     ],
 
     'adviserCate' =>[
@@ -127,6 +131,10 @@ return [
         'classArticle' => '<i class="fa fa-file-text"></i> 课程列表',
         'appUser' => '<i class="fa fa-male"></i> 用户管理',
         'api' => '<i class="fa fa-code-fork"></i> 接口管理',
+        'classCreate' => '<i class="fa fa-user-plus"></i> 创建课程',
+
+
+
 	],
 
     'api' =>[

@@ -40,18 +40,47 @@
               <form role="form" class="form-horizontal" method="POST" action="{{url('admin/adviserArticle')}}">
               		{!! csrf_field() !!}
                   <div class="form-body">
+
                       <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="name">{{trans('labels.adviserArticle.cnName')}}</label>
+                          <label class="col-md-2 control-label" for="adviser_img">{{trans('labels.classArticle.adviserImg')}}</label>
+                          <div class="col-md-3">
+                              <div class="row fileupload-buttonbar" style="padding-left:15px;">
+                                  <div class="thumbnail col-sm-6">
+                                      <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="" data-holder-rendered="true">
+                                      <input type="hidden" id="adviser_img" name="adviser_img" >
+
+                                      <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
+                                          <div id="weixin_progress" class="progress-bar progress-bar-success" ></div>
+                                      </div>
+                                      <div class="caption" align="center" style="padding:5px;">
+                                            <span id="weixin_upload" class="btn btn-primary fileinput-button">
+                                            <span>上传</span>
+                                            <input type="file" id="weixin_image" name="weixin_image" multiple>
+                                            </span>
+                                          <a id="weixin_cancle" href="javascript:void(0)" class="btn btn-warning" role="button" onclick="cancleUpload('weixin')" style="display:none">删除</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+
+
+
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="cnName">{{trans('labels.adviserArticle.cnName')}}</label>
                           <div class="col-md-8">
-                              <input type="text" class="form-control" id="name" name="name" placeholder="{{trans('labels.adviserArticle.cnName')}}" value="{{old('name')}}">
+                              <input type="text" class="form-control" id="cnName" name="cnName" placeholder="{{trans('labels.adviserArticle.cnName')}}" value="{{old('name')}}">
                               <div class="form-control-focus"> </div>
                           </div>
                       </div>
 
                       <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="email">{{trans('labels.adviserArticle.enName')}}</label>
+                          <label class="col-md-2 control-label" for="enName">{{trans('labels.adviserArticle.enName')}}</label>
                           <div class="col-md-8">
-                              <input type="text" class="form-control" id="email" name="email" placeholder="{{trans('labels.adviserArticle.enName')}}" value="{{old('email')}}">
+                              <input type="text" class="form-control" id="enName" name="enName" placeholder="{{trans('labels.adviserArticle.enName')}}" value="{{old('email')}}">
                               <div class="form-control-focus"> </div>
                           </div>
                       </div>
@@ -62,15 +91,15 @@
                           <div class="col-md-10">
                               <div class="md-radio-inline">
                                   <div class="md-radio">
-                                      <input type="radio" id="status1" name="status" value="{{config('admin.global.sex.boy')}}" class="md-radiobtn" @if(old('status') == config('admin.global.sex.boy')) checked @endif>
-                                      <label for="status1">
+                                      <input type="radio" id="boy" name="sex" value="{{config('admin.global.sex.boy')}}" class="md-radiobtn" checked >
+                                      <label for="boy">
                                           <span></span>
                                           <span class="check"></span>
                                           <span class="box"></span> {{trans('strings.sex.boy.1')}} </label>
                                   </div>
                                   <div class="md-radio">
-                                      <input type="radio" id="status2" name="status" value="{{config('admin.global.sex.girl')}}" class="md-radiobtn" @if(old('status') === config('admin.global.sex.girl')) checked @endif>
-                                      <label for="status2">
+                                      <input type="radio" id="girl" name="sex" value="{{config('admin.global.sex.girl')}}" class="md-radiobtn" >
+                                      <label for="girl">
                                           <span></span>
                                           <span class="check"></span>
                                           <span class="box"></span> {{trans('strings.sex.girl.1')}} </label>
@@ -89,9 +118,9 @@
                       </div>
 
                       <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="email">{{trans('labels.adviserArticle.phone')}}</label>
+                          <label class="col-md-2 control-label" for="phone">{{trans('labels.adviserArticle.phone')}}</label>
                           <div class="col-md-8">
-                              <input type="text" class="form-control" id="email" name="email" placeholder="{{trans('labels.adviserArticle.phone')}}" value="{{old('email')}}">
+                              <input type="text" class="form-control" id="phone" name="phone" placeholder="{{trans('labels.adviserArticle.phone')}}" value="{{old('email')}}">
                               <div class="form-control-focus"> </div>
                           </div>
                       </div>
@@ -120,7 +149,36 @@
 @endsection
 @section('js')
 <script type="text/javascript">
+
   $(function() {
+
+      $("#weixin_image").fileupload({
+          dataType: 'json',
+          url: '/admin/classArticle/uploadFile',
+          sequentialUploads: true,
+
+      }).bind('fileuploadprogress', function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $("#weixin_progress").css('width',progress + '%');
+          $("#weixin_progress").html(progress + '%');
+      }).bind('fileuploaddone', function (e, data) {
+
+          $("#adviser_img").val(data.result.result);
+
+          $("#weixin_show").attr("src",data.result.result);
+
+          $("#weixin_progress").css({display:"none"});
+          $("#weixin_upload").css({display:"none"});
+          $("#weixin_cancle").css({display:""});
+
+      });
+
+
+
+
+
+
+
     /*modal事件监听*/
     $(".modal").on("hidden.bs.modal", function() {
          $(".modal-content").empty();

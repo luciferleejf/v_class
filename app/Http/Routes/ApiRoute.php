@@ -9,7 +9,11 @@ $router->group(['prefix' => 'client'], function($router){
     $router->post('getVerify','ClientController@getVerify');   //发送验证码
     $router->post('setDefault','ClientController@setDefault'); //头像昵称设置
     $router->post('forgetPassword','ClientController@forgetPassword');//忘记密码
-    $router->post('resetPassword','ClientController@resetPassword');
+    $router->post('resetPassword','ClientController@resetPassword');  //重置密码
+
+
+
+    $router->get('getIndex','ClientController@getIndex');
 
 });
 

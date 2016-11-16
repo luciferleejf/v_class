@@ -31,6 +31,11 @@ return [
         'video' => ['','视频'],
         'audio' => ['','音频'],
     ],
+    'preClass' =>[
+        'no' => ['','不加入'],
+        'yes' => ['','加入'],
+    ],
+
 	'cate' => [
 		'audit' => ['fa fa-paw','待审核'],
 		'active' => ['fa fa-navicon','正常'],

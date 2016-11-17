@@ -14,7 +14,8 @@ $router->group(['prefix' => 'client'], function($router){
 
 
     $router->get('getIndex','ClientController@getIndex');
-
+    $router->get('getAdviser','ClientController@getAdviser');
+    $router->get('getClassCate','ClientController@getClassCate');
 });
 
 

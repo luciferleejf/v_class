@@ -87,6 +87,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
      * */
     require(__DIR__ . '/Routes/ApiListRoute.php');
 
+    /*
+    *
+    *推荐位管理
+    *
+     *
+    * */
+    require(__DIR__ . '/Routes/RecommendRoute.php');
+
+
+
 });
 
 

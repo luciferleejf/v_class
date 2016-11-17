@@ -49,7 +49,7 @@
                             <thead>
                             <tr role="row" class="heading">
                                 <th>#</th>
-                                <th width="15%"> {{ trans('labels.adviserArticle.department') }} </th>
+                                <th width="15%"> {{ trans('labels.adviserArticle.cid') }} </th>
 
                                 <th> {{ trans('labels.adviserArticle.cnName') }} </th>
                                 <th width="10%"> {{ trans('labels.adviserArticle.enName') }} </th>

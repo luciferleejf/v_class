@@ -7,11 +7,11 @@
 	        <i class="fa fa-angle-right"></i>
 	    </li>
 	    <li>
-	        <a href="{{url('admin/user')}}">{!! trans('labels.breadcrumb.userList') !!}</a>
+	        <a href="{{url('admin/user')}}">{!! trans('labels.adviser.detail') !!}</a>
 	        <i class="fa fa-angle-right"></i>
 	    </li>
 	    <li>
-	        <span>{!! trans('labels.breadcrumb.userCreate') !!}</span>
+	        <span>{!! trans('labels.breadcrumb.adviserCreate') !!}</span>
 	    </li>
 	</ul>
 </div>
@@ -22,7 +22,7 @@
           <div class="portlet-title">
               <div class="caption font-green-haze">
                   <i class="icon-settings font-green-haze"></i>
-                  <span class="caption-subject bold uppercase">{!! trans('labels.breadcrumb.userCreate') !!}</span>
+                  <span class="caption-subject bold uppercase">{!! trans('labels.breadcrumb.adviserCreate') !!}</span>
               </div>
               <div class="actions">
                   <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a>
@@ -63,11 +63,6 @@
                               </div>
                           </div>
                       </div>
-
-
-
-
-
 
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="cnName">{{trans('labels.adviserArticle.cnName')}}</label>
@@ -167,7 +162,7 @@
 
           $("#weixin_show").attr("src",data.result.result);
 
-          $("#weixin_progress").css({display:"none"});
+
           $("#weixin_upload").css({display:"none"});
           $("#weixin_cancle").css({display:""});
 

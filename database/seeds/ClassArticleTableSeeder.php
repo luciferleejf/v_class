@@ -24,7 +24,7 @@ class ClassArticleTableSeeder extends Seeder
 
 
         $data[1]['cid']=1;
-        $data[1]['face_img']="http://on.usaedu.net/uploadfile/2016/1024/20161024022702134.png";
+        $data[1]['face_img']="http://www.usaedu.net/statics/index/nanjing/images/Johnny.png";
         $data[1]['title']="阿射yts";
         $data[1]['description']="毕竟yts";
         $data[1]['type']=1;
@@ -33,7 +33,7 @@ class ClassArticleTableSeeder extends Seeder
 
 
         $data[2]['cid']=1;
-        $data[2]['face_img']="http://on.usaedu.net/uploadfile/2016/1024/20161024022702134.png";
+        $data[2]['face_img']="http://www.usaedu.net/statics/index/nanjing/images/Johnny.png";
         $data[2]['title']="协议龙";
         $data[2]['description']="毕竟协议龙";
         $data[2]['pre_class']=1;

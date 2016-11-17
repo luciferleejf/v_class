@@ -8,5 +8,12 @@ class ClassCate extends Model
 {
     protected $table = 'class_cate';
 
-    protected $fillable = ['name','pid','description','sort','status'];
+
+    protected $fillable = ['id','name','pid','description','sort','status'];
+
+
+
+
+
+
 }

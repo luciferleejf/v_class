@@ -51,4 +51,15 @@ class ClientController extends Controller
     }
 
 
+    public function getAdviser(){
+        $message=ClientRepository::getAdviser();
+        return response()->json($message);
+    }
+
+    public function getClassCate(){
+        $message=ClientRepository::getClassCate();
+        return response()->json($message);
+    }
+
+
 }

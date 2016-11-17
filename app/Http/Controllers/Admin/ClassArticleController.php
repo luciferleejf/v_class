@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\admin\ClassArticleRepository;
+use App\Models\ClassCate;
+
 
 class ClassArticleController extends Controller
 {
@@ -18,7 +20,9 @@ class ClassArticleController extends Controller
      */
     public function index()
     {
-        return view('admin.class.article.list');
+        $classCate = new ClassCate;
+        $classCate=$classCate->lists('id','name');
+        return view('admin.class.article.list')->with('classCate',$classCate);
     }
 
 
@@ -49,8 +53,9 @@ class ClassArticleController extends Controller
      */
     public function create()
     {
-
-        return view('admin.class.article.create');
+        $classCate = new ClassCate;
+        $classCate=$classCate->lists('id','name');
+        return view('admin.class.article.create')->with('classCate',$classCate);
     }
 
     /**

@@ -49,6 +49,8 @@ class ClassArticleRepository
         $classArticle = $classArticle->offset($start)->limit($length);
         $classArticles = $classArticle->get();
 
+
+
 		if ($classArticles) {
 			foreach ($classArticles as &$v) {
 				$v['actionButton'] = '123';
@@ -64,7 +66,7 @@ class ClassArticleRepository
 	}
 
 	/**
-	 *
+	 * 添加用户
 
 	 */
 	public static function store($request)
@@ -76,6 +78,7 @@ class ClassArticleRepository
 
 
 		if ($classArticle->fill($Data)->save()) {
+			//自动更新用户权限关系
 
 			Flash::success(trans('alerts.users.created_success'));
 			return true;

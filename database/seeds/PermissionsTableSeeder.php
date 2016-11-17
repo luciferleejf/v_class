@@ -52,6 +52,22 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         //////////
+        //推荐位管理//
+        //////////
+        Permission::create([
+            'name' => 'recommend manage',
+            'slug' => 'admin.systems.recommend',
+            'description' => '推荐位管理'
+        ]);
+
+        Permission::create([
+            'name' => 'recommend index list',
+            'slug' => 'admin.recommend.index',
+            'description' => '首页推荐位'
+        ]);
+
+
+        //////////
         //用户管理//
         //////////
         Permission::create([

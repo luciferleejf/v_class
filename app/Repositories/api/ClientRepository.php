@@ -4,6 +4,8 @@ namespace App\Repositories\api;
 use App\Models\VerifyCode;
 use App\Models\Client;
 use App\Models\ClassArticle;
+use App\Models\AdviserArticle;
+use App\Models\ClassCate;
 
 use Carbon\Carbon;
 use Flash;
@@ -254,11 +256,36 @@ class ClientRepository
 
         $classArticle=new ClassArticle;
         $preClass=$classArticle->where('pre_class','1')->orderBy('id','desc')->limit(2)->get(); //课程预告
-        $hotClass=$classArticle->orderBy('click','asc')->orderBy('id','desc')->limit(2)->get(); //热门推荐
+        $hotClass=$classArticle->where('pre_class','0')->orderBy('click','asc')->orderBy('id','desc')->limit(2)->get(); //热门推荐
         $data['preClass']=$preClass;
         $data['hotClass']=$hotClass;
         return $data;
     }
+
+
+
+    public static function getAdviser()
+    {
+
+        $adviserArticle=new AdviserArticle;
+        $goldAdviser=$adviserArticle->where('gold','1')->orderBy('id','desc')->get(); //金牌顾问
+        $moreAdviser=$adviserArticle->where('gold','0')->orderBy('id','desc')->get(); //更多顾问
+        $data['goldAdviser']=$goldAdviser;
+        $data['moreAdviser']=$moreAdviser;
+        return $data;
+    }
+
+    public static function getClassCate()
+    {
+
+        $classCate=new ClassCate;
+        $classCate=$classCate->get();
+
+        $data['classCate']=$classCate;
+        return $data;
+    }
+
+
 
 
 }

@@ -70,7 +70,7 @@ return [
 
         'adviserArticle' => '顾问列表',
         'photo' => '头像',
-        'department' => '部门',
+        'cid' => '顾问分类',
         'cnName' => '中文名',
         'enName' => '英文名',
         'sex' => '性别',
@@ -106,6 +106,10 @@ return [
         'detail' => '<i class="fa fa-book"></i> 课程管理'
     ],
 
+    'adviser' => [
+        'detail' => '<i class="fa fa-diamond"></i> 顾问管理'
+    ],
+
 
 	'breadcrumb' => [
 		'home' => '<i class="fa fa-home"></i> 主页',
@@ -132,7 +136,7 @@ return [
         'appUser' => '<i class="fa fa-male"></i> 用户管理',
         'api' => '<i class="fa fa-code-fork"></i> 接口管理',
         'classCreate' => '<i class="fa fa-user-plus"></i> 创建课程',
-
+        'adviserCreate'=> '<i class="fa fa-user-plus"></i> 创建顾问',
 
 
 	],

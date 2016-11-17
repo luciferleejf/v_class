@@ -125,7 +125,7 @@ class MenusTableSeeder extends Seeder
         $recommend->language = "zh";
         $recommend->icon = "fa fa-tags";
         $recommend->slug = "admin.systems.recommend";
-        $recommend->url = "admin/recommendIndex*";
+        $recommend->url = "admin/recommend*";
         $recommend->description = "推荐位管理";
         $recommend->save();
 
@@ -135,7 +135,7 @@ class MenusTableSeeder extends Seeder
         $recommend_index->language = "zh";
         $recommend_index->icon = "fa fa-file-text";
         $recommend_index->slug = "admin.recommend.index";
-        $recommend_index->url = "admin/recommendIndex";
+        $recommend_index->url = "admin/recommend/index";
         $recommend_index->description = "首页推荐位";
         $recommend_index->save();
 

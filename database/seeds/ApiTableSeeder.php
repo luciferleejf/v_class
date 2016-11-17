@@ -78,6 +78,37 @@ class ApiTableSeeder extends Seeder
         $data[5]['jasonDetail']="{[200-成功,400-失败],[1-成功,2-失败]}";
         $data[5]['requestNum']=0;
 
+        /*首页数据*/
+        $data[6]['type']="GET";
+        $data[6]['name']="首页数据";
+        $data[6]['url']=$host."getIndex";
+        $data[6]['parms']="{无}";
+        $data[6]['parmsDetail']="{无}";
+        $data[6]['jason']="{data}";
+        $data[6]['jasonDetail']="{data.preClass-推荐课程,data.hotClass-热门课程}";
+        $data[6]['requestNum']=0;
+
+        /*顾问数据*/
+
+        $data[7]['type']="GET";
+        $data[7]['name']="顾问数据";
+        $data[7]['url']=$host."getAdviser";
+        $data[7]['parms']="{无}";
+        $data[7]['parmsDetail']="{无}";
+        $data[7]['jason']="{data}";
+        $data[7]['jasonDetail']="{data.goldAdviser-金牌顾问,data.moreAdviser-更多顾问}";
+        $data[7]['requestNum']=0;
+
+        /*课程分类*/
+
+        $data[8]['type']="GET";
+        $data[8]['name']="课程分类";
+        $data[8]['url']=$host."getClassCate";
+        $data[8]['parms']="{无}";
+        $data[8]['parmsDetail']="{无}";
+        $data[8]['jason']="{data}";
+        $data[8]['jasonDetail']="{data.classCate-课程分类}";
+        $data[8]['requestNum']=0;
 
 
 

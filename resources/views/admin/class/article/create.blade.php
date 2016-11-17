@@ -70,18 +70,18 @@
                           </div>
                       </div>
 
-
-
-
-
-
-
-
-
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.cid')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="cid" name="cid" placeholder="{{trans('labels.classArticle.cid')}}" value="{{old('name')}}">
+                          <div class="col-md-2">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                  <option value="" data-icon="fa-film icon-success">课程分类....</option>
+                                  @if($classCate)
+
+                                      @foreach($classCate as $key => $value)
+                                          <option value="{{$value}}" >{{$key}}</option>
+                                      @endforeach
+                                  @endif
+                              </select>
                               <div class="form-control-focus"> </div>
                           </div>
                       </div>
@@ -273,7 +273,7 @@
 
           $("#face_img").val(data.result.result);
 
-          $("#face_progress").css({display:"none"});
+
           $("#face_upload").css({display:"none"});
           $("#face_cancle").css({display:""});
 
@@ -296,7 +296,7 @@
 
           $("#url").val(data.result.result);
 
-          $("#mp3_progress").css({display:"none"});
+
           $("#mp3_upload").css({display:"none"});
           $("#mp3_cancle").css({display:""});
 

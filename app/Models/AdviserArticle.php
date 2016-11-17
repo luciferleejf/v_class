@@ -17,7 +17,7 @@ class AdviserArticle extends Model
 
     protected $table = 'adviser_article';
 
-    protected $fillable = ['cid','adviser_img','cnName','enName','sex','area','phone','email'];
+    protected $fillable = ['cid','adviser_img','cnName','enName','sex','area','phone','gold','job','email'];
 
 
 }

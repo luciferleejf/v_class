@@ -63,13 +63,14 @@
                                 <td></td>
                                 <td>
                                     <div class="form-group form-md-line-input">
-                                        <div class="input-group has-success">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-bars"></i>
-                                    </span>
-                                            <input type="text" class="form-control form-filter" name="cid" placeholder="{{ trans('labels.classArticle.cid') }}">
-                                            <div class="form-control-focus"> </div>
-                                        </div>
+                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                            <option value="" data-icon="fa-film icon-success">课程分类....</option>
+                                            @if($classCate)
+                                                @foreach($classCate as $key => $value)
+                                                    <option value="{{$value}}" >{{$key}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                     </div>
                                 <td>
                                     <div class="form-group form-md-line-input">
@@ -99,7 +100,7 @@
                                             <option value="" data-icon="fa-film icon-success">课程类型....</option>
                                             @if(trans('strings.classType'))
                                                 @foreach(trans('strings.classType') as $status_key => $status_value)
-                                                    <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
+                                                    <option value="{{config('admin.global.status.'.$status_key)}}" > {{$status_value[1]}}</option>
                                                 @endforeach
                                             @endif
                                         </select>

@@ -25,6 +25,12 @@ return[
 
     ],
 
+    'gold' => [
+        'no' => 0,
+        'yes' => 1,
+
+    ],
+
     'type' => [
         'video' => 0,
         'audio' => 1,

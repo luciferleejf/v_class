@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\admin\ClassArticleRepository;
 use App\Models\ClassCate;
+use App\Models\AdviserArticle;
 
 
 class ClassArticleController extends Controller
@@ -22,7 +23,13 @@ class ClassArticleController extends Controller
     {
         $classCate = new ClassCate;
         $classCate=$classCate->lists('id','name');
-        return view('admin.class.article.list')->with('classCate',$classCate);
+
+
+        $adviserArticle = new AdviserArticle;
+        $adviserArticle=$adviserArticle->lists('id','cnName');
+
+
+        return view('admin.class.article.list')->with('classCate',$classCate)->with('adviserArticle',$adviserArticle);
     }
 
 
@@ -55,7 +62,15 @@ class ClassArticleController extends Controller
     {
         $classCate = new ClassCate;
         $classCate=$classCate->lists('id','name');
-        return view('admin.class.article.create')->with('classCate',$classCate);
+
+
+        $adviserArticle = new AdviserArticle;
+        $adviserArticle=$adviserArticle->lists('id','cnName');
+
+
+
+
+        return view('admin.class.article.create')->with('classCate',$classCate)->with('adviserArticle',$adviserArticle);
     }
 
     /**

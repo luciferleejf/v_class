@@ -53,7 +53,19 @@ class ClassArticleRepository
 
 		if ($classArticles) {
 			foreach ($classArticles as &$v) {
-				$v['actionButton'] = '123';
+                $v['actionButton'] = "
+				<a href=".url('admin/classArticles'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
+				    <i class='fa fa-search'></i>
+				</a>
+				<a href=".url('admin/classArticles'.'/'.$v['id'].'/edit')." class='btn btn-xs btn-primary tooltips' data-original-title=" . trans('crud.edit') . "  data-placement=top>
+				    <i class='fa fa-pencil'></i>
+				</a>
+				<a href='javascript:;' onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
+                    <i class='fa fa-trash'></i>
+                    <form action=".url('admin/classArticles'.$v['id'])." method='POST' name='delete_item' style='display:none'>
+                      <input type='hidden' name='_method' value='delete'><input type='hidden' name='_token' value=".csrf_token().">
+                    </form>
+				</a>";
 			}
 		}
 		

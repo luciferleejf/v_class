@@ -9,17 +9,9 @@ $router->group(['prefix' => 'adviserArticle'], function($router){
     $router->get('edit', 'AdviserArticleController@edit');
     $router->get('show', 'AdviserArticleController@show');
 
+    $router->post('uploadFile', 'AdviserArticleController@uploadFile');
 
 
-    $router->get('/{id}/mark/{status}', 'AdviserArticleController@mark')
-        ->where([
-            'id' => '[0-9]+',
-            'status' => config('admin.global.status.trash').'|'.
-                config('admin.global.status.audit').'|'.
-                config('admin.global.status.active')
-        ]);
-    $router->get('/{id}/reset','AdviserArticleController@changePassword')->where(['id' => '[0-9]+']);
-    $router->post('reset','AdviserArticleController@resetPassword');
 });
 
 $router->resource('adviserArticle', 'AdviserArticleController');

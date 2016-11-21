@@ -70,6 +70,25 @@
                           </div>
                       </div>
 
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.tid')}}</label>
+                          <div class="col-md-2">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                  <option value="" data-icon="fa-film icon-success">授课顾问....</option>
+                                  @if($adviserArticle)
+
+                                      @foreach($adviserArticle as $key => $value)
+                                          <option value="{{$value}}" >{{$key}}</option>
+                                      @endforeach
+                                  @endif
+                              </select>
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
+
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.cid')}}</label>
                           <div class="col-md-2">
@@ -181,7 +200,7 @@
                       <div class="form-group form-md-line-input" id="predate" style="display: none;">
                           <label class="col-md-2 control-label" for="description">{{trans('labels.classArticle.preDate')}}</label>
                           <div class="col-md-2">
-                              <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
+                              <div class="input-group date date-picker margin-bottom-5" data-date-format="mm月dd日">
                                   <input type="text" class="form-control form-filter input-sm"   id="pre_date" name="pre_date">
                                   <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>

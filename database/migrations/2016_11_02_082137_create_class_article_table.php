@@ -14,6 +14,7 @@ class CreateClassArticleTable extends Migration
     {
         Schema::create('class_article', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('tid')->default(0)->comment('授课老师');
             $table->integer('cid')->default(0)->comment('课程所属分类');
             $table->string('face_img')->default('')->comment('课程图片');
             $table->string('adviser')->default('')->comment('顾问id');

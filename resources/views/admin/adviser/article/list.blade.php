@@ -49,28 +49,47 @@
                             <thead>
                             <tr role="row" class="heading">
                                 <th>#</th>
-                                <th width="15%"> {{ trans('labels.adviserArticle.cid') }} </th>
 
+                                <th> {{ trans('labels.adviserArticle.cid') }} </th>
+                                <th> {{ trans('labels.adviserArticle.job') }} </th>
                                 <th> {{ trans('labels.adviserArticle.cnName') }} </th>
-                                <th width="10%"> {{ trans('labels.adviserArticle.enName') }} </th>
-                                <th width="15%"> {{ trans('labels.adviserArticle.area') }} </th>
-                                <th width="15%"> {{ trans('labels.adviserArticle.phone') }} </th>
+                                <th> {{ trans('labels.adviserArticle.enName') }} </th>
+                                <th> {{ trans('labels.adviserArticle.area') }} </th>
+                                <th> {{ trans('labels.adviserArticle.phone') }} </th>
                                 <th> {{ trans('labels.adviserArticle.email') }} </th>
-                                <th width="15%"> {{ trans('labels.action') }} </th>
+                                <th> {{ trans('labels.adviserArticle.gold') }} </th>
+
+                                <th style="width:10%;"> {{ trans('labels.action') }} </th>
                             </tr>
                             <tr role="row" class="filter">
                                 <td></td>
                                 <td>
                                     <div class="form-group form-md-line-input">
-                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="department">
-                                            <option value="" data-icon="fa-glass icon-success">部门....</option>
-                                            @if(trans('strings.user'))
-                                                @foreach(trans('strings.user') as $status_key => $status_value)
-                                                    <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
+                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                            <option value="" data-icon="fa-film icon-success">顾问分类....</option>
+                                            @if($adviserCate)
+
+                                                @foreach($adviserCate as $key => $value)
+                                                    <option value="{{$value}}" >{{$key}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
                                     </div>
+                                </td>
+
+                                <td>
+                                    <div class="form-group form-md-line-input">
+                                        <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </span>
+                                            <input type="text" class="form-control form-filter" name="job" placeholder="{{ trans('labels.adviserArticle.job') }}">
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
                                 <td>
                                     <div class="form-group form-md-line-input">
                                         <div class="input-group has-success">
@@ -97,9 +116,9 @@
                                     <div class="form-group form-md-line-input">
                                         <select class="bs-select form-control form-filter" data-show-subtext="true" name="area">
                                             <option value="" data-icon="fa-glass icon-success">地区....</option>
-                                            @if(trans('strings.user'))
-                                                @foreach(trans('strings.user') as $status_key => $status_value)
-                                                    <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
+                                            @if(trans('strings.area'))
+                                                @foreach(trans('strings.area') as $status_key => $status_value)
+                                                    <option value="{{$status_value[1]}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
                                                 @endforeach
                                             @endif
                                         </select>
@@ -130,6 +149,22 @@
                                         </div>
                                     </div>
                                 </td>
+
+                                <td>
+                                    <div class="form-group form-md-line-input">
+                                        <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </span>
+                                            <input type="text" class="form-control form-filter" name="gold" placeholder="{{ trans('labels.adviserArticle.gold') }}">
+                                            <div class="form-control-focus"> </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+
+
                                 <td>
                                     <div class="margin-bottom-5">
                                         <button class="btn btn-sm green btn-outline filter-submit margin-bottom">

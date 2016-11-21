@@ -102,7 +102,22 @@ class AdviserArticleRepository
 
         if ($adviserArticles) {
             foreach ($adviserArticles as &$v) {
-                $v['actionButton'] = $v->getActionButtonAttribute();
+
+
+                $v['actionButton'] = "
+				<a href=".url('admin/adviserArticle'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
+				    <i class='fa fa-search'></i>
+				</a>
+				<a href=".url('admin/adviserArticle'.'/'.$v['id'].'/edit')." class='btn btn-xs btn-primary tooltips' data-original-title=" . trans('crud.edit') . "  data-placement=top>
+				    <i class='fa fa-pencil'></i>
+				</a>
+				<a href='javascript:;' onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
+                    <i class='fa fa-trash'></i>
+                    <form action=".url('admin/adviserArticle'.'/'.$v['id'])." method='POST' name='delete_item' style='display:none'>
+                      <input type='hidden' name='_method' value='delete'><input type='hidden' name='_token' value=".csrf_token().">
+                    </form>
+				</a>";
+
             }
         }
 
@@ -140,16 +155,12 @@ class AdviserArticleRepository
 	 */
 	public function edit($id)
 	{
-		$user = User::with(['permission','role'])->find($id);
-		if ($user) {
-			$userArray = $user->toArray();
-			if ($userArray['permission']) {
-				$userArray['permission'] = array_column($userArray['permission'],'id');
-			}
-			if ($userArray['role']) {
-				$userArray['role'] = array_column($userArray['role'],'id');
-			}
-			return $userArray;
+        $adviserArticle = new AdviserArticle;
+
+        $adviserArticle = $adviserArticle->find($id);
+		if ($adviserArticle) {
+            $adviserArticle = $adviserArticle->toArray();
+			return $adviserArticle;
 		}
 		abort(404);
 	}
@@ -159,17 +170,13 @@ class AdviserArticleRepository
 	 */
 	public function update($request,$id)
 	{
-		$user = User::find($id);
-		if ($user) {
-			if ($user->fill($request->all())->save()) {
-				//自动更新用户权限关系
-				if ($request->permission) {
-					$user->permission()->sync($request->permission);
-				}
-				//自动更新用户角色关系
-				if ($request->role) {
-					$user->role()->sync($request->role);
-				}
+
+        $adviserArticle = new AdviserArticle;
+
+        $adviserArticle = $adviserArticle::find($id);
+		if ($adviserArticle) {
+			if ($adviserArticle->fill($request->all())->save()) {
+
 				Flash::success(trans('alerts.users.updated_success'));
 				return true;
 			}
@@ -179,24 +186,6 @@ class AdviserArticleRepository
 		abort(404);
 	}
 
-	/**
-	 * 修改用户状态
-
-	 */
-	public function mark($id,$status)
-	{
-		$user = User::find($id);
-		if ($user) {
-			$user->status = $status;
-			if ($user->save()) {
-				Flash::success(trans('alerts.users.updated_success'));
-				return true;
-			}
-			Flash::error(trans('alerts.users.updated_error'));
-			return false;
-		}
-		abort(404);
-	}
 
 	/**
 	 * 删除角色
@@ -204,7 +193,11 @@ class AdviserArticleRepository
 	 */
 	public function destroy($id)
 	{
-		$isDelete = User::destroy($id);
+
+        $adviserArticle = new AdviserArticle;
+
+		$isDelete = $adviserArticle::destroy($id);
+
 		if ($isDelete) {
 			Flash::success(trans('alerts.users.deleted_success'));
 			return true;
@@ -246,4 +239,42 @@ class AdviserArticleRepository
 		}
 		abort(404);
 	}
+
+    public static function uploadFile()
+    {
+
+        if(Input::file('weixin_image'))
+        {
+            $file = Input::file('weixin_image');
+
+        }
+        else if(Input::file('face_image')){
+
+            $file = Input::file('face_image');
+        }
+        else if(Input::file('mp3_image')){
+
+            $file = Input::file('mp3_image');
+        }
+
+
+        $allowed_extensions = ["png", "jpg", "gif",'jpeg','mp3'];
+        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+            return ['error' => 'You may only upload png, jpg or gif.'];
+        }
+
+        $destinationPath = public_path() . "/uploads/class-img/";
+
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time().'.'.$extension;
+        $file->move($destinationPath, $fileName);
+
+        $data['result']="/uploads/class-img/".$fileName;
+
+        return $data;
+    }
+
+
+
+
 }

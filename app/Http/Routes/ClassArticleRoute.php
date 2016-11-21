@@ -11,13 +11,7 @@ $router->group(['prefix' => 'classArticle'], function($router){
 
     $router->post('uploadFile', 'ClassArticleController@uploadFile');
 
-    $router->get('/{id}/mark/{status}', 'AdviserArticleController@mark')
-        ->where([
-            'id' => '[0-9]+',
-            'status' => config('admin.global.status.trash').'|'.
-                config('admin.global.status.audit').'|'.
-                config('admin.global.status.active')
-        ]);
+
 
 });
 

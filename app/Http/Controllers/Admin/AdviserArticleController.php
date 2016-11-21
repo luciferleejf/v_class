@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\AdviserCate;
 use AdviserArticleRepository;
 
 class AdviserArticleController extends Controller
@@ -18,7 +19,11 @@ class AdviserArticleController extends Controller
      */
     public function index()
     {
-        return view('admin.adviser.article.list');
+
+        $adviserCate = new AdviserCate;
+        $adviserCate=$adviserCate->lists('id','name');
+        return view('admin.adviser.article.list')->with('adviserCate',$adviserCate);
+
     }
 
     /**
@@ -30,14 +35,16 @@ class AdviserArticleController extends Controller
         $data = AdviserArticleRepository::ajaxIndex();
         return response()->json($data);
     }
-    /**
-     * 添加用户视图
 
-     */
+
+
+
     public function create()
     {
+        $adviserCate = new AdviserCate;
+        $adviserCate=$adviserCate->lists('id','name');
 
-        return view('admin.adviser.article.create')->with(compact(['permissions','roles']));
+        return view('admin.adviser.article.create')->with('adviserCate',$adviserCate);
     }
 
     /**
@@ -56,10 +63,10 @@ class AdviserArticleController extends Controller
      */
     public function edit($id)
     {
-        $user = AdviserArticleRepository::edit($id);
-        $roles = RoleRepository::findRoleWithObject();
-        $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.adviser.article.edit')->with(compact(['user','permissions','roles']));
+        $adviserArticle=AdviserArticleRepository::edit($id);
+        $adviserCate = new AdviserCate;
+        $adviserCate=$adviserCate->lists('id','name');
+        return view('admin.adviser.article.edit')->with('adviserCate',$adviserCate)->with('adviserArticle',$adviserArticle);
     }
     /**
      * 修改用户资料
@@ -68,18 +75,10 @@ class AdviserArticleController extends Controller
     public function update(request $request,$id)
     {
         AdviserArticleRepository::update($request,$id);
-        return redirect('admin/adviser');
+        return redirect('admin/adviserArticle');
     }
 
-    /**
-     * 修改用户状态
 
-     */
-    public function mark($id,$status)
-    {
-        AdviserArticleRepository::mark($id,$status);
-        return redirect('admin/adviser');
-    }
 
     /**
      * 删除用户
@@ -88,7 +87,7 @@ class AdviserArticleController extends Controller
     public function destroy($id)
     {
         AdviserArticleRepository::destroy($id);
-        return redirect('admin/adviser');
+        return redirect('admin/adviserArticle');
     }
     /**
      * 查看用户信息
@@ -99,5 +98,18 @@ class AdviserArticleController extends Controller
         $user = AdviserArticleRepository::show($id);
         return view('admin.adviser.article.show')->with(compact('user'));
     }
+
+
+
+    /*
+     * 图片上传
+     * */
+    public function uploadFile()
+    {
+        $data = AdviserArticleRepository::uploadFile();
+        return response()->json($data);
+    }
+
+
 
 }

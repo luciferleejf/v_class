@@ -30,10 +30,16 @@ var TableDatatablesAjax = function() {
                     "data": "id",
                     "name" : "id",
                 },
+
                 {
                     "data": "cid",
                     "name" : "cid",
                     "orderable" : false,
+                },
+                {
+                    "data": "tid",
+                    "name" : "tid",
+
                 },
                 {
                     "data": "title",
@@ -52,16 +58,7 @@ var TableDatatablesAjax = function() {
                     "orderable" : true,
 
                 },
-                {
-                    "data": "created_at",
-                    "name": "created_at",
-                    "orderable" : true,
-                },
-                {
-                    "data": "updated_at",
-                    "name": "updated_at",
-                    "orderable" : true,
-                },
+
                 {
                     "data": "actionButton",
                     "name": "actionButton",

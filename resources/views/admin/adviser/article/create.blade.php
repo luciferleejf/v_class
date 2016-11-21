@@ -7,7 +7,7 @@
 	        <i class="fa fa-angle-right"></i>
 	    </li>
 	    <li>
-	        <a href="{{url('admin/user')}}">{!! trans('labels.adviser.detail') !!}</a>
+            <span>{!! trans('labels.breadcrumb.adviser') !!}</span>
 	        <i class="fa fa-angle-right"></i>
 	    </li>
 	    <li>
@@ -62,12 +62,47 @@
                                   </div>
                               </div>
                           </div>
+
                       </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.cid')}}</label>
+                          <div class="col-md-2">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                  <option value="" data-icon="fa-film icon-success">顾问分类....</option>
+                                  @if($adviserCate)
+
+                                      @foreach($adviserCate as $key => $value)
+                                          <option value="{{$value}}" >{{$key}}</option>
+                                      @endforeach
+                                  @endif
+                              </select>
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="area">{{trans('labels.adviserArticle.area')}}</label>
+                          <div class="col-md-2">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="area" id="area">
+                                  <option value="" data-icon="fa-film icon-success">所属地区....</option>
+                                  @if(trans('strings.area'))
+                                      @foreach(trans('strings.area') as $status_key => $status_value)
+                                          <option value="{{$status_value[1]}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
+                                      @endforeach
+                                  @endif
+                              </select>
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
+
 
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="cnName">{{trans('labels.adviserArticle.cnName')}}</label>
                           <div class="col-md-8">
-                              <input type="text" class="form-control" id="cnName" name="cnName" placeholder="{{trans('labels.adviserArticle.cnName')}}" value="{{old('name')}}">
+                              <input type="text" class="form-control" id="cnName" name="cnName" placeholder="{{trans('labels.adviserArticle.cnName')}}" value="">
                               <div class="form-control-focus"> </div>
                           </div>
                       </div>
@@ -75,10 +110,37 @@
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="enName">{{trans('labels.adviserArticle.enName')}}</label>
                           <div class="col-md-8">
-                              <input type="text" class="form-control" id="enName" name="enName" placeholder="{{trans('labels.adviserArticle.enName')}}" value="{{old('email')}}">
+                              <input type="text" class="form-control" id="enName" name="enName" placeholder="{{trans('labels.adviserArticle.enName')}}" value="">
                               <div class="form-control-focus"> </div>
                           </div>
                       </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="job">{{trans('labels.adviserArticle.job')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="job" name="job" placeholder="{{trans('labels.adviserArticle.job')}}" value="">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="keyword">{{trans('labels.adviserArticle.keyword')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="keyword" name="keyword" placeholder="{{trans('labels.adviserArticle.keyword')}}" value="">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="description">{{trans('labels.adviserArticle.description')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="description" name="description" placeholder="{{trans('labels.adviserArticle.description')}}" value="">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
 
 
                       <div class="form-group form-md-line-input">
@@ -103,6 +165,38 @@
                               </div>
                           </div>
                       </div>
+
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.adviserArticle.gold')}}</label>
+                          <div class="col-md-10">
+                              <div class="md-radio-inline">
+                                  <div class="md-radio">
+                                      <input type="radio" id="no" name="gold" value="{{config('admin.global.gold.no')}}" class="md-radiobtn" checked >
+                                      <label for="no">
+                                          <span></span>
+                                          <span class="check"></span>
+                                          <span class="box"></span> {{trans('strings.gold.no.1')}} </label>
+                                  </div>
+                                  <div class="md-radio">
+                                      <input type="radio" id="yes" name="gold" value="{{config('admin.global.gold.yes')}}" class="md-radiobtn" >
+                                      <label for="yes">
+                                          <span></span>
+                                          <span class="check"></span>
+                                          <span class="box"></span> {{trans('strings.gold.yes.1')}} </label>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+
+
+
+
+
+
+
 
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="email">{{trans('labels.adviserArticle.email')}}</label>

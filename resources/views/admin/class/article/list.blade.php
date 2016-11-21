@@ -51,12 +51,13 @@
                             <thead>
                             <tr role="row" class="heading">
                                 <th>#</th>
+
                                 <th width="15%"> {{ trans('labels.classArticle.cid') }} </th>
+                                <th width="15%"> {{ trans('labels.classArticle.tid') }} </th>
                                 <th> {{ trans('labels.classArticle.title') }} </th>
                                 <th> {{ trans('labels.classArticle.description') }} </th>
                                 <th width="10%"> {{ trans('labels.classArticle.type') }} </th>
-                                <th width="15%"> {{ trans('labels.user.created_at') }} </th>
-                                <th width="15%"> {{ trans('labels.user.updated_at') }} </th>
+
                                 <th width="15%"> {{ trans('labels.action') }} </th>
                             </tr>
                             <tr role="row" class="filter">
@@ -72,6 +73,23 @@
                                             @endif
                                         </select>
                                     </div>
+                                </td>
+
+                                <td>
+                                    <div class="form-group form-md-line-input">
+                                        <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                            <option value="" data-icon="fa-film icon-success">授课顾问....</option>
+                                            @if($adviserArticle)
+
+                                                @foreach($adviserArticle as $key => $value)
+                                                    <option value="{{$value}}" >{{$key}}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+                                </td>
+
+
                                 <td>
                                     <div class="form-group form-md-line-input">
                                         <div class="input-group has-success">
@@ -105,35 +123,10 @@
                                             @endif
                                         </select>
                                     </div>
-                                <td>
-                                    <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="From" name="created_at_from">
-                                        <span class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </span>
-                                    </div>
 
-                                    <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="To" name="created_at_to">
-                                        <span class="input-group-addon">
-                                  <i class="fa fa-calendar"></i>
-                                </span>
-                                    </div>
-                                <td>
-                                    <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="From" name="updated_at_from">
-                                        <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                  </span>
-                                    </div>
-
-                                    <div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
-                                        <input type="text" class="form-control form-filter input-sm" readonly placeholder="To" name="updated_at_to">
-                                        <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                  </span>
-                                    </div>
                                 </td>
+
+
                                 <td>
                                     <div class="margin-bottom-5">
                                         <button class="btn btn-sm green btn-outline filter-submit margin-bottom">

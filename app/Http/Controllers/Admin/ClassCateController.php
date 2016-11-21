@@ -39,6 +39,11 @@ class ClassCateController extends Controller
     public function store(ClassCateRequest $request)
     {
         ClassCateRepository::store($request);
+
+
+
+
+
         return redirect('admin/classCate');
     }
     /**

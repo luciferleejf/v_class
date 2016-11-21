@@ -37,143 +37,187 @@
 					        @endforeach
 					    </div>
 					    @endif
-              <form role="form" class="form-horizontal" method="POST" action="{{url('admin/user/'.$user['id'])}}">
+              <form role="form" class="form-horizontal" method="POST" action="{{url('admin/adviserArticle/'.$adviserArticle['id'])}}">
               		{!! csrf_field() !!}
                   <input type="hidden" name="_method" value="PATCH">
-                  <input type="hidden" name="id" value="{{$user['id']}}">
+                  <input type="hidden" name="id" value="{{$adviserArticle['id']}}">
                   <div class="form-body">
-                      <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="name">{{trans('labels.user.name')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="name" name="name" placeholder="{{trans('labels.user.name')}}" value="{{$user['name']}}">
-                              <div class="form-control-focus"> </div>
-                          </div>
-                      </div>
+
 
                       <div class="form-group form-md-line-input">
-                          <label class="col-md-2 control-label" for="email">{{trans('labels.user.email')}}</label>
-                          <div class="col-md-8">
-                              <input type="text" class="form-control" id="email" name="email" placeholder="{{trans('labels.user.email')}}" value="{{$user['email']}}">
-                              <div class="form-control-focus"> </div>
-                          </div>
-                      </div>
+                          <label class="col-md-2 control-label" for="adviser_img">{{trans('labels.classArticle.adviserImg')}}</label>
+                          <div class="col-md-3">
+                              <div class="row fileupload-buttonbar" style="padding-left:15px;">
+                                  <div class="thumbnail col-sm-6">
+                                      <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="{{$adviserArticle['adviser_img']}}" data-holder-rendered="true">
+                                      <input type="hidden" id="adviser_img" name="adviser_img" >
 
-                      <div class="form-group form-md-line-input has-warning">
-                        <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.role.slug')}}</label>
-                        <div class="col-md-10">
-                          <div class="md-checkbox-inline">
-                              @if(!$roles->isEmpty())
-                              @foreach($roles as $key => $role)
-                              <div class="md-checkbox">
-                                  <input type="checkbox" id="{{'role_'.$key}}" name="role[]" value="{{$role->id}}" class="md-check" @if(in_array($role->id,$user['role'])) checked @endif>
-                                  <label for="{{'role_'.$key}}" class="tooltips" data-placement="top" data-original-title="{{$role->description}}">
-                                      <span></span>
-                                      <span class="check"></span>
-                                      <span class="box"></span> {{$role->slug}} @permission(config('admin.permissions.role.show'))(<small><a href="{{url('admin/role/'.$role->id)}}" data-toggle="modal" data-target="#draggable" class="red-mint">{{trans('labels.role.show')}}</a></small>)@endpermission </label>
-                              </div>
-                              @endforeach
-                              @else
-                                <p>暂无角色</p>
-                              @endif
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="form-group form-md-line-input has-success">
-                        <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.user.confirm_email')}}</label>
-                        <div class="col-md-10">
-                          <div class="md-checkbox-inline">
-                              <div class="md-checkbox">
-                                  <input type="checkbox" id="confirm_email" value="{{config('admin.global.status.active')}}" name="confirm_email" class="md-check" @if($user['confirm_email'] == config('admin.global.status.active')) checked @endif>
-                                  <label for="confirm_email">
-                                      <span></span>
-                                      <span class="check"></span>
-                                      <span class="box"></span> {{trans('labels.user.confirm')}} </label>
+                                      <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
+                                          <div id="weixin_progress" class="progress-bar progress-bar-success" ></div>
+                                      </div>
+                                      <div class="caption" align="center" style="padding:5px;">
+                                            <span id="weixin_upload" class="btn btn-primary fileinput-button">
+                                            <span>上传</span>
+                                            <input type="file" id="weixin_image" name="weixin_image" multiple>
+                                            </span>
+                                          <a id="weixin_cancle" href="javascript:void(0)" class="btn btn-warning" role="button" onclick="cancleUpload('weixin')" style="display:none">删除</a>
+                                      </div>
+                                  </div>
                               </div>
                           </div>
-                        </div>
+
                       </div>
 
                       <div class="form-group form-md-line-input">
-                        <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.user.status')}}</label>
-                        <div class="col-md-10">
-                            <div class="md-radio-inline">
-                                <div class="md-radio">
-                                    <input type="radio" id="status1" name="status" value="{{config('admin.global.status.active')}}" class="md-radiobtn" @if($user['status'] == config('admin.global.status.active')) checked @endif>
-                                    <label for="status1">
-                                        <span></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> {{trans('strings.user.active.1')}} </label>
-                                </div>
-                                <div class="md-radio">
-                                    <input type="radio" id="status2" name="status" value="{{config('admin.global.status.audit')}}" class="md-radiobtn" @if($user['status'] == config('admin.global.status.audit')) checked @endif>
-                                    <label for="status2">
-                                        <span></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> {{trans('strings.user.audit.1')}} </label>
-                                </div>
-                                <div class="md-radio">
-                                    <input type="radio" id="status3" name="status" value="{{config('admin.global.status.trash')}}" class="md-radiobtn" @if($user['status'] == config('admin.global.status.trash')) checked @endif>
-                                    <label for="status3">
-                                        <span></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> {{trans('strings.user.trash.1')}} </label>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="form-group form-md-line-input">
-                        <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.user.permission')}}</label>
-                        <div class="col-md-8">
-                          <div class="alert alert-success">{!!trans('labels.user.notice')!!}</div>
-                          <div class="table-scrollable">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="col-md-1 text-center">{{trans('labels.role.module')}}</th>
-                                        <th class="col-md-10 text-center">{{trans('labels.role.permission')}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  @if($permissions)
-                                  @foreach($permissions as $permission)
-                                    @foreach($permission as $k => $v)
-                                      <tr>
-                                        <td class="text-center" style="vertical-align: middle;"> {{$k}} </td>
-                                        <td>
-                                          @if(isDoubleArray($v))
-                                          @foreach($v as $val)
-                                          <div class="col-md-4">
-                                            <div class="md-checkbox">
-                                                <input type="checkbox" name="permission[]" id="{{$val['key']}}" value="{{$val['id']}}" class="md-check" @if(in_array($val['id'],$user['permission'])) checked @endif>
-                                                <label for="{{$val['key']}}" class="tooltips" data-placement="top" data-original-title="{{$val['desc']}}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> {{$val['name']}} </label>
-                                            </div>
-                                          </div>
-                                          @endforeach
-                                          @else
-                                          <div class="col-md-4">
-                                            <div class="md-checkbox">
-                                                <input type="checkbox" name="permission[]" id="{{$v['key']}}" value="{{$v['id']}}" class="md-check" @if(in_array($v['id'],$user['permission'])) checked @endif>
-                                                <label for="{{$v['key']}}" class="tooltips" data-placement="top" data-original-title="{{$v['desc']}}">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> {{$v['name']}} </label>
-                                            </div>
-                                          </div>
-                                          @endif
-                                        </td>
-                                      </tr>
-                                    @endforeach
-                                  @endforeach
+                          <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.cid')}}</label>
+                          <div class="col-md-2">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                                  <option value="{{$adviserArticle['cid']}}" data-icon="fa-film icon-success">{{$adviserArticle['cid']}}</option>
+                                  @if($adviserCate)
+
+                                      @foreach($adviserCate as $key => $value)
+                                          <option value="{{$value}}" >{{$key}}</option>
+                                      @endforeach
                                   @endif
-                                </tbody>
-                            </table>
+                              </select>
+                              <div class="form-control-focus"> </div>
                           </div>
-                        </div>
                       </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="area">{{trans('labels.adviserArticle.area')}}</label>
+                          <div class="col-md-2">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="area" id="area">
+                                  <option value="{{$adviserArticle['area']}}" data-icon="fa-film icon-success">{{$adviserArticle['area']}}</option>
+                                  @if(trans('strings.area'))
+                                      @foreach(trans('strings.area') as $status_key => $status_value)
+                                          <option value="{{$status_value[1]}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
+                                      @endforeach
+                                  @endif
+                              </select>
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="cnName">{{trans('labels.adviserArticle.cnName')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="cnName" name="cnName" placeholder="{{trans('labels.adviserArticle.cnName')}}" value="{{$adviserArticle['cnName']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="enName">{{trans('labels.adviserArticle.enName')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="enName" name="enName" placeholder="{{trans('labels.adviserArticle.enName')}}" value="{{$adviserArticle['enName']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="job">{{trans('labels.adviserArticle.job')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="job" name="job" placeholder="{{trans('labels.adviserArticle.job')}}" value="{{$adviserArticle['job']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="keyword">{{trans('labels.adviserArticle.keyword')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="keyword" name="keyword" placeholder="{{trans('labels.adviserArticle.keyword')}}" value="{{$adviserArticle['keyword']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="description">{{trans('labels.adviserArticle.description')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="description" name="description" placeholder="{{trans('labels.adviserArticle.description')}}" value="{{$adviserArticle['description']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.adviserArticle.sex')}}</label>
+                          <div class="col-md-10">
+                              <div class="md-radio-inline">
+                                  <div class="md-radio">
+                                      <input type="radio" id="boy" name="sex" value="{{config('admin.global.sex.boy')}}" class="md-radiobtn" checked >
+                                      <label for="boy">
+                                          <span></span>
+                                          <span class="check"></span>
+                                          <span class="box"></span> {{trans('strings.sex.boy.1')}} </label>
+                                  </div>
+                                  <div class="md-radio">
+                                      <input type="radio" id="girl" name="sex" value="{{config('admin.global.sex.girl')}}" class="md-radiobtn" >
+                                      <label for="girl">
+                                          <span></span>
+                                          <span class="check"></span>
+                                          <span class="box"></span> {{trans('strings.sex.girl.1')}} </label>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="form_control_1">{{trans('labels.adviserArticle.gold')}}</label>
+                          <div class="col-md-10">
+                              <div class="md-radio-inline">
+                                  <div class="md-radio">
+                                      <input type="radio" id="no" name="gold" value="{{config('admin.global.gold.no')}}" class="md-radiobtn" checked >
+                                      <label for="no">
+                                          <span></span>
+                                          <span class="check"></span>
+                                          <span class="box"></span> {{trans('strings.gold.no.1')}} </label>
+                                  </div>
+                                  <div class="md-radio">
+                                      <input type="radio" id="yes" name="gold" value="{{config('admin.global.gold.yes')}}" class="md-radiobtn" >
+                                      <label for="yes">
+                                          <span></span>
+                                          <span class="check"></span>
+                                          <span class="box"></span> {{trans('strings.gold.yes.1')}} </label>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+
+
+
+
+
+
+
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="email">{{trans('labels.adviserArticle.email')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="email" name="email" placeholder="{{trans('labels.adviserArticle.email')}}" value="{{$adviserArticle['email']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group form-md-line-input">
+                          <label class="col-md-2 control-label" for="phone">{{trans('labels.adviserArticle.phone')}}</label>
+                          <div class="col-md-8">
+                              <input type="text" class="form-control" id="phone" name="phone" placeholder="{{trans('labels.adviserArticle.phone')}}" value="{{$adviserArticle['phone']}}">
+                              <div class="form-control-focus"> </div>
+                          </div>
+                      </div>
+
+
                   </div>
                   <div class="form-actions">
                       <div class="row">
@@ -184,6 +228,8 @@
                       </div>
                   </div>
               </form>
+
+
           </div>
       </div>
   </div>
@@ -198,6 +244,28 @@
 @section('js')
 <script type="text/javascript">
   $(function() {
+
+      $("#weixin_image").fileupload({
+          dataType: 'json',
+          url: '/admin/adviserArticle/uploadFile',
+          sequentialUploads: true,
+
+      }).bind('fileuploadprogress', function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          $("#weixin_progress").css('width',progress + '%');
+          $("#weixin_progress").html(progress + '%');
+      }).bind('fileuploaddone', function (e, data) {
+
+          $("#adviser_img").val(data.result.result);
+
+          $("#weixin_show").attr("src",data.result.result);
+
+
+          $("#weixin_upload").css({display:"none"});
+          $("#weixin_cancle").css({display:""});
+
+      });
+
     /*modal事件监听*/
     $(".modal").on("hidden.bs.modal", function() {
          $(".modal-content").empty();

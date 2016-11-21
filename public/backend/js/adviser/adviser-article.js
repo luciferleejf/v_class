@@ -14,6 +14,10 @@ var TableDatatablesAjax = function() {
           d.area = $('.filter select[name="area"] option:selected').val();
           d.phone = $('.filter input[name="phone"]').val();
           d.email = $('.filter input[name="email"]').val();
+          d.job = $('.filter input[name="job"]').val();
+          d.description = $('.filter input[name="description"]').val();
+          d.keyword = $('.filter input[name="keyword"]').val();
+          d.gold = $('.filter input[name="gold"]').val();
 
         }
       },
@@ -30,6 +34,10 @@ var TableDatatablesAjax = function() {
           "data": "cid",
           "name" : "cid",
 
+        },
+        {
+          "data": "job",
+          "name": "job",
         },
         {
           "data": "cnName",
@@ -54,6 +62,13 @@ var TableDatatablesAjax = function() {
           "data": "email",
           "name": "email",
         },
+        {
+          "data": "gold",
+          "name": "gold",
+        },
+
+
+
         {
           "data": "actionButton",
           "name": "actionButton",

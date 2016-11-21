@@ -25,6 +25,8 @@ class CreateAdviserArticleTable extends Migration
             $table->integer('gold')->default(0)->comment('金牌顾问 0-普通 1-金牌');
             $table->string('job')->default('')->comment('职位');
             $table->string('email')->default('')->comment('邮箱');
+            $table->string('keyword')->default('')->comment('关键字');
+            $table->string('description')->default('')->comment('描述');
             $table->timestamps();
         });
     }

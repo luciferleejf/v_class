@@ -47,15 +47,15 @@ class ClassArticleRepository
 		if ($classArticles) {
 			foreach ($classArticles as &$v) {
                 $v['actionButton'] = "
-				<a href=".url('admin/classArticles'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
+				<a href=".url('admin/classArticle'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
 				    <i class='fa fa-search'></i>
 				</a>
-				<a href=".url('admin/classArticles'.'/'.$v['id'].'/edit')." class='btn btn-xs btn-primary tooltips' data-original-title=" . trans('crud.edit') . "  data-placement=top>
+				<a href=".url('admin/classArticle'.'/'.$v['id'].'/edit')." class='btn btn-xs btn-primary tooltips' data-original-title=" . trans('crud.edit') . "  data-placement=top>
 				    <i class='fa fa-pencil'></i>
 				</a>
 				<a href='javascript:;' onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
                     <i class='fa fa-trash'></i>
-                    <form action=".url('admin/classArticles'.$v['id'])." method='POST' name='delete_item' style='display:none'>
+                    <form action=".url('admin/classArticle'.$v['id'])." method='POST' name='delete_item' style='display:none'>
                       <input type='hidden' name='_method' value='delete'><input type='hidden' name='_token' value=".csrf_token().">
                     </form>
 				</a>";
@@ -95,45 +95,43 @@ class ClassArticleRepository
 	 * 修改用户视图
 
 	 */
-	public function edit($id)
+	public static function edit($id)
 	{
-		$user = User::with(['permission','role'])->find($id);
-		if ($user) {
-			$userArray = $user->toArray();
-			if ($userArray['permission']) {
-				$userArray['permission'] = array_column($userArray['permission'],'id');
-			}
-			if ($userArray['role']) {
-				$userArray['role'] = array_column($userArray['role'],'id');
-			}
-			return $userArray;
-		}
-		abort(404);
+
+
+        $classArticle = new ClassArticle;
+
+        $classArticle = $classArticle
+            ->leftJoin('class_cate','class_cate.id','=','class_article.cid')
+            ->leftJoin('adviser_article','adviser_article.id','=','class_article.tid')
+            ->select('class_article.*','class_cate.name','adviser_article.cnName')
+            ->find($id);
+        if ($classArticle) {
+            $classArticle = $classArticle->toArray();
+            return $classArticle;
+        }
+        abort(404);
+
 	}
 	/**
 	 * 修改用户资料
 
 	 */
-	public function update($request,$id)
+	public static function update($request,$id)
 	{
-		$user = User::find($id);
-		if ($user) {
-			if ($user->fill($request->all())->save()) {
-				//自动更新用户权限关系
-				if ($request->permission) {
-					$user->permission()->sync($request->permission);
-				}
-				//自动更新用户角色关系
-				if ($request->role) {
-					$user->role()->sync($request->role);
-				}
-				Flash::success(trans('alerts.users.updated_success'));
-				return true;
-			}
-			Flash::error(trans('alerts.users.updated_error'));
-			return false;
-		}
-		abort(404);
+        $classArticle = new ClassArticle;
+
+        $classArticle = $classArticle::find($id);
+        if ($classArticle) {
+            if ($classArticle->fill($request->all())->save()) {
+
+                Flash::success(trans('alerts.users.updated_success'));
+                return true;
+            }
+            Flash::error(trans('alerts.users.updated_error'));
+            return false;
+        }
+        abort(404);
 	}
 
 	/**

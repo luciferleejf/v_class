@@ -142,7 +142,8 @@ return [
         'api' => '<i class="fa fa-code-fork"></i> 接口管理',
         'classCreate' => '<i class="fa fa-user-plus"></i> 创建课程',
         'adviserCreate'=> '<i class="fa fa-user-plus"></i> 创建顾问',
-
+        'classEdit'=> '<i class="fa fa-user-plus"></i> 修改课程',
+        'adviserEdit'=> '<i class="fa fa-user-plus"></i> 修改顾问',
 
 	],
 

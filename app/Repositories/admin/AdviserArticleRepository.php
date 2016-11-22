@@ -167,9 +167,6 @@ class AdviserArticleRepository
         $adviserArticle = $adviserArticle->leftJoin('adviser_cate','adviser_cate.id','=','adviser_article.cid')->select('adviser_article.*','adviser_cate.name')->find($id);
 		if ($adviserArticle) {
             $adviserArticle = $adviserArticle->toArray();
-
-
-
 			return $adviserArticle;
 		}
 		abort(404);

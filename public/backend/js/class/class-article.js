@@ -9,12 +9,14 @@ var TableDatatablesAjax = function() {
                 'url' : '/admin/classArticle/ajaxIndex',
                 "data": function ( d ) {
                     d.face_img = $('.filter input[name="face_img"]').val();
-                    d.adviser_img = $('.filter input[name="adviser_img"]').val();
+
+                    d.tid = $('.filter input[name="tid"]').val();
                     d.cid = $('.filter input[name="cid"]').val();
                     d.title = $('.filter select[name="title"] option:selected').val();
                     d.type = $('.filter input[name="type"]').val();
                     d.url = $('.filter input[name="url"]').val();
                     d.pre_class = $('.filter input[name="preClass"]').val();
+                    d.pre_date = $('.filter input[name="pre_date"]').val();
                     d.description = $('.filter input[name="description"]').val();
                     d.content = $('.filter input[name="content"]').val();
 

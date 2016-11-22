@@ -28,10 +28,6 @@ class ClassArticleController extends Controller
         $adviserArticle = new AdviserArticle;
         $adviserArticle=$adviserArticle->lists('id','cnName');
 
-
-
-
-
         return view('admin.class.article.list')->with('classCate',$classCate)->with('adviserArticle',$adviserArticle);
     }
 
@@ -90,21 +86,27 @@ class ClassArticleController extends Controller
      * 修改用户视图
 
      */
-    public function edit($id)
+    public static function edit($id)
     {
-        $user = UserRepository::edit($id);
-        $roles = RoleRepository::findRoleWithObject();
-        $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.user.edit')->with(compact(['user','permissions','roles']));
+
+        $classArticle=ClassArticleRepository::edit($id);
+        $classCate = new ClassCate;
+        $classCate=$classCate->lists('id','name');
+
+        $adviserArticle = new AdviserArticle;
+        $adviserArticle=$adviserArticle->lists('id','cnName');
+
+
+        return view('admin.class.article.edit')->with('classCate',$classCate)->with('classArticle',$classArticle)->with('adviserArticle',$adviserArticle);
     }
     /**
      * 修改用户资料
 
      */
-    public function update(UpdateUserRequest $request,$id)
+    public function update(request $request,$id)
     {
-        UserRepository::update($request,$id);
-        return redirect('admin/user');
+       ClassArticleRepository::update($request,$id);
+        return redirect('admin/classArticle');
     }
 
     /**

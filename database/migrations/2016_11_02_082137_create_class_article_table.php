@@ -17,7 +17,7 @@ class CreateClassArticleTable extends Migration
             $table->integer('tid')->default(0)->comment('授课老师');
             $table->integer('cid')->default(0)->comment('课程所属分类');
             $table->string('face_img')->default('')->comment('课程图片');
-            $table->string('adviser')->default('')->comment('顾问id');
+
             $table->string('title')->default('')->comment('课程名称');
             $table->string('description')->default('')->comment('描述');
             $table->integer('type')->default(0)->comment('课程类型 0-视频 1-音频');

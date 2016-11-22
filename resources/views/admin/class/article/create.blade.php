@@ -266,70 +266,43 @@
 <script type="text/javascript">
 
 
-  $(function() {
-
+  $(function(){
       $('.input-group.date').datepicker({
           autoclose: true
       });
-
-
       CKEDITOR.replace( 'content', {filebrowserBrowseUrl: '{{url('uploads/images/')}}',filebrowserUploadUrl: '{{url('admin/upload/article_upload')}}?_token={{csrf_token()}}'});
-
-
-
       $("#face_image").fileupload({
           dataType: 'json',
           url: '/admin/classArticle/uploadFile',
           sequentialUploads: true,
-
       }).bind('fileuploadprogress', function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
           $("#face_progress").css('width',progress + '%');
           $("#face_progress").html(progress + '%');
       }).bind('fileuploaddone', function (e, data) {
-
           $("#face_show").attr("src",data.result.result);
-
           $("#face_img").val(data.result.result);
-
-
           $("#face_upload").css({display:"none"});
           $("#face_cancle").css({display:""});
-
       });
-
-
       $("#mp3_image").fileupload({
           dataType: 'json',
           url: '/admin/classArticle/uploadFile',
           sequentialUploads: true,
-
       }).bind('fileuploadprogress', function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
           $("#mp3_progress").css('width',progress + '%');
           $("#mp3_progress").html(progress + '%');
       }).bind('fileuploaddone', function (e, data) {
-
           $("#mp3_show").attr("src",data.result.result);
-
-
           $("#url").val(data.result.result);
-
-
           $("#mp3_upload").css({display:"none"});
           $("#mp3_cancle").css({display:""});
-
       });
-
-
-
-
       /*modal事件监听*/
     $(".modal").on("hidden.bs.modal", function() {
          $(".modal-content").empty();
     });
-
-
 
       $("#preClass1").bind('click',function () {
           $('#predate').hide();

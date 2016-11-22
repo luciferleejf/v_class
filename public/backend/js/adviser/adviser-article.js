@@ -8,6 +8,7 @@ var TableDatatablesAjax = function() {
       "ajax": {
         'url' : '/admin/adviserArticle/ajaxIndex',
         "data": function ( d ) {
+          d.adviser_img = $('.filter input[name="adviser_img"]').val();
           d.cid = $('.filter select[name="cid"] option:selected').val();
           d.cnName = $('.filter input[name="cnName"]').val();
           d.enName = $('.filter input[name="enName"]').val();
@@ -83,9 +84,7 @@ var TableDatatablesAjax = function() {
           html : true
         });
       },
-      "language": {
-        url: '/admin/i18n'
-      }
+
     });
 
     dt.on('click', '.filter-submit', function(){

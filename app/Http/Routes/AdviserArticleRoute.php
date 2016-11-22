@@ -9,6 +9,10 @@ $router->group(['prefix' => 'adviserArticle'], function($router){
     $router->get('edit', 'AdviserArticleController@edit');
     $router->get('show', 'AdviserArticleController@show');
 
+
+
+
+
     $router->post('uploadFile', 'AdviserArticleController@uploadFile');
 
 

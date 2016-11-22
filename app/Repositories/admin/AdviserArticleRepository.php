@@ -2,7 +2,9 @@
 namespace App\Repositories\admin;
 use App\Models\AdviserArticle;
 
+
 use Carbon\Carbon;
+
 use Flash;
 /**
 * 顾问仓库
@@ -100,7 +102,12 @@ class AdviserArticleRepository
         $adviserArticle = $adviserArticle->offset($start)->limit($length);
         $adviserArticles = $adviserArticle->get();
 
+
+
+
         if ($adviserArticles) {
+
+
             foreach ($adviserArticles as &$v) {
 
 
@@ -157,9 +164,12 @@ class AdviserArticleRepository
 	{
         $adviserArticle = new AdviserArticle;
 
-        $adviserArticle = $adviserArticle->find($id);
+        $adviserArticle = $adviserArticle->leftJoin('adviser_cate','adviser_cate.id','=','adviser_article.cid')->select('adviser_article.*','adviser_cate.name')->find($id);
 		if ($adviserArticle) {
             $adviserArticle = $adviserArticle->toArray();
+
+
+
 			return $adviserArticle;
 		}
 		abort(404);
@@ -194,6 +204,8 @@ class AdviserArticleRepository
 	public function destroy($id)
 	{
 
+
+
         $adviserArticle = new AdviserArticle;
 
 		$isDelete = $adviserArticle::destroy($id);
@@ -224,21 +236,7 @@ class AdviserArticleRepository
 		return $user;
 	}
 
-	public function resetPassword($request)
-	{
-		$request = $request->all();
-		$request['password'] = bcrypt($request['password']);
-		$user = User::find($request['id']);
-		if ($user) {
-			if ($user->fill($request)->save()) {
-				Flash::success(trans('alerts.users.reset_success'));
-				return true;
-			}
-			Flash::error(trans('alerts.users.reset_error'));
-			return false;
-		}
-		abort(404);
-	}
+
 
     public static function uploadFile()
     {

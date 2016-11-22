@@ -287,5 +287,22 @@ class ClientRepository
 
 
 
+    public static function classDetail($request)
+    {
+        $id = $request['id'];
+        $classArticle=new ClassArticle;
+        $data=$classArticle
+            ->leftJoin('adviser_article','adviser_article.id','=','class_article.tid')
+            ->select('class_article.*','adviser_article.job','adviser_article.enName','adviser_article.keyword','adviser_article.adviser_img')
+            ->where('class_article.id',$id)
+            ->first();
+
+        return $data;
+    }
+
+
+
+
+
 
 }

@@ -154,6 +154,13 @@
     <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
     <script type="text/javascript">
         $(function() {
+
+
+
+
+
+
+
             TableDatatablesAjax.init();
             $(document).on('click','#destory',function() {
                 layer.msg('{{trans('alerts.deleteTitle')}}', {

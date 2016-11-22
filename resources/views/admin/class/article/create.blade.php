@@ -74,7 +74,7 @@
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.tid')}}</label>
                           <div class="col-md-2">
-                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
+                              <select class="bs-select form-control form-filter" data-show-subtext="true" name="tid" id="tid">
                                   <option value="" data-icon="fa-film icon-success">授课顾问....</option>
                                   @if($adviserArticle)
 
@@ -272,8 +272,8 @@
           autoclose: true
       });
 
-      CKEDITOR.replace( 'content' );
 
+      CKEDITOR.replace( 'content', {filebrowserBrowseUrl: '{{url('uploads/images/')}}',filebrowserUploadUrl: '{{url('admin/upload/article_upload')}}?_token={{csrf_token()}}'});
 
 
 

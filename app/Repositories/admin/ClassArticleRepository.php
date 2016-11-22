@@ -24,20 +24,13 @@ class ClassArticleRepository
 
 
 
-		$name = request('name' ,'');
-		$email = request('email' ,'');
-		$confirm_email = request('confirm_email' ,'');
-		$status = request('status' ,'');
-		$created_at_from = request('created_at_from' ,'');
-		$created_at_to = request('created_at_to' ,'');
-		$updated_at_from = request('updated_at_from' ,'');
-		$updated_at_to = request('updated_at_to' ,'');
 		$orders = request('order', []);
 
 		$classArticle = new ClassArticle;
 
 
 		$count = $classArticle->count();
+
 
 
 		if($orders){

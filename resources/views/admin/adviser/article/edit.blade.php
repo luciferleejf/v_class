@@ -50,7 +50,7 @@
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
                                       <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="{{$adviserArticle['adviser_img']}}" data-holder-rendered="true">
-                                      <input type="hidden" id="adviser_img" name="adviser_img" >
+                                      <input type="hidden" id="adviser_img" name="adviser_img" value="{{$adviserArticle['adviser_img']}}">
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
                                           <div id="weixin_progress" class="progress-bar progress-bar-success" ></div>
@@ -72,7 +72,7 @@
                           <label class="col-md-2 control-label" for="cid">{{trans('labels.classArticle.cid')}}</label>
                           <div class="col-md-2">
                               <select class="bs-select form-control form-filter" data-show-subtext="true" name="cid" id="cid">
-                                  <option value="{{$adviserArticle['cid']}}" data-icon="fa-film icon-success">{{$adviserArticle['cid']}}</option>
+                                  <option value="{{$adviserArticle['cid']}}" data-icon="fa-film icon-success">@if($adviserArticle['area']=="")顾问分类....@endif{{$adviserArticle['name']}}</option>
                                   @if($adviserCate)
 
                                       @foreach($adviserCate as $key => $value)
@@ -88,7 +88,7 @@
                           <label class="col-md-2 control-label" for="area">{{trans('labels.adviserArticle.area')}}</label>
                           <div class="col-md-2">
                               <select class="bs-select form-control form-filter" data-show-subtext="true" name="area" id="area">
-                                  <option value="{{$adviserArticle['area']}}" data-icon="fa-film icon-success">{{$adviserArticle['area']}}</option>
+                                  <option value="{{$adviserArticle['area']}}" data-icon="fa-film icon-success">@if($adviserArticle['area']=="")所属地区....@endif{{$adviserArticle['area']}}</option>
                                   @if(trans('strings.area'))
                                       @foreach(trans('strings.area') as $status_key => $status_value)
                                           <option value="{{$status_value[1]}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
@@ -151,14 +151,14 @@
                           <div class="col-md-10">
                               <div class="md-radio-inline">
                                   <div class="md-radio">
-                                      <input type="radio" id="boy" name="sex" value="{{config('admin.global.sex.boy')}}" class="md-radiobtn" checked >
+                                      <input type="radio" id="boy" name="sex" value="{{config('admin.global.sex.boy')}}" class="md-radiobtn" @if($adviserArticle['sex']==config('admin.global.sex.boy')) checked @endif >
                                       <label for="boy">
                                           <span></span>
                                           <span class="check"></span>
                                           <span class="box"></span> {{trans('strings.sex.boy.1')}} </label>
                                   </div>
                                   <div class="md-radio">
-                                      <input type="radio" id="girl" name="sex" value="{{config('admin.global.sex.girl')}}" class="md-radiobtn" >
+                                      <input type="radio" id="girl" name="sex" value="{{config('admin.global.sex.girl')}}" class="md-radiobtn" @if($adviserArticle['sex']==config('admin.global.sex.girl')) checked @endif>
                                       <label for="girl">
                                           <span></span>
                                           <span class="check"></span>
@@ -176,14 +176,14 @@
                           <div class="col-md-10">
                               <div class="md-radio-inline">
                                   <div class="md-radio">
-                                      <input type="radio" id="no" name="gold" value="{{config('admin.global.gold.no')}}" class="md-radiobtn" checked >
+                                      <input type="radio" id="no" name="gold" value="{{config('admin.global.gold.no')}}" class="md-radiobtn" @if($adviserArticle['gold']==config('admin.global.gold.no')) checked @endif>
                                       <label for="no">
                                           <span></span>
                                           <span class="check"></span>
                                           <span class="box"></span> {{trans('strings.gold.no.1')}} </label>
                                   </div>
                                   <div class="md-radio">
-                                      <input type="radio" id="yes" name="gold" value="{{config('admin.global.gold.yes')}}" class="md-radiobtn" >
+                                      <input type="radio" id="yes" name="gold" value="{{config('admin.global.gold.yes')}}" class="md-radiobtn" @if($adviserArticle['gold']==config('admin.global.gold.yes')) checked @endif>
                                       <label for="yes">
                                           <span></span>
                                           <span class="check"></span>
@@ -249,7 +249,6 @@
           dataType: 'json',
           url: '/admin/adviserArticle/uploadFile',
           sequentialUploads: true,
-
       }).bind('fileuploadprogress', function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
           $("#weixin_progress").css('width',progress + '%');

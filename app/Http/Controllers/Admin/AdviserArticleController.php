@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\AdviserArticle;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\AdviserCate;
 use AdviserArticleRepository;
+use Illuminate\Support\Facades\DB;
+
+
+use Illuminate\Database\Eloquent;
 
 class AdviserArticleController extends Controller
 {
@@ -22,6 +27,9 @@ class AdviserArticleController extends Controller
 
         $adviserCate = new AdviserCate;
         $adviserCate=$adviserCate->lists('id','name');
+
+
+
         return view('admin.adviser.article.list')->with('adviserCate',$adviserCate);
 
     }
@@ -58,7 +66,7 @@ class AdviserArticleController extends Controller
     }
 
     /**
-     * 修改用户视图
+     * 修改视图
 
      */
     public function edit($id)
@@ -69,7 +77,7 @@ class AdviserArticleController extends Controller
         return view('admin.adviser.article.edit')->with('adviserCate',$adviserCate)->with('adviserArticle',$adviserArticle);
     }
     /**
-     * 修改用户资料
+     * 修改资料
 
      */
     public function update(request $request,$id)
@@ -86,6 +94,7 @@ class AdviserArticleController extends Controller
      */
     public function destroy($id)
     {
+        dd($id);
         AdviserArticleRepository::destroy($id);
         return redirect('admin/adviserArticle');
     }
@@ -95,8 +104,8 @@ class AdviserArticleController extends Controller
      */
     public function show($id)
     {
-        $user = AdviserArticleRepository::show($id);
-        return view('admin.adviser.article.show')->with(compact('user'));
+        $adviserArticle = AdviserArticleRepository::show($id);
+        return view('admin.adviser.article.show')->with('adviserArticle',$adviserArticle);
     }
 
 

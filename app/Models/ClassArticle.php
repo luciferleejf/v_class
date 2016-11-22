@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class ClassArticle extends Model
 {
     protected $table = 'class_article';
@@ -11,12 +12,6 @@ class ClassArticle extends Model
     protected $fillable = ['id','tid','cid','face_img','adviser','title','description','type','pre_class','pre_date','url','content','click'];
 
 
-    public function hasOneClassCate()
 
-    {
-
-        return $this->hasOne('class_cate', 'cid', 'id');
-
-    }
 
 }

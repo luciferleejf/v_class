@@ -111,6 +111,18 @@ class ApiTableSeeder extends Seeder
         $data[8]['requestNum']=0;
 
 
+        /*课程详情*/
+
+        $data[9]['type']="POST";
+        $data[9]['name']="课程详情";
+        $data[9]['url']=$host."classDetail";
+        $data[9]['parms']="{id}";
+        $data[9]['parmsDetail']="{课程id}";
+        $data[9]['jason']="{data}";
+        $data[9]['jasonDetail']="{data-数据课程顾问相关信息}";
+        $data[9]['requestNum']=0;
+
+
 
 
         foreach ($data as $value)

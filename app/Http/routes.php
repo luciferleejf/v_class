@@ -97,6 +97,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin','middleware' => ['web'
 
 
 
+    /*
+    *
+    *上传插件
+    *
+     *
+    * */
+    require(__DIR__ . '/Routes/UploadRoute.php');
+
 });
 
 

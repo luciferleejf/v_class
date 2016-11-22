@@ -34,7 +34,7 @@ var TableDatatablesAjax = function() {
                 {
                     "data": "cid",
                     "name" : "cid",
-                    "orderable" : false,
+
                 },
                 {
                     "data": "tid",

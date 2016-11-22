@@ -199,6 +199,7 @@
                     btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
                     icon: 5,
                     yes: function(index){
+
                         $('form[name="delete_item"]').submit();
                         layer.close(index);
                     }

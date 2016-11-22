@@ -29,6 +29,9 @@ class ClassArticleController extends Controller
         $adviserArticle=$adviserArticle->lists('id','cnName');
 
 
+
+
+
         return view('admin.class.article.list')->with('classCate',$classCate)->with('adviserArticle',$adviserArticle);
     }
 

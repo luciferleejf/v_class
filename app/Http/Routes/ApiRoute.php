@@ -10,12 +10,19 @@ $router->group(['prefix' => 'client'], function($router){
     $router->post('setDefault','ClientController@setDefault'); //头像昵称设置
     $router->post('forgetPassword','ClientController@forgetPassword');//忘记密码
     $router->post('resetPassword','ClientController@resetPassword');  //重置密码
+    $router->POST('classDetail','ClientController@classDetail'); //课程详情页
 
 
 
     $router->get('getIndex','ClientController@getIndex');
     $router->get('getAdviser','ClientController@getAdviser');
     $router->get('getClassCate','ClientController@getClassCate');
+
+
+
+
+
+
 });
 
 

@@ -9,7 +9,11 @@ use App\Http\Requests\ClientRegisterRequest;
 
 class ClientController extends Controller
 {
-
+    public function __construct()
+    {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Method:POST,GET");
+    }
 
     public function login(request $request)
     {
@@ -52,12 +56,19 @@ class ClientController extends Controller
 
 
     public function getAdviser(){
+
         $message=ClientRepository::getAdviser();
         return response()->json($message);
     }
 
     public function getClassCate(){
         $message=ClientRepository::getClassCate();
+        return response()->json($message);
+    }
+
+    public function classDetail(request $request){
+
+        $message=ClientRepository::classDetail($request);
         return response()->json($message);
     }
 

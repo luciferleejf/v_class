@@ -1,4 +1,5 @@
-
+##2016.11.23 composer update
+mews/captcha 更新至 `v2.1.4` 验证码问题已经解决
 
 ## 安装
 1. 下载本项目,然后在项目根目录执行 `composer install`

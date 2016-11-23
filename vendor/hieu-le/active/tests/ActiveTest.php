@@ -15,7 +15,8 @@ class ActiveTest extends TestCase
         parent::setUp();
 
         app('router')->group(['middleware' => ['dump']], function () {
-            app('router')->get('/foo/bar', ['as' => 'foo.bar', 'uses' => '\HieuLe\ActiveTest\Http\DumpController@indexMethod']);
+            app('router')->get('/foo/bar',
+                ['as' => 'foo.bar', 'uses' => '\HieuLe\ActiveTest\Http\DumpController@indexMethod']);
             app('router')->get('/foo/bar/{id}/view',
                 ['as' => 'foo.bar.view', 'uses' => '\HieuLe\ActiveTest\Http\DumpController@viewMethod']);
             app('router')->get('/home', [
@@ -25,6 +26,10 @@ class ActiveTest extends TestCase
             ]);
             app('router')->get('/', function () {
             });
+            app('router')->bind('model', function ($id) {
+                return new StubModel(['uid' => $id]);
+            });
+            app('router')->get('/model/{model}', '\HieuLe\ActiveTest\Http\DumpController@viewMethod');
         });
     }
 
@@ -101,12 +106,12 @@ class ActiveTest extends TestCase
 
     /**
      * @param Request $request
-     * @param array   $actions
+     * @param         $actions
      * @param         $result
      *
      * @dataProvider provideCheckActionTestData
      */
-    public function testCheckCurrentAction(Request $request, array $actions, $result)
+    public function testCheckCurrentAction(Request $request, $actions, $result)
     {
         app(HttpKernelContract::class)->handle($request);
 
@@ -117,12 +122,13 @@ class ActiveTest extends TestCase
 
     /**
      * @param Request $request
-     * @param array   $controllers
+     * @param
+     *        $controllers
      * @param         $result
      *
      * @dataProvider provideCheckControllerTestData
      */
-    public function testCheckCurrentController(Request $request, array $controllers, $result)
+    public function testCheckCurrentController(Request $request, $controllers, $result)
     {
         app(HttpKernelContract::class)->handle($request);
 
@@ -133,12 +139,12 @@ class ActiveTest extends TestCase
 
     /**
      * @param Request $request
-     * @param array   $routes
+     * @param         $routes
      * @param         $result
      *
      * @dataProvider provideCheckRouteTestData
      */
-    public function testCheckCurrentRoute(Request $request, array $routes, $result)
+    public function testCheckCurrentRoute(Request $request, $routes, $result)
     {
         app(HttpKernelContract::class)->handle($request);
 
@@ -149,12 +155,12 @@ class ActiveTest extends TestCase
 
     /**
      * @param Request $request
-     * @param array   $routes
+     * @param         $routes
      * @param         $result
      *
      * @dataProvider provideCheckRoutePatternTestData
      */
-    public function testCheckCurrentRoutePattern(Request $request, array $routes, $result)
+    public function testCheckCurrentRoutePattern(Request $request, $routes, $result)
     {
         app(HttpKernelContract::class)->handle($request);
 
@@ -181,13 +187,13 @@ class ActiveTest extends TestCase
     }
 
     /**
-     * @param Request $request
-     * @param array   $uri
-     * @param         $result
+     * @param Request      $request
+     * @param array|string $uri
+     * @param              $result
      *
      * @dataProvider provideCheckUriTestData
      */
-    public function testCheckCurrentUri(Request $request, array $uri, $result)
+    public function testCheckCurrentUri(Request $request, $uri, $result)
     {
         app(HttpKernelContract::class)->handle($request);
 
@@ -198,12 +204,12 @@ class ActiveTest extends TestCase
 
     /**
      * @param Request $request
-     * @param array   $uri
+     * @param         $uri
      * @param         $result
      *
      * @dataProvider provideCheckUriPatternTestData
      */
-    public function testCheckCurrentUriPattern(Request $request, array $uri, $result)
+    public function testCheckCurrentUriPattern(Request $request, $uri, $result)
     {
         app(HttpKernelContract::class)->handle($request);
 
@@ -287,17 +293,23 @@ class ActiveTest extends TestCase
         return [
             'match the first inputted actions'  => [
                 Request::create('/foo/bar'),
-                ['\HieuLe\ActiveTest\Http\DumpController@indexMethod'],
+                '\HieuLe\ActiveTest\Http\DumpController@indexMethod',
                 true,
             ],
             'match the second inputted actions' => [
                 Request::create('/foo/bar'),
-                ['\HieuLe\ActiveTest\Http\DumpController@viewMethod', '\HieuLe\ActiveTest\Http\DumpController@indexMethod'],
+                [
+                    '\HieuLe\ActiveTest\Http\DumpController@viewMethod',
+                    '\HieuLe\ActiveTest\Http\DumpController@indexMethod',
+                ],
                 true,
             ],
             'match no action'                   => [
                 Request::create('/foo/bar'),
-                ['\HieuLe\ActiveTest\Http\DumpController@viewMethod', '\HieuLe\ActiveTest\Http\DumpController@deleteMethod'],
+                [
+                    '\HieuLe\ActiveTest\Http\DumpController@viewMethod',
+                    '\HieuLe\ActiveTest\Http\DumpController@deleteMethod',
+                ],
                 false,
             ],
         ];
@@ -308,7 +320,7 @@ class ActiveTest extends TestCase
         return [
             'match the first inputted controllers'  => [
                 Request::create('/foo/bar'),
-                ['\HieuLe\ActiveTest\Http\DumpController'],
+                '\HieuLe\ActiveTest\Http\DumpController',
                 true,
             ],
             'match the second inputted controllers' => [
@@ -329,7 +341,7 @@ class ActiveTest extends TestCase
         return [
             'match the first inputted route names'  => [
                 Request::create('/foo/bar'),
-                ['foo.bar'],
+                'foo.bar',
                 true,
             ],
             'match the second inputted route names' => [
@@ -371,6 +383,18 @@ class ActiveTest extends TestCase
                 '2',
                 false,
             ],
+            'match a route bound to a model' => [
+                Request::create('/model/100'),
+                'model',
+                '100',
+                true,
+            ],
+            'not match a route bound to another model' => [
+                Request::create('/model/100'),
+                'model',
+                '1',
+                false,
+            ],
         ];
     }
 
@@ -379,7 +403,7 @@ class ActiveTest extends TestCase
         return [
             'match the first inputted route patterns'  => [
                 Request::create('/foo/bar'),
-                ['foo.*'],
+                'foo.*',
                 true,
             ],
             'match the second inputted route patterns' => [
@@ -405,7 +429,7 @@ class ActiveTest extends TestCase
         return [
             'match the first inputted uri'  => [
                 Request::create('/foo/bar'),
-                ['foo/bar'],
+                'foo/bar',
                 true,
             ],
             'match the second inputted uri' => [
@@ -479,7 +503,7 @@ class ActiveTest extends TestCase
         return [
             'match the first inputted uri patterns'  => [
                 Request::create('/foo/bar'),
-                ['foo/*'],
+                'foo/*',
                 true,
             ],
             'match the second inputted uri patterns' => [

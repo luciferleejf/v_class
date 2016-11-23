@@ -5,8 +5,9 @@
 $router->group(['prefix' => 'upload'], function($router){
 
 
-    $router->post('article_upload','UploadController@article_upload');
 
+    $router->get('server','UploadController@server');
+    $router->post('server','UploadController@server');
 });
 
 

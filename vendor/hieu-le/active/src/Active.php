@@ -2,6 +2,7 @@
 
 namespace HieuLe\Active;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
@@ -19,7 +20,7 @@ use Illuminate\Support\Str;
  *
  * @package    HieuLe\Active
  * @author     Hieu Le <letrunghieu.cse09@gmail.com>
- * @version    3.0.0
+ * @version    3.2.0
  *
  */
 class Active
@@ -117,17 +118,17 @@ class Active
     /**
      * Check if the URI of the current request matches one of the specific URIs
      *
-     * @param array $uris
+     * @param array|string $uris
      *
      * @return bool
      */
-    public function checkUri(array $uris)
+    public function checkUri($uris)
     {
         if (!$this->request) {
             return false;
         }
 
-        foreach ($uris as $uri) {
+        foreach ((array)$uris as $uri) {
             if ($this->uri == $uri) {
                 return true;
             }
@@ -139,17 +140,17 @@ class Active
     /**
      * Check if the current URI matches one of specific patterns (using `str_is`)
      *
-     * @param array $patterns
+     * @param array|string $patterns
      *
      * @return bool
      */
-    public function checkUriPattern(array $patterns)
+    public function checkUriPattern($patterns)
     {
         if (!$this->request) {
             return false;
         }
 
-        foreach ($patterns as $p) {
+        foreach ((array)$patterns as $p) {
             if (str_is($p, $this->uri)) {
                 return true;
             }
@@ -193,11 +194,11 @@ class Active
     /**
      * Check if the name of the current route matches one of specific values
      *
-     * @param array $routeNames
+     * @param array|string $routeNames
      *
      * @return bool
      */
-    public function checkRoute(array $routeNames)
+    public function checkRoute($routeNames)
     {
         if (!$this->route) {
             return false;
@@ -205,7 +206,7 @@ class Active
 
         $routeName = $this->route->getName();
 
-        if (in_array($routeName, $routeNames)) {
+        if (in_array($routeName, (array)$routeNames)) {
             return true;
         }
 
@@ -215,11 +216,11 @@ class Active
     /**
      * Check the current route name with one or some patterns
      *
-     * @param array $patterns
+     * @param array|string $patterns
      *
      * @return bool
      */
-    public function checkRoutePattern(array $patterns)
+    public function checkRoutePattern($patterns)
     {
         if (!$this->route) {
             return false;
@@ -227,7 +228,7 @@ class Active
 
         $routeName = $this->route->getName();
 
-        foreach ($patterns as $p) {
+        foreach ((array)$patterns as $p) {
             if (str_is($p, $routeName)) {
                 return true;
             }
@@ -250,23 +251,31 @@ class Active
             return false;
         }
 
-        return $this->route->parameter($param) == $value;
+        $paramValue = $this->route->parameter($param);
+
+        // If the parameter value is an instance of Model class, we compare $value with the value of
+        // its primary key.
+        if (is_a($paramValue, Model::class)) {
+            return $paramValue->{$paramValue->getKeyName()} == $value;
+        }
+
+        return $paramValue == $value;
     }
 
     /**
      * Return 'active' class if current route action match one of provided action names
      *
-     * @param array $actions
+     * @param array|string $actions
      *
      * @return bool
      */
-    public function checkAction(array $actions)
+    public function checkAction($actions)
     {
         if (!$this->action) {
             return false;
         }
 
-        if (in_array($this->action, $actions)) {
+        if (in_array($this->action, (array)$actions)) {
             return true;
         }
 
@@ -276,17 +285,17 @@ class Active
     /**
      * Check if the current controller class matches one of specific values
      *
-     * @param array $controllers
+     * @param array|string $controllers
      *
      * @return bool
      */
-    public function checkController(array $controllers)
+    public function checkController($controllers)
     {
         if (!$this->controller) {
             return false;
         }
 
-        if (in_array($this->controller, $controllers)) {
+        if (in_array($this->controller, (array)$controllers)) {
             return true;
         }
 

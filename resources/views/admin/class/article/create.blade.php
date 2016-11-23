@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-
+@include('UEditor::head');
 <style>
 .uploader button{width:190px;height:30px;text-align: center;}
 
@@ -227,9 +227,13 @@
                           <label class="col-md-2 control-label" for="content">{{trans('labels.classArticle.content')}}</label>
                           <div class="col-md-8">
 
-                              <textarea cols="80" id="content" name="content" rows="10">
+                              <!-- 加载编辑器的容器 -->
+                              <script id="container" name="content" type="text/plain">
 
-                              </textarea>
+                              </script>
+
+
+
 
 
                               <div class="form-control-focus"> </div>
@@ -266,11 +270,26 @@
 <script type="text/javascript">
 
 
+
+
   $(function(){
+
+      var ue = UE.getEditor('container');
+      ue.ready(function() {
+
+          ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
+
+      });
+
+
+
       $('.input-group.date').datepicker({
           autoclose: true
       });
-      CKEDITOR.replace( 'content', {filebrowserBrowseUrl: '{{url('uploads/images/')}}',filebrowserUploadUrl: '{{url('admin/upload/article_upload')}}?_token={{csrf_token()}}'});
+
+
+
+
       $("#face_image").fileupload({
           dataType: 'json',
           url: '/admin/classArticle/uploadFile',

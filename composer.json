@@ -12,7 +12,8 @@
         "hieu-le/active": "^3.0",
         "laracasts/flash": "^1.3",
         "mews/captcha": "~2.0",
-        "predis/predis": "1.0.*"
+        "predis/predis": "1.0.*",
+        "stevenyangecho/laravel-u-editor": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

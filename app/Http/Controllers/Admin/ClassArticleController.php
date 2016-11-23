@@ -109,15 +109,7 @@ class ClassArticleController extends Controller
         return redirect('admin/classArticle');
     }
 
-    /**
-     * 修改用户状态
 
-     */
-    public function mark($id,$status)
-    {
-        UserRepository::mark($id,$status);
-        return redirect('admin/user');
-    }
 
     /**
      * 删除用户
@@ -125,7 +117,7 @@ class ClassArticleController extends Controller
      */
     public function destroy($id)
     {
-        UserRepository::destroy($id);
+        ClassArticleRepository::destroy($id);
         return redirect('admin/user');
     }
     /**
@@ -134,25 +126,8 @@ class ClassArticleController extends Controller
      */
     public function show($id)
     {
-        $user = UserRepository::show($id);
-        return view('admin.user.show')->with(compact('user'));
-    }
-    /**
-     * 修改用户密码视图
-
-     */
-    public function changePassword($id)
-    {
-        return view('admin.user.reset')->with(compact('id'));
+        $data = ClassArticleRepository::show($id);
+        return view('admin.user.show')->with('data',$data);
     }
 
-    /**
-     * 修改用户密码
-
-     */
-    public function resetPassword(ResetPasswordRequest $request)
-    {
-        UserRepository::resetPassword($request);
-        return redirect('admin/user');
-    }
 }

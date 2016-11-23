@@ -180,6 +180,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BackendServiceProvider::class,
+
+
+
         /**
          * Third Party Service Providers...
          */
@@ -189,7 +192,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
-
+        Stevenyangecho\UEditor\UEditorServiceProvider::class,
     ],
 
     /*
@@ -241,6 +244,11 @@ return [
         'Flash' => Laracasts\Flash\Flash::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+
+
+
+
 
         //admin仓库
         'UserRepository' => App\Facades\UserFacade::class,

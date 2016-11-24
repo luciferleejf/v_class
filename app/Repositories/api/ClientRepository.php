@@ -255,10 +255,25 @@ class ClientRepository
     {
 
         $classArticle=new ClassArticle;
-        $preClass=$classArticle->where('pre_class','1')->orderBy('id','desc')->limit(2)->get(); //课程预告
-        $hotClass=$classArticle->where('pre_class','0')->orderBy('click','asc')->orderBy('id','desc')->limit(2)->get(); //热门推荐
+        $preClass=$classArticle
+            ->leftJoin('adviser_article','adviser_article.id','=','class_article.tid')
+            ->select('class_article.*','adviser_article.adviser_img','adviser_article.cnName','adviser_article.enName')
+            ->orderBy('class_article.id','desc')
+            ->where('class_article.pre_class',1)
+            ->limit(2)
+            ->get(); //课程预告
+        $hotClass=$classArticle
+            ->leftJoin('adviser_article','adviser_article.id','=','class_article.tid')
+            ->select('class_article.*','adviser_article.adviser_img','adviser_article.cnName','adviser_article.enName')
+            ->orderBy('class_article.id','desc')
+            ->where('class_article.pre_class','0')
+            ->orderBy('class_article.click','asc')
+            ->orderBy('class_article.id','desc')
+            ->limit(2)
+            ->get(); //热门推荐
         $data['preClass']=$preClass;
         $data['hotClass']=$hotClass;
+
         return $data;
     }
 
@@ -301,6 +316,22 @@ class ClientRepository
     }
 
 
+    public static function adviserDetail($request)
+    {
+        $tid=$request['tid'];
+
+        $adviserArticle=new AdviserArticle;
+        $classArticle=new ClassArticle;
+
+        $adviser=$adviserArticle->where('id',$tid)->first();
+        $class=$classArticle->where('tid',$tid)->get();
+
+        $data['adviser']=$adviser;
+        $data['class']=$class;
+
+        return $data;
+
+    }
 
 
 

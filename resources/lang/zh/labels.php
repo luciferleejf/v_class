@@ -96,6 +96,8 @@ return [
         'video' =>'视频id',
         'audio' =>'上传音频',
         'preDate' => '预告时间',
+        'detail' => '课程列表',
+
     ],
 
     'adviserCate' =>[
@@ -114,6 +116,21 @@ return [
     'adviser' => [
         'detail' => '<i class="fa fa-diamond"></i> 顾问管理'
     ],
+
+    'recommend' => [
+        'detail' => '<i class="fa fa-tags"></i> 推荐位管理',
+        'index' => '<i class="fa fa-file-text"></i> 首页推荐位',
+        'indexList' => '首页推荐位列表',
+
+
+        'img' => '推荐位图片',
+        'show' => '推荐位状态',
+        'type' => '推荐位位置',
+        'sort'  => '排序',
+    ],
+
+
+
 
 
 	'breadcrumb' => [
@@ -142,6 +159,9 @@ return [
         'api' => '<i class="fa fa-code-fork"></i> 接口管理',
         'classCreate' => '<i class="fa fa-user-plus"></i> 创建课程',
         'adviserCreate'=> '<i class="fa fa-user-plus"></i> 创建顾问',
+        'addRecommend'=> '<i class="fa fa-user-plus"></i> 添加推荐位',
+
+
         'classEdit'=> '<i class="fa fa-user-plus"></i> 修改课程',
         'adviserEdit'=> '<i class="fa fa-user-plus"></i> 修改顾问',
 

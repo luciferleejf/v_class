@@ -46,7 +46,7 @@
                           <div class="col-md-3">
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
-                                      <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="" data-holder-rendered="true">
+                                      <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="{{url('/backend/img/upload.jpg')}}" data-holder-rendered="true">
                                       <input type="hidden" id="adviser_img" name="adviser_img" >
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
@@ -243,7 +243,7 @@
 
       $("#weixin_image").fileupload({
           dataType: 'json',
-          url: '/admin/classArticle/uploadFile',
+          url: '/admin/upload/uploadFile',
           sequentialUploads: true,
 
       }).bind('fileuploadprogress', function (e, data) {

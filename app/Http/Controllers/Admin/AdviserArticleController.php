@@ -94,7 +94,7 @@ class AdviserArticleController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+
         AdviserArticleRepository::destroy($id);
         return redirect('admin/adviserArticle');
     }
@@ -110,14 +110,7 @@ class AdviserArticleController extends Controller
 
 
 
-    /*
-     * 图片上传
-     * */
-    public function uploadFile()
-    {
-        $data = AdviserArticleRepository::uploadFile();
-        return response()->json($data);
-    }
+
 
 
 

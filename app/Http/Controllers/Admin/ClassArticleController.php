@@ -33,14 +33,7 @@ class ClassArticleController extends Controller
 
 
 
-    /*
-     * 图片上传
-     * */
-    public function uploadFile()
-    {
-        $data = ClassArticleRepository::uploadFile();
-        return response()->json($data);
-    }
+
 
 
 
@@ -118,16 +111,8 @@ class ClassArticleController extends Controller
     public function destroy($id)
     {
         ClassArticleRepository::destroy($id);
-        return redirect('admin/user');
+        return redirect('admin/classArticle');
     }
-    /**
-     * 查看用户信息
 
-     */
-    public function show($id)
-    {
-        $data = ClassArticleRepository::show($id);
-        return view('admin.user.show')->with('data',$data);
-    }
 
 }

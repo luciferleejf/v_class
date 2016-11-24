@@ -13,7 +13,7 @@ class ApiTableSeeder extends Seeder
     {
 
 
-        $host="http://luciferleejf.eicp.net/vclass/public/api/client/";
+        $host="http://miniclass.usaedu.net/api/client/";
 
 
         /*发送短信接口*/
@@ -123,6 +123,16 @@ class ApiTableSeeder extends Seeder
         $data[9]['requestNum']=0;
 
 
+        $data[10]['type']="POST";
+        $data[10]['name']="顾问详情";
+        $data[10]['url']=$host."adviserDetail";
+        $data[10]['parms']="{tid}";
+        $data[10]['parmsDetail']="{顾问id}";
+        $data[10]['jason']="{data}";
+        $data[10]['jasonDetail']="{data.adviser顾问详情,data.class课程详情}";
+        $data[10]['requestNum']=0;
+
+
 
 
         foreach ($data as $value)
@@ -130,12 +140,6 @@ class ApiTableSeeder extends Seeder
             $api= new Api;
             $api->fill($value)->save();
         }
-
-
-
-
-
-
 
 
     }

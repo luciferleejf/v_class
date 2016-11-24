@@ -13,7 +13,6 @@ $router->group(['prefix' => 'adviserArticle'], function($router){
 
 
 
-    $router->post('uploadFile', 'AdviserArticleController@uploadFile');
 
 
 });

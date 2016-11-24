@@ -25,10 +25,7 @@ class ClassArticleRepository
 
 
 		$orders = request('order', []);
-
 		$classArticle = new ClassArticle;
-
-
 		$count = $classArticle->count();
 
 
@@ -36,26 +33,39 @@ class ClassArticleRepository
 		if($orders){
 			$orderName = request('columns.' . request('order.0.column') . '.name');
 			$orderDir = request('order.0.dir');
-			$user = $classArticle->orderBy($orderName, $orderDir);
+            $classArticle = $classArticle->orderBy($orderName, $orderDir);
 		}
 
         $classArticle = $classArticle->offset($start)->limit($length);
-        $classArticles = $classArticle->get();
+        $classArticles = $classArticle
+                        ->leftJoin('class_cate','class_cate.id','=','class_article.cid')
+                        ->leftJoin('adviser_article','adviser_article.id','=','class_article.tid')
+                        ->select('class_article.*','class_cate.name','adviser_article.cnName')
+                        ->get();
 
 
 
 		if ($classArticles) {
 			foreach ($classArticles as &$v) {
+
+
+                if($v['type'] == 0)
+                {
+                    $v['type']="视频";
+                }
+                else{
+                    $v['type']="音频";
+                }
+
+
                 $v['actionButton'] = "
-				<a href=".url('admin/classArticle'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
-				    <i class='fa fa-search'></i>
-				</a>
+			
 				<a href=".url('admin/classArticle'.'/'.$v['id'].'/edit')." class='btn btn-xs btn-primary tooltips' data-original-title=" . trans('crud.edit') . "  data-placement=top>
 				    <i class='fa fa-pencil'></i>
 				</a>
-				<a href='javascript:;' onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
+				<a href='javascript:;' num=".$v['id']." onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
                     <i class='fa fa-trash'></i>
-                    <form action=".url('admin/classArticle'.$v['id'])." method='POST' name='delete_item' style='display:none'>
+                    <form action=".url('admin/classArticle/'.$v['id'])." method='POST' name='delete_item".$v['id']."' style='display:none'>
                       <input type='hidden' name='_method' value='delete'><input type='hidden' name='_token' value=".csrf_token().">
                     </form>
 				</a>";
@@ -134,38 +144,24 @@ class ClassArticleRepository
         abort(404);
 	}
 
-	/**
-	 * 修改用户状态
 
-	 */
-	public function mark($id,$status)
-	{
-		$user = User::find($id);
-		if ($user) {
-			$user->status = $status;
-			if ($user->save()) {
-				Flash::success(trans('alerts.users.updated_success'));
-				return true;
-			}
-			Flash::error(trans('alerts.users.updated_error'));
-			return false;
-		}
-		abort(404);
-	}
 
 	/**
 	 * 删除角色
 
 	 */
-	public function destroy($id)
+	public static function destroy($id)
 	{
-		$isDelete = User::destroy($id);
-		if ($isDelete) {
-			Flash::success(trans('alerts.users.deleted_success'));
-			return true;
-		}
-		Flash::error(trans('alerts.users.deleted_error'));
-		return false;
+        $classArticle = new ClassArticle;
+
+        $isDelete = $classArticle::destroy($id);
+
+        if ($isDelete) {
+            Flash::success(trans('alerts.users.deleted_success'));
+            return true;
+        }
+        Flash::error(trans('alerts.users.deleted_error'));
+        return false;
 	}
 
 	/**
@@ -202,39 +198,7 @@ class ClassArticleRepository
 		abort(404);
 	}
 
-    public static function uploadFile()
-    {
 
-        if(Input::file('weixin_image'))
-        {
-            $file = Input::file('weixin_image');
-
-        }
-        else if(Input::file('face_image')){
-
-            $file = Input::file('face_image');
-        }
-        else if(Input::file('mp3_image')){
-
-            $file = Input::file('mp3_image');
-        }
-
-
-        $allowed_extensions = ["png", "jpg", "gif",'jpeg','mp3'];
-        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
-            return ['error' => 'You may only upload png, jpg or gif.'];
-        }
-
-        $destinationPath = public_path() . "/uploads/class-img/";
-
-        $extension = $file->getClientOriginalExtension();
-        $fileName = time().'.'.$extension;
-        $file->move($destinationPath, $fileName);
-
-        $data['result']="/uploads/class-img/".$fileName;
-
-        return $data;
-    }
 
 
 }

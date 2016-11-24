@@ -34,13 +34,13 @@ var TableDatatablesAjax = function() {
                 },
 
                 {
-                    "data": "cid",
-                    "name" : "cid",
+                    "data": "name",
+                    "name" : "name",
 
                 },
                 {
-                    "data": "tid",
-                    "name" : "tid",
+                    "data": "cnName",
+                    "name" : "cnName",
 
                 },
                 {

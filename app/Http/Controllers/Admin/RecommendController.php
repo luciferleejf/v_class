@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Repositories\admin\RecommendRepository;
+use App\Models\Recommend;
 
 class RecommendController extends Controller
 {
@@ -27,7 +28,7 @@ class RecommendController extends Controller
      */
     public function ajaxIndex()
     {
-        $data = UserRepository::ajaxIndex();
+        $data = RecommendRepository::ajaxIndex();
         return response()->json($data);
     }
     /**
@@ -36,19 +37,18 @@ class RecommendController extends Controller
      */
     public function create()
     {
-        $permissions = PermissionRepository::findPermissionWithArray();
-        $roles = RoleRepository::findRoleWithObject();
-        return view('admin.user.create')->with(compact(['permissions','roles']));
+
+        return view('admin.recommend.index.create');
     }
 
     /**
      * 添加用户
 
      */
-    public function store(CreateUserRequest $request)
+    public function store(request $request)
     {
-        UserRepository::store($request);
-        return redirect('admin/user');
+        RecommendRepository::store($request);
+        return redirect('admin/recommend');
     }
 
     /**
@@ -57,30 +57,21 @@ class RecommendController extends Controller
      */
     public function edit($id)
     {
-        $user = UserRepository::edit($id);
-        $roles = RoleRepository::findRoleWithObject();
-        $permissions = PermissionRepository::findPermissionWithArray();
-        return view('admin.user.edit')->with(compact(['user','permissions','roles']));
+
+        $recommend = new Recommend;
+        $recommend=$recommend->where('id',$id)->first();
+        return view('admin.recommend.index.edit')->with('recommend',$recommend);
     }
     /**
      * 修改用户资料
 
      */
-    public function update(UpdateUserRequest $request,$id)
+    public function update(request $request,$id)
     {
-        UserRepository::update($request,$id);
-        return redirect('admin/user');
+        RecommendRepository::update($request,$id);
+        return redirect('admin/recommend');
     }
 
-    /**
-     * 修改用户状态
-
-     */
-    public function mark($id,$status)
-    {
-        UserRepository::mark($id,$status);
-        return redirect('admin/user');
-    }
 
     /**
      * 删除用户
@@ -88,34 +79,8 @@ class RecommendController extends Controller
      */
     public function destroy($id)
     {
-        UserRepository::destroy($id);
-        return redirect('admin/user');
-    }
-    /**
-     * 查看用户信息
-
-     */
-    public function show($id)
-    {
-        $user = UserRepository::show($id);
-        return view('admin.user.show')->with(compact('user'));
-    }
-    /**
-     * 修改用户密码视图
-
-     */
-    public function changePassword($id)
-    {
-        return view('admin.user.reset')->with(compact('id'));
+        RecommendRepository::destroy($id);
+        return redirect('admin/recommend');
     }
 
-    /**
-     * 修改用户密码
-
-     */
-    public function resetPassword(ResetPasswordRequest $request)
-    {
-        UserRepository::resetPassword($request);
-        return redirect('admin/user');
-    }
 }

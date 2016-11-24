@@ -32,10 +32,17 @@
                 <div class="portlet-title">
                     <div class="caption">
                         <i class="icon-settings font-dark"></i>
-                        <span class="caption-subject font-dark sbold uppercase">{{trans('labels.user.list')}}</span>
+                        <span class="caption-subject font-dark sbold uppercase">{{trans('labels.classArticle.detail')}}</span>
                     </div>
                     <div class="actions">
                         <div class="btn-group">
+
+
+                            <a href="{{url('api/data')}}" class="btn btn-success btn-outline btn-circle" style="margin-right:50px;">
+                                <i class="fa fa-user-plus"></i>
+                                <span class="hidden-xs">数据同步</span>
+                            </a>
+
 
                             <a href="{{url('admin/classArticle/create')}}" class="btn btn-success btn-outline btn-circle">
                                 <i class="fa fa-user-plus"></i>
@@ -154,21 +161,16 @@
     <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
     <script type="text/javascript">
         $(function() {
-
-
-
-
-
-
-
             TableDatatablesAjax.init();
             $(document).on('click','#destory',function() {
+                var num=$(this).attr('num')
                 layer.msg('{{trans('alerts.deleteTitle')}}', {
                     time: 0, //不自动关闭
                     btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
                     icon: 5,
                     yes: function(index){
-                        $('form[name="delete_item"]').submit();
+
+                        $('form[name="delete_item'+num+'"]').submit();
                         layer.close(index);
                     }
                 });

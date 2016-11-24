@@ -65,6 +65,20 @@ return [
             'engine'    => null,
         ],
 
+        'mysql_vclass' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_VCLASS', '121.42.13.203'),
+            'port' => env('DB_PORT_VCLASS', '20'),
+            'database' => env('DB_DATABASE_VCLASS', 'onusa'),
+            'username' => env('DB_USERNAME_VCLASS', 'admin'),
+            'password' => env('DB_PASSWORD_VCLASS', 'andy1234'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),

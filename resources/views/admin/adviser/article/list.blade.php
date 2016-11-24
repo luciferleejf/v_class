@@ -194,13 +194,16 @@
         $(function() {
             TableDatatablesAjax.init();
             $(document).on('click','#destory',function() {
+
+
+                var num=$(this).attr('num')
                 layer.msg('{{trans('alerts.deleteTitle')}}', {
                     time: 0, //不自动关闭
                     btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
                     icon: 5,
                     yes: function(index){
 
-                        $('form[name="delete_item"]').submit();
+                        $('form[name="delete_item'+num+'"]').submit();
                         layer.close(index);
                     }
                 });

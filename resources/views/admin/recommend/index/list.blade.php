@@ -13,8 +13,14 @@
           <i class="fa fa-angle-right"></i>
       </li>
       <li>
-          <span>{!! trans('labels.breadcrumb.userList') !!}</span>
+          <span>{!! trans('labels.recommend.detail') !!}</span>
+          <i class="fa fa-angle-right"></i>
       </li>
+
+      <li>
+          <span>{!! trans('labels.recommend.index') !!}</span>
+      </li>
+
   </ul>
 </div>
 <!-- END PAGE BAR -->
@@ -26,12 +32,12 @@
           <div class="portlet-title">
             <div class="caption">
               <i class="icon-settings font-dark"></i>
-              <span class="caption-subject font-dark sbold uppercase">{{trans('labels.user.list')}}</span>
+              <span class="caption-subject font-dark sbold uppercase">{{trans('labels.recommend.indexList')}}</span>
             </div>
             <div class="actions">
               <div class="btn-group">
                 @permission(config('admin.permissions.user.create'))
-                <a href="{{url('admin/user/create')}}" class="btn btn-success btn-outline btn-circle">
+                <a href="{{url('admin/recommend/create')}}" class="btn btn-success btn-outline btn-circle">
                   <i class="fa fa-user-plus"></i>
                   <span class="hidden-xs">{{trans('crud.create')}}</span>
                 </a>
@@ -45,10 +51,10 @@
                     <thead>
                         <tr role="row" class="heading">
                           <th>#</th>
-                          <th width="15%"> {{ trans('labels.user.name') }} </th>
-                          <th> {{ trans('labels.user.email') }} </th>
-                          <th> {{ trans('labels.user.confirm_email') }} </th>
-                          <th width="10%"> {{ trans('labels.user.status') }} </th>
+                          <th width="30%"> {{ trans('labels.recommend.img') }} </th>
+                          <th width="10%"> {{ trans('labels.recommend.show') }} </th>
+                            <th width="10%"> {{ trans('labels.recommend.type') }} </th>
+                            <th width="10%"> {{ trans('labels.recommend.sort') }} </th>
                           <th width="15%"> {{ trans('labels.user.created_at') }} </th>
                           <th width="15%"> {{ trans('labels.user.updated_at') }} </th>
                           <th width="15%"> {{ trans('labels.action') }} </th>
@@ -61,21 +67,14 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-user"></i>
                                     </span>
-                                    <input type="text" class="form-control form-filter" name="name" placeholder="{{ trans('labels.user.name') }}">
-                                    <div class="form-control-focus"> </div>
-                                </div>
-                              </div>
-                            <td> 
-                              <div class="form-group form-md-line-input">
-                                <div class="input-group has-success">
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                                    <input type="text" class="form-control form-filter" name="email" placeholder="{{ trans('labels.user.email') }}">
+                                    <input type="text" class="form-control form-filter" name="img" placeholder="{{ trans('labels.user.name') }}">
                                     <div class="form-control-focus"> </div>
                                 </div>
                               </div>
                             </td>
+
+
+
                             <td>
                               <div class="form-group form-md-line-input">
                                 <div class="input-group has-success">
@@ -87,17 +86,31 @@
                                 </div>
                               </div>
                             </td>
+
                             <td>
-                              <div class="form-group form-md-line-input">
-                                <select class="bs-select form-control form-filter" data-show-subtext="true" name="status">
-                                  <option value="" data-icon="fa-glass icon-success">状态....</option>
-                                    @if(trans('strings.user'))
-                                      @foreach(trans('strings.user') as $status_key => $status_value)
-                                        <option value="{{config('admin.global.status.'.$status_key)}}" data-icon="{{$status_value[0]}}"> {{$status_value[1]}}</option>
-                                      @endforeach
-                                    @endif
-                                </select>
-                              </div>
+                                <div class="form-group form-md-line-input">
+                                    <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                        <input type="text" class="form-control form-filter" name="confirm_email" placeholder="{{ trans('labels.user.confirm_email') }}">
+                                        <div class="form-control-focus"> </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group form-md-line-input">
+                                    <div class="input-group has-success">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                        <input type="text" class="form-control form-filter" name="confirm_email" placeholder="{{ trans('labels.user.confirm_email') }}">
+                                        <div class="form-control-focus"> </div>
+                                    </div>
+                                </div>
+                            </td>
+
                             <td>
                               <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
                                 <input type="text" class="form-control form-filter input-sm" readonly placeholder="From" name="created_at_from">
@@ -112,6 +125,8 @@
                                   <i class="fa fa-calendar"></i>
                                 </span>
                               </div>
+                            </td>
+
                             <td>
                                 <div class="input-group date date-picker margin-bottom-5" data-date-format="yyyy-mm-dd">
                                   <input type="text" class="form-control form-filter input-sm" readonly placeholder="From" name="updated_at_from">
@@ -127,6 +142,8 @@
                                   </span>
                                 </div>
                             </td>
+
+
                             <td>
                                 <div class="margin-bottom-5">
                                     <button class="btn btn-sm green btn-outline filter-submit margin-bottom">
@@ -147,24 +164,30 @@
 </div>
 @endsection
 @section('js')
-<script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('backend/js/recommend/index-list.js')}}"api-list.jsscript type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/plugins/datatables/datatables.all.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/plugins/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/js/recommend/index-list.js')}}"></script>
+    <script type="text/javascript" src="{{asset('backend/plugins/layer/layer.js')}}"></script>
+<
 <script type="text/javascript">
-  $(function() {
-    TableDatatablesAjax.init();
-    $(document).on('click','#destory',function() {
-      layer.msg('{{trans('alerts.deleteTitle')}}', {
-        time: 0, //不自动关闭
-        btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
-        icon: 5,
-        yes: function(index){
-          $('form[name="delete_item"]').submit();
-          layer.close(index);
-        }
-      });
+    $(function() {
+        TableDatatablesAjax.init();
+        $(document).on('click','#destory',function() {
+
+
+            var num=$(this).attr('num')
+            layer.msg('{{trans('alerts.deleteTitle')}}', {
+                time: 0, //不自动关闭
+                btn: ['{{trans('crud.destory')}}', '{{trans('crud.cancel')}}'],
+                icon: 5,
+                yes: function(index){
+
+                    $('form[name="delete_item'+num+'"]').submit();
+                    layer.close(index);
+                }
+            });
+        });
     });
-  });
 </script>
 @endsection

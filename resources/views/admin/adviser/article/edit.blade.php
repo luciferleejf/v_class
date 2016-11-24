@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('content')
+
+<style>
+img{width:50%;}
+
+</style>
 <div class="page-bar">
 	<ul class="page-breadcrumb">
 	    <li>
@@ -49,7 +54,10 @@
                           <div class="col-md-3">
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
-                                      <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="{{$adviserArticle['adviser_img']}}" data-holder-rendered="true">
+
+
+
+                                      <img id="weixin_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  @if($adviserArticle['adviser_img']=="")src="{{url('/backend/img/upload.jpg')}}" @else src="{{$adviserArticle['adviser_img']}}" @endif data-holder-rendered="true">
                                       <input type="hidden" id="adviser_img" name="adviser_img" value="{{$adviserArticle['adviser_img']}}">
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
@@ -240,7 +248,7 @@
 
       $("#weixin_image").fileupload({
           dataType: 'json',
-          url: '/admin/adviserArticle/uploadFile',
+          url: '/admin/upload/uploadFile',
           sequentialUploads: true,
       }).bind('fileuploadprogress', function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);

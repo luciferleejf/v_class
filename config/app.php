@@ -260,6 +260,7 @@ return [
         'ClassCateRepository' => App\Facades\ClassCateFacade::class,
         'ClassArticleRepository' => App\Facades\ClassArticleFacade::class,
         'AppUserRepository' => App\Facades\AppUserFacade::class,
+        'RecommendRepository' => App\Facades\RecommendFacade::class,
 
 
         //api仓库

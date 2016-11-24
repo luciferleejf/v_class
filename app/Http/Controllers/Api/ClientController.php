@@ -72,5 +72,11 @@ class ClientController extends Controller
         return response()->json($message);
     }
 
+    public function adviserDetail(request $request){
+
+        $message=ClientRepository::adviserDetail($request);
+        return response()->json($message);
+    }
+
 
 }

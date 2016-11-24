@@ -12,7 +12,6 @@ $router->group(['prefix' => 'classArticle'], function($router){
 
 
 
-    $router->post('uploadFile', 'ClassArticleController@uploadFile');
 
 
 

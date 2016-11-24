@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 @include('UEditor::head');
+
+
 <div class="page-bar">
 	<ul class="page-breadcrumb">
 	    <li>
@@ -41,6 +43,7 @@
               <form role="form" class="form-horizontal" method="POST" action="{{url('admin/classArticle/'.$classArticle['id'])}}">
               		{!! csrf_field() !!}
                   <input type="hidden" name="_method" value="PATCH">
+
                   <input type="hidden" name="id" value="{{$classArticle['id']}}">
                   <div class="form-body">
                       <div class="form-group form-md-line-input">
@@ -48,7 +51,7 @@
                           <div class="col-md-6">
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
-                                      <img id="face_show" style="width:90%;height:150px;margin-top:10px;margin-bottom:10px;"  src="{{$classArticle['face_img']}}" data-holder-rendered="true">
+                                      <img id="face_show" style="width:90%;height:150px;margin-top:10px;margin-bottom:10px;"  @if($classArticle['face_img']!="")src="{{$classArticle['face_img']}}"@endif   @if($classArticle['face_img']=="")src="{{url('/backend/img/vclass.jpg')}}"@endif data-holder-rendered="true">
                                       <input type="hidden" id="face_img"  name="face_img" value="{{$classArticle['face_img']}}">
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
@@ -148,7 +151,7 @@
                           <div class="col-md-3">
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
-                                      <img id="mp3_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="" data-holder-rendered="true">
+                                      <img id="mp3_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  @if($classArticle['url']!=""&&$classArticle['type']==config('admin.global.type.audio'))src="{{url('/backend/img/mp3.jpg')}}"@else src="{{url('/backend/img/upload.jpg')}}" @endif  data-holder-rendered="true">
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
                                           <div id="mp3_progress" class="progress-bar progress-bar-success" ></div>
@@ -221,12 +224,17 @@
 
                       <div class="form-group form-md-line-input">
                           <label class="col-md-2 control-label" for="content">{{trans('labels.classArticle.content')}}</label>
+
                           <div class="col-md-8">
 
 
+
+
+
+                              <input id='temp' type='hidden'  value='{{$classArticle['content']}}' />
                               <!-- 加载编辑器的容器 -->
                               <script id="container" name="content" type="text/plain">
-                              {{$classArticle['content']}}
+
                               </script>
 
 
@@ -281,14 +289,14 @@
             ue.ready(function() {
 
                 ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');//此处为支持laravel5 csrf ,根据实际情况修改,目的就是设置 _token 值.
-
+                ue.setContent($("#temp").val());
             });
 
 
 
             $("#face_image").fileupload({
                 dataType: 'json',
-                url: '/admin/classArticle/uploadFile',
+                url: '/admin/upload/uploadFile',
                 sequentialUploads: true,
 
             }).bind('fileuploadprogress', function (e, data) {
@@ -310,7 +318,7 @@
 
             $("#mp3_image").fileupload({
                 dataType: 'json',
-                url: '/admin/classArticle/uploadFile',
+                url: '/admin/upload/uploadFile',
                 sequentialUploads: true,
 
             }).bind('fileuploadprogress', function (e, data) {
@@ -319,7 +327,7 @@
                 $("#mp3_progress").html(progress + '%');
             }).bind('fileuploaddone', function (e, data) {
 
-                $("#mp3_show").attr("src",data.result.result);
+                $("#mp3_show").attr("src",'/backend/img/mp3.jpg');
 
 
                 $("#url").val(data.result.result);
@@ -359,13 +367,12 @@
             $("#type1").bind('click',function () {
                 $('#video_input').show();
                 $('#audio_input').hide();
-                $('#url').val('');
+
             });
             $("#type2").bind('click',function () {
                 $('#audio_input').show();
                 $('#video_input').hide();
 
-                $('#url').val('');
             })
         });
     </script>

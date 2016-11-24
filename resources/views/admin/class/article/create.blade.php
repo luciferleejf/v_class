@@ -4,7 +4,6 @@
 <style>
 .uploader button{width:190px;height:30px;text-align: center;}
 
-
 </style>
 
 <div class="page-bar">
@@ -52,7 +51,7 @@
                           <div class="col-md-6">
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
-                                      <img id="face_show" style="width:90%;height:150px;margin-top:10px;margin-bottom:10px;"  src="" data-holder-rendered="true">
+                                      <img id="face_show" style="width:90%;height:150px;margin-top:10px;margin-bottom:10px;"  src="{{url('/backend/img/vclass.jpg')}}" data-holder-rendered="true">
                                       <input type="hidden" id="face_img"  name="face_img" value="">
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
@@ -152,7 +151,7 @@
                           <div class="col-md-3">
                               <div class="row fileupload-buttonbar" style="padding-left:15px;">
                                   <div class="thumbnail col-sm-6">
-                                      <img id="mp3_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="" data-holder-rendered="true">
+                                      <img id="mp3_show" style="height:150px;margin-top:10px;margin-bottom:10px;"  src="{{url('/backend/img/upload.jpg')}}" data-holder-rendered="true">
 
                                       <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0" style="height:20px;margin-bottom:5px;">
                                           <div id="mp3_progress" class="progress-bar progress-bar-success" ></div>
@@ -292,7 +291,7 @@
 
       $("#face_image").fileupload({
           dataType: 'json',
-          url: '/admin/classArticle/uploadFile',
+          url: '/admin/upload/uploadFile',
           sequentialUploads: true,
       }).bind('fileuploadprogress', function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -306,14 +305,15 @@
       });
       $("#mp3_image").fileupload({
           dataType: 'json',
-          url: '/admin/classArticle/uploadFile',
+          url: '/admin/upload/uploadFile',
           sequentialUploads: true,
       }).bind('fileuploadprogress', function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
           $("#mp3_progress").css('width',progress + '%');
           $("#mp3_progress").html(progress + '%');
       }).bind('fileuploaddone', function (e, data) {
-          $("#mp3_show").attr("src",data.result.result);
+
+          $("#mp3_show").attr("src",'/backend/img/mp3.jpg');
           $("#url").val(data.result.result);
           $("#mp3_upload").css({display:"none"});
           $("#mp3_cancle").css({display:""});
@@ -342,13 +342,13 @@
     $("#type1").bind('click',function () {
         $('#video_input').show();
         $('#audio_input').hide();
-        $('#url').val('');
+
     });
     $("#type2").bind('click',function () {
         $('#audio_input').show();
         $('#video_input').hide();
 
-        $('#url').val('');
+
     })
   });
 </script>

@@ -100,7 +100,10 @@ class AdviserArticleRepository
         }
 
         $adviserArticle = $adviserArticle->offset($start)->limit($length);
-        $adviserArticles = $adviserArticle->get();
+        $adviserArticles = $adviserArticle
+                            ->leftJoin('adviser_cate','adviser_cate.id','=','adviser_article.cid')
+                            ->select('adviser_article.*','adviser_cate.name')
+                            ->get();
 
 
 
@@ -111,16 +114,26 @@ class AdviserArticleRepository
             foreach ($adviserArticles as &$v) {
 
 
+                if($v['gold']==0)
+                {
+                    $v['gold']="普通顾问";
+                }
+                else
+                {
+                    $v['gold']="金牌顾问";
+                }
+
+                /*<a href=".url('admin/adviserArticle'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
+                                    <i class='fa fa-search'></i>
+               </a>*/
                 $v['actionButton'] = "
-				<a href=".url('admin/adviserArticle'.'/'.$v['id'])." class='btn btn-xs btn-info tooltips'  data-container='body' data-original-title=" . trans('crud.edit') . "  data-placement='top'>
-				    <i class='fa fa-search'></i>
-				</a>
+				
 				<a href=".url('admin/adviserArticle'.'/'.$v['id'].'/edit')." class='btn btn-xs btn-primary tooltips' data-original-title=" . trans('crud.edit') . "  data-placement=top>
 				    <i class='fa fa-pencil'></i>
 				</a>
-				<a href='javascript:;' onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
+				<a href='javascript:;' num=".$v['id']." onclick='return false' class='btn btn-xs btn-danger tooltips' data-container='body' data-original-title=" . trans('crud.destory') . "  data-placement='top' id='destory'>
                     <i class='fa fa-trash'></i>
-                    <form action=".url('admin/adviserArticle'.'/'.$v['id'])." method='POST' name='delete_item' style='display:none'>
+                    <form action=".url('admin/adviserArticle'.'/'.$v['id'])." method='POST' name='delete_item".$v['id']."' style='display:none'>
                       <input type='hidden' name='_method' value='delete'><input type='hidden' name='_token' value=".csrf_token().">
                     </form>
 				</a>";
@@ -235,39 +248,6 @@ class AdviserArticleRepository
 
 
 
-    public static function uploadFile()
-    {
-
-        if(Input::file('weixin_image'))
-        {
-            $file = Input::file('weixin_image');
-
-        }
-        else if(Input::file('face_image')){
-
-            $file = Input::file('face_image');
-        }
-        else if(Input::file('mp3_image')){
-
-            $file = Input::file('mp3_image');
-        }
-
-
-        $allowed_extensions = ["png", "jpg", "gif",'jpeg','mp3'];
-        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
-            return ['error' => 'You may only upload png, jpg or gif.'];
-        }
-
-        $destinationPath = public_path() . "/uploads/class-img/";
-
-        $extension = $file->getClientOriginalExtension();
-        $fileName = time().'.'.$extension;
-        $file->move($destinationPath, $fileName);
-
-        $data['result']="/uploads/class-img/".$fileName;
-
-        return $data;
-    }
 
 
 
